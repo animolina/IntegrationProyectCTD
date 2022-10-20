@@ -1,5 +1,4 @@
 import styles from '../styles/button.module.css';
-import PropTypes from 'prop-types';
 
 export default function Button({ innerText }) {
 	return (
@@ -8,7 +7,3 @@ export default function Button({ innerText }) {
 		</button>
 	);
 }
-
-Button.propTypes = {
-	innerText: PropTypes.string.isRequired,
-};
