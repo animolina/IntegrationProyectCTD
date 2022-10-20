@@ -26,3 +26,8 @@
 .label {
 	color: var(--text-color);
 }
+
+.link {
+	text-decoration: none;
+	color: #4285f4;
+}

@@ -18,6 +18,13 @@ export default function Login() {
 				</div>
 
 				<Button innerText='Ingresar'></Button>
+
+				<span>
+					¿Aún no tenés cuenta?{' '}
+					<a href='' className={styles.link}>
+						Registrate
+					</a>
+				</span>
 			</div>
 		</div>
 	);
