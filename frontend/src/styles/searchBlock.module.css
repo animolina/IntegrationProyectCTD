@@ -1,0 +1,60 @@
+.mainContainer {
+    height: 12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: #f9f9f9
+}
+
+.mainContainer h1 {
+    font-size: 36px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.citySuggestionTextContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.primaryText {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.secondaryText {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+.citySuggestion {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+.citySuggestion img {
+    height: 2rem;
+    margin: 1rem;
+}
+
+.cityPlaceholder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+}
