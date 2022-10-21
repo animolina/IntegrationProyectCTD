@@ -112,9 +112,11 @@
 	.header__btn {
 		display: none;
 	}
+
 	.logout__welcome {
 		display: none;
 	}
+
 	.header__burger {
 		display: block;
 	}
