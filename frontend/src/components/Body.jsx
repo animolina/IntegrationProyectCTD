@@ -1,3 +1,5 @@
+import styles from '../styles/body.module.css';
+
 export default function Body() {
-	return <div>Body</div>;
+	return <div className={styles.body}></div>;
 }
