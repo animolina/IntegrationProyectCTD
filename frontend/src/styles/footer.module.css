@@ -1,0 +1,33 @@
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100vw;
+	background-color: var(--main-color);
+	height: 3.625rem;
+	position: fixed;
+	bottom: 0;
+	z-index: 500;
+}
+
+.footer__copyright {
+	font-weight: bold;
+	margin: 1.25rem 2rem;
+	color: white;
+}
+
+.footer__social {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: 1.875rem;
+	margin-right: 2.5rem;
+}
+
+/* ------------------------------- responsive ------------------------------- */
+
+@media screen and (max-width: 480px) {
+	.footer__social {
+		display: none;
+	}
+}
