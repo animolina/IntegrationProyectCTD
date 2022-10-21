@@ -10,14 +10,18 @@ export default function Footer() {
 			<div className={styles.footer__copyright}>©2022 Digital Booking</div>
 
 			<div className={styles.footer__social}>
-				<a href='https://www.facebook.com/' target='_blank' rel='noreferrer'>
+				<a
+					href='https://www.facebook.com/'
+					target='_blank'
+					rel='noopener noreferrer'
+				>
 					<img src={iconFacebook} alt='' />
 				</a>
 				<a
 					className='social__linkedin'
 					href='https://www.linkedin.com/'
 					target='_blank'
-					rel='noreferrer'
+					rel='noopener noreferrer'
 				>
 					<img className='' src={iconLinkedin}></img>
 				</a>
@@ -25,7 +29,7 @@ export default function Footer() {
 					className='social__twitter'
 					href='https://www.twitter.com/'
 					target='_blank'
-					rel='noreferrer'
+					rel='noopener noreferrer'
 				>
 					<img className='' src={iconTwitter}></img>
 				</a>
@@ -34,7 +38,7 @@ export default function Footer() {
 					className='social__instagram'
 					href='https://www.instagram.com/'
 					target='_blank'
-					rel='noreferrer'
+					rel='noopener noreferrer'
 				>
 					<img className='' src={iconInstagram}></img>
 				</a>

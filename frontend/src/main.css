@@ -6,3 +6,8 @@
 	--bg-color: #f3f1ed;
 	--details-color: #545776;
 }
+
+a {
+	all: unset;
+	cursor: pointer;
+}
