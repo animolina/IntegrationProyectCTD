@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -24,7 +25,20 @@ public class CategoryService {
         return categories;
     }
 
+    public Category editCategory(Category category) {
+        categoryRepository.save(category);
+        return category;
+    }
 
+    public void deleteCategory(Long id) {
+        categoryRepository.deleteById(id);
+    }
 
+    public Optional<Category> findCategory(Long id) {
+        Optional<Category> category = categoryRepository.findById(id);
+        return category;
+    }
 
 }
+
+
