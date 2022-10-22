@@ -1,0 +1,10 @@
+.mainContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	box-sizing: border-box;
+	background-color: blue;
+	height: 18.75rem;
+
+	margin-top: 17rem;
+}
