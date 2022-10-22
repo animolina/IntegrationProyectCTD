@@ -25,6 +25,7 @@
 
 .label {
 	color: var(--text-color);
+	margin-bottom: 1rem;
 }
 
 .link {
