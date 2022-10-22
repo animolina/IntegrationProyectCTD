@@ -2,5 +2,12 @@
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
 	--main-color: #1dbeb4;
-	--text-color: #383B58;
+	--text-color: #383b58;
+	--bg-color: #f3f1ed;
+	--details-color: #545776;
+}
+
+a {
+	all: unset;
+	cursor: pointer;
 }

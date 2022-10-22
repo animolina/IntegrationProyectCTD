@@ -1,11 +1,9 @@
 import styles from '../styles/button.module.css';
 
-export default function Button({ innerText, handleClick, type }) {
+export default function Button({ type, innerText }) {
 	return (
 		<button
-			onClick={event => handleClick()}
-			className={styles.basicButton}
-			type={type ?? 'button'}
+			className={type === 'outline' ? styles.outlineButton : styles.basicButton}
 		>
 			<span className={styles.innerText}>{innerText}</span>
 		</button>
