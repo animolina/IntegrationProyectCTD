@@ -10,17 +10,17 @@
 	z-index: 500;
 }
 
-.header__left__container {
+.headerLeftContainer {
 	display: flex;
 	align-items: flex-end;
 	gap: 1rem;
 }
 
-.header__isotipo {
+.headerIsotipo {
 	padding-left: 2rem;
 }
 
-.header__slogan {
+.headerSlogan {
 	display: block;
 	color: var(--text-color);
 	font-style: italic;
@@ -30,16 +30,16 @@
 	margin-bottom: 0.3rem;
 }
 
-.header__btn {
+.headerBtn {
 	display: flex;
 	justify-content: space-around;
-	align-self: flex-end;
+	align-self: flex-start;
 	gap: 1rem;
 	margin-right: 2.5rem;
 	margin-bottom: 0.625rem;
 }
 
-.logout__btn {
+.logoutBtn {
 	border: none;
 	background: none;
 	color: var(--text-color);
@@ -50,21 +50,21 @@
 	top: 0.3rem;
 }
 
-.logout__welcome {
+.logoutWelcome {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	margin-right: 2rem;
 }
 
-.logout__welcome__text {
+.logoutWelcomeText {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: flex-start;
 }
 
-.logout__welcome__initials {
+.logoutWelcomeInitials {
 	align-items: center;
 	background: var(--text-color);
 	border-radius: 100%;
@@ -79,7 +79,7 @@
 	width: 3rem;
 }
 
-.logout__welcome__text {
+.logoutWelcomeText {
 	color: rgba(0, 0, 0, 0.5);
 	display: flex;
 	flex-direction: column;
@@ -89,13 +89,13 @@
 	line-height: 1.19rem;
 }
 
-.logout__welcome__text__name {
+.logoutWelcomeTextName {
 	color: var(--main-color);
 	font-size: 1rem;
 	font-weight: bold;
 }
 
-.header__burger {
+.headerBurger {
 	display: none;
 	margin-right: 2rem;
 }
@@ -103,21 +103,21 @@
 /* ------------------------------- responsive ------------------------------- */
 
 @media screen and (max-width: 769px) {
-	.header__slogan {
+	.headerSlogan {
 		display: none;
 	}
 }
 
 @media screen and (max-width: 480px) {
-	.header__btn {
+	.headerBtn {
 		display: none;
 	}
 
-	.logout__welcome {
+	.logoutWelcome {
 		display: none;
 	}
 
-	.header__burger {
+	.headerBurger {
 		display: block;
 	}
 }
