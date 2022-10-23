@@ -1,0 +1,44 @@
+.typeAhead {
+    font-size: 2rem;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    color: var(--text-color);
+    border: none;
+    width: 28rem;
+    height: 2.5rem;
+    background-color: #FFFFFF;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 0.875rem;
+    padding-left: 0.5rem;
+    cursor: pointer;
+}
+
+.container {
+    position: relative;
+    display: block;
+
+}
+
+.container ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+
+.suggestions {
+    position: absolute;
+    display: block;
+    list-style: none;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.suggestions li {
+    cursor: pointer;
+}
+
+.suggestions hr {
+    color: var(--main-color);
+}
