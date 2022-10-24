@@ -10,32 +10,28 @@ export default function Header() {
 	return (
 		<header className={styles.header}>
 			<div>
-				<a className={styles.header__left__container} href='#'>
-					<img className={styles.header__isotipo} src={isotipo} alt='isotipo' />
-					<span className={styles.header__slogan}>
-						Sentite como en tu hogar
-					</span>
+				<a className={styles.headerLeftContainer} href='#'>
+					<img className={styles.headerIsotipo} src={isotipo} alt='isotipo' />
+					<span className={styles.headerSlogan}>Sentite como en tu hogar</span>
 				</a>
 			</div>
 
 			{userLogged ? (
-				<div className={styles.logout__welcome}>
-					<label className={styles.logout__welcome__initials}>HT</label>
-					<p className={styles.logout__welcome__text}>
+				<div className={styles.logoutWelcome}>
+					<label className={styles.logoutWelcomeInitials}>HT</label>
+					<p className={styles.logoutWelcomeText}>
 						Hola,
-						<span className={styles.logout__welcome__text__name}>
-							Horacio Test
-						</span>
+						<span className={styles.logoutWelcomeTextName}>Horacio Test</span>
 					</p>
-					<button className={styles.logout__btn}>✕</button>
+					<button className={styles.logoutBtn}>✕</button>
 				</div>
 			) : (
-				<div className={styles.header__btn}>
+				<div className={styles.headerBtn}>
 					<Button type={'outline'} innerText={'Crear cuenta'} />
 					<Button type={'outline'} innerText={'Iniciar sesión'} />
 				</div>
 			)}
-			<div className={styles.header__burger}>
+			<div className={styles.headerBurger}>
 				<img src={burger} alt='burger menu' />
 			</div>
 		</header>

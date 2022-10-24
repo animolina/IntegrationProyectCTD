@@ -7,9 +7,9 @@ import iconInstagram from '../assets/icons/icon ig.svg';
 export default function Footer() {
 	return (
 		<footer className={styles.footer}>
-			<div className={styles.footer__copyright}>©2022 Digital Booking</div>
+			<div className={styles.footerCopyright}>©2022 Digital Booking</div>
 
-			<div className={styles.footer__social}>
+			<div className={styles.footerSocial}>
 				<a
 					href='https://www.facebook.com/'
 					target='_blank'
@@ -18,24 +18,24 @@ export default function Footer() {
 					<img src={iconFacebook} alt='' />
 				</a>
 				<a
-					className='social__linkedin'
+					className='socialLinkedin'
 					href='https://www.linkedin.com/'
 					target='_blank'
 					rel='noopener noreferrer'
 				>
-					<img className='' src={iconLinkedin}></img>
+					<img src={iconLinkedin}></img>
 				</a>
 				<a
-					className='social__twitter'
+					className='socialTwitter'
 					href='https://www.twitter.com/'
 					target='_blank'
 					rel='noopener noreferrer'
 				>
-					<img className='' src={iconTwitter}></img>
+					<img src={iconTwitter}></img>
 				</a>
 
 				<a
-					className='social__instagram'
+					className='socialInstagram'
 					href='https://www.instagram.com/'
 					target='_blank'
 					rel='noopener noreferrer'

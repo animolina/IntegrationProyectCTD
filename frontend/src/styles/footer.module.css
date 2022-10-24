@@ -10,13 +10,13 @@
 	z-index: 500;
 }
 
-.footer__copyright {
+.footerCopyright {
 	font-weight: bold;
 	margin: 1.25rem 2rem;
 	color: white;
 }
 
-.footer__social {
+.footerSocial {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -27,7 +27,7 @@
 /* ------------------------------- responsive ------------------------------- */
 
 @media screen and (max-width: 480px) {
-	.footer__social {
+	.footerSocial {
 		display: none;
 	}
 }
