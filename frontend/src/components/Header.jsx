@@ -7,6 +7,11 @@ import burger from '../assets/icons/burger.svg';
 export default function Header() {
 	// eslint-disable-next-line no-unused-vars
 	const [userLogged, setUserLogged] = useState(false);
+
+	const navigateToPage = page => {
+		window.location.href = page;
+	};
+
 	return (
 		<header className={styles.header}>
 			<div>
@@ -27,8 +32,16 @@ export default function Header() {
 				</div>
 			) : (
 				<div className={styles.headerBtn}>
-					<Button type={'outline'} innerText={'Crear cuenta'} />
-					<Button type={'outline'} innerText={'Iniciar sesión'} />
+					<Button
+						type={'outline'}
+						innerText={'Crear cuenta'}
+						handleClick={event => navigateToPage('/sign-up')}
+					/>
+					<Button
+						type={'outline'}
+						innerText={'Iniciar sesión'}
+						handleClick={event => navigateToPage('/login')}
+					/>
 				</div>
 			)}
 			<div className={styles.headerBurger}>

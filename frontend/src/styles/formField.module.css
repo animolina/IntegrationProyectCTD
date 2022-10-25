@@ -1,0 +1,21 @@
+.formField {
+	margin: 0.25rem 0px;
+	display: flex;
+	flex-direction: column;
+}
+
+.label {
+	color: var(--text-color);
+	margin-bottom: 0.5rem;
+}
+
+.errorInput {
+	background: #ffe1e1;
+	border: 1px solid #ff0000;
+}
+
+.errorMessage {
+	color: #ff0000;
+	text-align: right;
+	font-size: 0.75rem;
+}

@@ -1,13 +1,13 @@
 export const validateEmail = email => {
+	if (!email || !email.trim()) {
+		return false;
+	}
+
 	const validRegex = /^\S+@\S+\.\S+$/;
 
 	if (email.match(validRegex)) {
-		alert('Valid email address!');
-
 		return true;
 	} else {
-		alert('Invalid email address!');
-
 		return false;
 	}
 };
