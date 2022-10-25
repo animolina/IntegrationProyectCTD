@@ -23,7 +23,8 @@ const passwordFieldConfig = {
 export default function Login() {
 	const [emailError, setEmailError] = useState();
 	const [passwordError, setPasswordError] = useState();
-	const [isFormValid, setIsFormValid] = useState();
+
+	let isFormValid = false;
 
 	const submitLoginForm = () => {
 		const email = document.querySelector('#email');
@@ -38,10 +39,10 @@ export default function Login() {
 
 		if (!validateEmail(email.value)) {
 			setEmailError('Ingresa un email válido');
-			setIsFormValid(false);
+			isFormValid = false;
 		} else {
 			setEmailError(null);
-			setIsFormValid(true);
+			isFormValid = true;
 		}
 
 		const user = users.find(u => u.email === email.value);
@@ -56,10 +57,10 @@ export default function Login() {
 	const validateEmptyField = (fieldName, field) => {
 		if (!field.value || !field.value.trim()) {
 			setFieldError(fieldName, 'Este campo es requerido');
-			setIsFormValid(false);
+			isFormValid = false;
 		} else {
 			setFieldError(fieldName, null);
-			setIsFormValid(true);
+			isFormValid = true;
 		}
 	};
 
