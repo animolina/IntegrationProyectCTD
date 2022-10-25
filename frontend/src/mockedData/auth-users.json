@@ -1,0 +1,26 @@
+[
+	{
+		"email": "mauri.paez@test.com",
+		"password": "Test1234"
+	},
+	{
+		"email": "hernan.arroyo@test.com",
+		"password": "Test1234"
+	},
+	{
+		"email": "ana.molina@test.com",
+		"password": "Test1234"
+	},
+	{
+		"email": "oli.mateo@test.com",
+		"password": "Test1234"
+	},
+	{
+		"email": "virgi.giardino@test.com",
+		"password": "Test1234"
+	},
+	{
+		"email": "emi.sartirana@test.com",
+		"password": "Test1234"
+	}
+]
