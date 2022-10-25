@@ -4,8 +4,8 @@
 	border-radius: 5px;
 	color: var(--text-color);
 	border: none;
-	width: 28rem;
 	height: 2.5rem;
+	width: 100%;
 	background-color: #ffffff;
 	font-weight: 500;
 	font-size: 1rem;
@@ -13,16 +13,13 @@
 	padding-left: 0.5rem;
 }
 
-.hideIcon {
-	position: relative;
-	right: 2.125rem;
-	top: 0.4rem;
-	cursor: pointer;
-	color: #607d8b;
+.inputWithIcon {
+	display: flex;
+	flex-direction: row;
 }
 
-@media screen and (max-width: 480px) {
-	.basicInput {
-		width: 18.75rem;
-	}
+.hideIcon {
+	margin-left: -2rem;
+	cursor: pointer;
+	color: #607d8b;
 }

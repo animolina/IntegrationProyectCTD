@@ -46,7 +46,8 @@ export default function SignUp() {
 	const [emailError, setEmailError] = useState();
 	const [passwordError, setPasswordError] = useState();
 	const [passwordConfirmError, setPasswordConfirmError] = useState();
-	const [isFormValid, setIsFormValid] = useState();
+
+	let isFormValid = false;
 
 	const submitSignUpForm = () => {
 		const name = document.querySelector('#name');
@@ -61,41 +62,47 @@ export default function SignUp() {
 		validateEmptyField('password', password);
 		validateEmptyField('password-confirm', passwordConfirm);
 
+		if (!isFormValid) {
+			return;
+		}
+
 		if (!validateEmail(email.value)) {
 			setEmailError('Ingresa un correo electrónico válido');
-		} else {
+			isFormValid = false;
+		} else if (!emailError) {
 			setEmailError(null);
-			setIsFormValid(true);
+			isFormValid = true;
 		}
 
 		if (password.value.length <= 6) {
 			setPasswordError('La contraseña debe tener más de 6 caracteres');
-			setIsFormValid(false);
-		} else {
+			isFormValid = false;
+			return;
+		} else if (!passwordError) {
 			setPasswordError(null);
-			setIsFormValid(true);
+			isFormValid = true;
 		}
 
 		if (passwordConfirm.value !== password.value) {
-			setPasswordError('Las contraseñas deben coincidir');
-			setIsFormValid(false);
-		} else {
-			setPasswordError(null);
-			setIsFormValid(true);
+			setPasswordConfirmError('Las contraseñas deben coincidir');
+			isFormValid = false;
+		} else if (!passwordConfirmError) {
+			setPasswordConfirmError(null);
+			isFormValid = true;
 		}
 
 		if (isFormValid) {
-			window.location.href = '/';
+			window.location.href = '/login';
 		}
 	};
 
 	const validateEmptyField = (fieldName, field) => {
 		if (!field.value || !field.value.trim()) {
 			setFieldError(fieldName, 'Este campo es requerido');
-			setIsFormValid(false);
+			isFormValid = false;
 		} else {
 			setFieldError(fieldName, null);
-			setIsFormValid(true);
+			isFormValid = true;
 		}
 	};
 
@@ -113,7 +120,7 @@ export default function SignUp() {
 			case 'password':
 				setPasswordError(error);
 				break;
-			case 'passwordConfirm':
+			case 'password-confirm':
 				setPasswordConfirmError(error);
 				break;
 			default:
@@ -148,14 +155,17 @@ export default function SignUp() {
 					config={passwordConfirmFieldConfig}
 					error={passwordConfirmError}
 				></FormField>
+
+				<Button
+					handleClick={submitSignUpForm}
+					innerText='Crear Cuenta'
+				></Button>
+
+				<span>
+					¿Ya tienes una cuenta?{' '}
+					<Link path={'login'} text={'Iniciar Sesión'}></Link>
+				</span>
 			</form>
-
-			<Button handleClick={submitSignUpForm} innerText='Crear Cuenta'></Button>
-
-			<span>
-				¿Ya tienes una cuenta?{' '}
-				<Link path={'login'} text={'Iniciar Sesión'}></Link>
-			</span>
 		</div>
 	);
 }

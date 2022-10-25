@@ -23,39 +23,25 @@ const passwordFieldConfig = {
 export default function Login() {
 	const [emailError, setEmailError] = useState();
 	const [passwordError, setPasswordError] = useState();
+	const [isFormValid, setIsFormValid] = useState();
 
 	const submitLoginForm = () => {
 		const email = document.querySelector('#email');
 		const password = document.querySelector('#password');
 
-		let isFormValid = true;
+		validateEmptyField('email', email);
+		validateEmptyField('password', password);
 
-		if (!email.value || !email.value.trim()) {
-			setEmailError('Este campo es requerido');
-			isFormValid = false;
-		} else {
-			setEmailError(null);
-			isFormValid = true;
-		}
-
-		if (!password.value || !password.value.trim()) {
-			setPasswordError('Este campo es requerido');
-			isFormValid = false;
-		} else {
-			setPasswordError(null);
-			isFormValid = true;
+		if (!isFormValid) {
+			return;
 		}
 
 		if (!validateEmail(email.value)) {
 			setEmailError('Ingresa un email válido');
-			isFormValid = false;
+			setIsFormValid(false);
 		} else {
 			setEmailError(null);
-			isFormValid = true;
-		}
-
-		if (!isFormValid) {
-			return;
+			setIsFormValid(true);
 		}
 
 		const user = users.find(u => u.email === email.value);
@@ -63,7 +49,30 @@ export default function Login() {
 		if (user && user.password === password.value) {
 			window.location.href = '/';
 		} else {
-			alert('No user found');
+			alert('Por favor vuelva a intentarlo, sus credenciales son inválidas');
+		}
+	};
+
+	const validateEmptyField = (fieldName, field) => {
+		if (!field.value || !field.value.trim()) {
+			setFieldError(fieldName, 'Este campo es requerido');
+			setIsFormValid(false);
+		} else {
+			setFieldError(fieldName, null);
+			setIsFormValid(true);
+		}
+	};
+
+	const setFieldError = (fieldName, error) => {
+		switch (fieldName) {
+			case 'email':
+				setEmailError(error);
+				break;
+			case 'password':
+				setPasswordError(error);
+				break;
+			default:
+				break;
 		}
 	};
 
@@ -76,13 +85,13 @@ export default function Login() {
 					config={passwordFieldConfig}
 					error={passwordError}
 				></FormField>
+				<Button handleClick={submitLoginForm} innerText='Ingresar'></Button>
+
+				<span>
+					¿Aún no tenés cuenta?{' '}
+					<Link path={'sign-up'} text={'Registrate'}></Link>
+				</span>
 			</form>
-
-			<Button handleClick={submitLoginForm} innerText='Ingresar'></Button>
-
-			<span>
-				¿Aún no tenés cuenta? <Link path={'sign-up'} text={'Registrate'}></Link>
-			</span>
 		</div>
 	);
 }

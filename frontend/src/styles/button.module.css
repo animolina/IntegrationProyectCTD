@@ -10,10 +10,9 @@
 	cursor: pointer;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
 	.basicButton {
-		width: 19.5rem;
-		margin-left: 0.25rem;
+		width: 100%;
 	}
 }
 

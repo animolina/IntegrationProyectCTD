@@ -10,7 +10,7 @@ export default function Input(props) {
 	};
 
 	return props.type === 'password' ? (
-		<div>
+		<div className={styles.inputWithIcon}>
 			<input
 				className={`${styles.basicInput} ${props.className}`}
 				id={props.id ?? ''}
