@@ -3,10 +3,19 @@ import isotipo from '../assets/isotipo.svg';
 import styles from '../styles/header.module.css';
 import Button from './Button';
 import burger from '../assets/icons/burger.svg';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
 	// eslint-disable-next-line no-unused-vars
 	const [userLogged, setUserLogged] = useState(false);
+
+	/* const navigate = useNavigate();
+
+
+	 const handleClick = () => {
+       navigate("/")
+    };
+ */
 
 	const navigateToPage = page => {
 		window.location.href = page;
@@ -15,10 +24,10 @@ export default function Header() {
 	return (
 		<header className={styles.header}>
 			<div>
-				<a className={styles.headerLeftContainer} href='#'>
+				<Link to='/' className={styles.headerLeftContainer} href='#'>
 					<img className={styles.headerIsotipo} src={isotipo} alt='isotipo' />
 					<span className={styles.headerSlogan}>Sentite como en tu hogar</span>
-				</a>
+				</Link>
 			</div>
 
 			{userLogged ? (

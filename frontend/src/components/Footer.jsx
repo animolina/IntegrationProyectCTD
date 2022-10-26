@@ -1,8 +1,8 @@
 import styles from '../styles/footer.module.css';
-import iconFacebook from '../assets/icons/icon facebook.svg';
-import iconTwitter from '../assets/icons/icon tweet.svg';
-import iconLinkedin from '../assets/icons/icon linkedin.svg';
-import iconInstagram from '../assets/icons/icon ig.svg';
+import iconFacebook from '../assets/icons/iconFacebook.svg';
+import iconTwitter from '../assets/icons/iconTwitter.svg';
+import iconLinkedin from '../assets/icons/iconLinkedin.svg';
+import iconInstagram from '../assets/icons/iconInstagram.svg';
 
 export default function Footer() {
 	return (

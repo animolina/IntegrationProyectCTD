@@ -3,7 +3,7 @@
 	align-items: center;
 	justify-content: space-between;
 	width: 100vw;
-	background-color: #ffffff;
+	background-color: var(--white-color);
 	height: 5rem;
 	position: fixed;
 	top: 0;
@@ -68,7 +68,7 @@
 	align-items: center;
 	background: var(--text-color);
 	border-radius: 100%;
-	color: white;
+	color: var(--bg-color);
 	display: flex;
 	font-size: 1.25rem;
 	font-weight: bold;

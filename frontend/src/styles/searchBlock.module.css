@@ -9,6 +9,7 @@
 	background-color: var(--details-color);
 	color: #f9f9f9;
 	width: 100vw;
+	z-index: 500;
 }
 
 .mainContainer h1 {
