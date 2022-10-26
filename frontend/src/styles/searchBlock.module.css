@@ -1,5 +1,5 @@
 .mainContainer {
-	position: fixed;
+	position: absolute;
 	margin-top: 5rem;
 	height: 12rem;
 	display: flex;

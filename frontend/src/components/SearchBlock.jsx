@@ -1,12 +1,14 @@
 import cities from '../mockedData/cities.json';
 import styles from '../styles/searchBlock.module.css';
 import TypeAheadDropDown from './TypeAheadDropDown';
-import Input from './Input';
+import DatePicker from './DatePicker';
 import Button from './Button';
 import locationIcon from '../../src/assets/icons/location-dot-outline.svg';
 import { useState } from 'react';
+import Input from './Input';
 
 export default function SearchBlock() {
+	// eslint-disable-next-line no-unused-vars
 	const [selectedCity, setSelectedCity] = useState();
 	const renderCitySuggestion = citySuggestion => {
 		// function for city suggestions.
@@ -28,12 +30,10 @@ export default function SearchBlock() {
 		setSelectedCity(suggestion.name);
 	};
 
-	console.log(selectedCity);
-
 	return (
 		<div className={styles.mainContainer}>
 			<h1>Buscá ofertas en hoteles, casas y mucho más </h1>
-			<form id='searchBlockForm' className={styles.formContainer}>
+			<div id='searchBlockForm' className={styles.formContainer}>
 				<TypeAheadDropDown
 					data={cities.map(city => ({
 						name: city.name,
@@ -43,9 +43,11 @@ export default function SearchBlock() {
 					placeholder='¿A dónde vamos?'
 					onSelectSuggestion={onSelectSuggestion}
 				/>
-				<Input></Input>
+				<DatePicker
+					customInput={<Input placeholder='Check in - Check out' />}
+				/>
 				<Button type='basic' innerText='Buscar'></Button>
-			</form>
+			</div>
 		</div>
 	);
 }

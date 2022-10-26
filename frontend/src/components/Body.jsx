@@ -6,6 +6,7 @@ export default function Body() {
 	return (
 		<div className={styles.body}>
 			<SearchBlock />
+
 			<CategoryBlock />
 		</div>
 	);
