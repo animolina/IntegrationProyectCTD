@@ -3,8 +3,9 @@ import styles from '../styles/auth.module.css';
 import { validateEmail } from '../utils';
 import users from '../mockedData/auth-users.json';
 import FormField from '../components/FormField';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Link from '../components/Link';
+import { UserContext } from '../context/userContext';
 
 const emailFieldConfig = {
 	fieldType: 'input',
@@ -23,6 +24,8 @@ const passwordFieldConfig = {
 export default function Login() {
 	const [emailError, setEmailError] = useState();
 	const [passwordError, setPasswordError] = useState();
+
+	const { setUser } = useContext(UserContext);
 
 	let isFormValid = false;
 
@@ -48,6 +51,8 @@ export default function Login() {
 		const user = users.find(u => u.email === email.value);
 
 		if (user && user.password === password.value) {
+			// Set logged user state
+			setUser(user);
 			window.location.href = '/';
 		} else {
 			alert('Por favor vuelva a intentarlo, sus credenciales son inválidas');

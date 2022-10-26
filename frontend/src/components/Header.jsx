@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import isotipo from '../assets/isotipo.svg';
 import styles from '../styles/header.module.css';
 import Button from './Button';
 import { Link, useNavigate } from 'react-router-dom';
 import Sidebar from '../utils/Sidebar';
+import { UserContext } from '../context/userContext';
 
 export default function Header() {
-	// eslint-disable-next-line no-unused-vars
-	const [userLogged, setUserLogged] = useState(false);
+	const { user } = useContext(UserContext);
 	const navigate = useNavigate();
 
 	return (
@@ -19,11 +19,11 @@ export default function Header() {
 				</Link>
 			</div>
 
-			{userLogged ? (
+			{user ? (
 				<div className={styles.logoutWelcome}>
 					<label className={styles.logoutWelcomeInitials}>HT</label>
 					<p className={styles.logoutWelcomeText}>
-						Hola,
+						Hola {user.name},
 						<span className={styles.logoutWelcomeTextName}>Horacio Test</span>
 					</p>
 					<button className={styles.logoutBtn}>✕</button>
