@@ -32,8 +32,6 @@
 }
 .cardText {
 	margin: 0 0.5rem 0.5rem;
-	/* width: 17.938rem; */
-	/* B- Heading 4 */
 	font-family: 'Roboto';
 	font-style: normal;
 	font-weight: 700;
@@ -44,11 +42,3 @@
 	height: 1.203rem;
 	margin-bottom: 0.424;
 }
-
-/* @media screen and (max-width: 769px) {
-	.categoryCard {
-		height: auto;
-		margin: 1rem;
-	}
-}
- */
