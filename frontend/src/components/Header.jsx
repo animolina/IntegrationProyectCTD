@@ -2,24 +2,13 @@ import { useState } from 'react';
 import isotipo from '../assets/isotipo.svg';
 import styles from '../styles/header.module.css';
 import Button from './Button';
-import burger from '../assets/icons/burger.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Sidebar from '../utils/Sidebar';
 
 export default function Header() {
 	// eslint-disable-next-line no-unused-vars
 	const [userLogged, setUserLogged] = useState(false);
-
-	/* const navigate = useNavigate();
-
-
-	 const handleClick = () => {
-       navigate("/")
-    };
- */
-
-	const navigateToPage = page => {
-		window.location.href = page;
-	};
+	const navigate = useNavigate();
 
 	return (
 		<header className={styles.header}>
@@ -44,17 +33,20 @@ export default function Header() {
 					<Button
 						type={'outline'}
 						innerText={'Crear cuenta'}
-						handleClick={event => navigateToPage('/sign-up')}
+						handleClick={() => navigate('/sign-up')}
 					/>
 					<Button
 						type={'outline'}
 						innerText={'Iniciar sesión'}
-						handleClick={event => navigateToPage('/login')}
+						handleClick={() => navigate('/login')}
 					/>
 				</div>
 			)}
 			<div className={styles.headerBurger}>
-				<img src={burger} alt='burger menu' />
+				<Sidebar
+					pageWrapId={'page-wrap'}
+					outerContainerId={'outer-container'}
+				/>
 			</div>
 		</header>
 	);
