@@ -1,8 +1,8 @@
+import { useState, forwardRef } from 'react';
 import styles from '../styles/input.module.css';
 import hideIcon from '../assets/icons/hide-icon.svg';
-import { useState } from 'react';
 
-export default function Input(props) {
+const Input = (props, ref) => {
 	const [passwordShown, setPasswordShown] = useState(false);
 
 	const showPassword = () => {
@@ -30,6 +30,11 @@ export default function Input(props) {
 			id={props.id ?? ''}
 			type={props.type ?? 'text'}
 			placeholder={props.placeholder ?? ''}
+			ref={ref}
+			onClick={props.onClick}
+			value={props.value}
+			onChange={props.onChange}
 		/>
 	);
-}
+};
+export default forwardRef(Input);

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
-import { UserContext } from './context/userContext';
+import { UserContext } from './context/UserContext';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Header from './components/Header';

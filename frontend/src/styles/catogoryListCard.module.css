@@ -1,5 +1,6 @@
 .mainContainer {
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: space-around;
 	width: 100%;
@@ -10,11 +11,10 @@
 	.mainContainer {
 		flex-direction: row;
 		justify-content: start;
-		flex-wrap: wrap;
-		gap: 1rem;
 		padding: 0;
 	}
 }
+
 @media screen and (max-width: 480px) {
 	.mainContainer {
 		flex-direction: column;

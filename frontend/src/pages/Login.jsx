@@ -5,7 +5,7 @@ import users from '../mockedData/auth-users.json';
 import FormField from '../components/FormField';
 import { useContext, useState } from 'react';
 import linkStyles from '../styles/link.module.css';
-import { UserContext } from '../context/userContext';
+import { UserContext } from '../context/UserContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 const emailFieldConfig = {
@@ -55,7 +55,7 @@ export default function Login() {
 
 		if (user && user.password === password.value) {
 			setUser(user);
-			navigate('/')
+			navigate('/');
 		} else {
 			alert('Por favor vuelva a intentarlo, sus credenciales son inválidas');
 		}
