@@ -12,7 +12,7 @@ export default function Sidebar() {
 				<h1 className={styles.title}>MENÚ</h1>
 			</div>
 
-			{/* TODO quitar menú al hacer click a una opción 
+			{/* TODO quitar menú burger al hacer click a una opción 
 				<Link className='menu-item' to='/sign-up'>
 				Crear cuenta
 			</Link>
@@ -27,7 +27,7 @@ export default function Sidebar() {
 				Iniciar sesión
 			</a>
 			<footer className={styles.footer}>
-				<Social />
+				<Social type={'burger'} />
 			</footer>
 		</Menu>
 	);

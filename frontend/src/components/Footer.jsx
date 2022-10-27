@@ -6,7 +6,7 @@ export default function Footer() {
 		<footer className={styles.footer}>
 			<div className={styles.footerCopyright}>©2022 Digital Booking</div>
 
-			<Social />
+			<Social type={'footer'} />
 		</footer>
 	);
 }

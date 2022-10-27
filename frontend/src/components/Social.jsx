@@ -5,16 +5,18 @@ import iconTwitter from '../assets/icons/iconTwitter.svg';
 import iconLinkedin from '../assets/icons/iconLinkedin.svg';
 import iconInstagram from '../assets/icons/iconInstagram.svg';
 
-export default function Social() {
+export default function Social({ type }) {
 	return (
-		<div className={styles.footerSocial}>
+		<div
+			className={type === 'footer' ? styles.footerSocial : styles.burgerSocial}
+		>
 			<a
 				className='menu-item'
 				href='https://www.facebook.com/'
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				<img src={iconFacebook} alt='' />
+				<img src={iconFacebook} alt='Icon Facebook' />
 			</a>
 			<a
 				className='socialLinkedin'
@@ -22,7 +24,7 @@ export default function Social() {
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				<img src={iconLinkedin}></img>
+				<img src={iconLinkedin} alt='Icon LinkedIn'></img>
 			</a>
 			<a
 				className='socialTwitter'
@@ -30,7 +32,7 @@ export default function Social() {
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				<img src={iconTwitter}></img>
+				<img src={iconTwitter} alt='Icon Twitter'></img>
 			</a>
 
 			<a
@@ -39,7 +41,7 @@ export default function Social() {
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				<img className='' src={iconInstagram}></img>
+				<img src={iconInstagram} alt='Icon Instagram'></img>
 			</a>
 		</div>
 	);
