@@ -1,9 +1,10 @@
-import Link from '../components/Link';
 import FormField from '../components/FormField';
 import Button from '../components/Button';
 import styles from '../styles/auth.module.css';
+import linkStyles from '../styles/link.module.css';
 import { validateEmail } from '../utils';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const nameFieldConfig = {
 	fieldType: 'input',
@@ -46,6 +47,8 @@ export default function SignUp() {
 	const [emailError, setEmailError] = useState();
 	const [passwordError, setPasswordError] = useState();
 	const [passwordConfirmError, setPasswordConfirmError] = useState();
+
+	const navigate = useNavigate();
 
 	let isFormValid = false;
 
@@ -92,7 +95,7 @@ export default function SignUp() {
 		}
 
 		if (isFormValid) {
-			window.location.href = '/login';
+			navigate('/login');
 		}
 	};
 
@@ -163,7 +166,9 @@ export default function SignUp() {
 
 				<span>
 					¿Ya tienes una cuenta?{' '}
-					<Link path={'login'} text={'Iniciar Sesión'}></Link>
+					<Link to={'/login'} className={linkStyles.link}>
+						Iniciar Sesión
+					</Link>
 				</span>
 			</form>
 		</div>
