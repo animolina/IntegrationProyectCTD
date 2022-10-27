@@ -1,7 +1,6 @@
 .mainContainer {
-	position: fixed;
+	position: absolute;
 	margin-top: 5rem;
-	height: 12rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -9,20 +8,38 @@
 	background-color: var(--details-color);
 	color: #f9f9f9;
 	width: 100vw;
-	z-index: 500;
+
 }
 
-.mainContainer h1 {
+.subContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+	max-width: 70rem;
+	text-align: center;
+}
+
+.title {
 	font-size: 36px;
+	margin: 0;
+
 }
 
 .formContainer {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1fr 1fr 0.5fr;
+	padding: 1rem;
 	gap: 1rem;
+	width: 100%;
 }
+
+.formContainer button {
+	margin: 0;
+	width: 100%;
+}
+
 
 .citySuggestionTextContainer {
 	display: flex;
@@ -59,4 +76,31 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
+}
+
+
+/* ------------------------------- responsive ------------------------------- */
+
+@media screen and (max-width: 769px) {
+
+	.mainContainer {
+		position: relative;
+		top: 0;
+	}
+
+	.formContainer {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+
+	.subContainer {
+		width: 100%;
+		height: 100%;
+	}
+
+	.mainContainer h1 {
+		font-size: 30px;
+
+	}
+
 }

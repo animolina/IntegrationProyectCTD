@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/typeAhead.module.css';
 
 export default function TypeAheadDropDown({
@@ -44,14 +44,14 @@ export default function TypeAheadDropDown({
 			<ul className={styles.suggestions}>
 				{suggestions.map((suggestion, index) => {
 					return (
-						<>
-							<li key={index} onClick={() => handleClick(suggestion)}>
+						<React.Fragment key={index}>
+							<li onClick={() => handleClick(suggestion)}>
 								{renderSuggestion
 									? renderSuggestion(suggestion)
 									: suggestion.name}
 							</li>
 							{index !== suggestions.length - 1 && <hr />}
-						</>
+						</React.Fragment>
 					);
 				})}
 			</ul>

@@ -1,14 +1,23 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import isotipo from '../assets/icons/isotipo.svg';
 import styles from '../styles/header.module.css';
 import Button from './Button';
 import { Link, useNavigate } from 'react-router-dom';
 import Sidebar from '../utils/Sidebar';
+import { UserContext } from '../context/UserContext';
 
 export default function Header() {
-	// eslint-disable-next-line no-unused-vars
-	const [userLogged, setUserLogged] = useState(false);
+	const { user, setUser } = useContext(UserContext);
 	const navigate = useNavigate();
+
+	const getUserInitials = name => {
+		const fragments = name.split(' ');
+		return fragments[0][0].toUpperCase() + fragments[1][0].toUpperCase();
+	};
+
+	const logOut = () => {
+		setUser(null);
+	};
 
 	return (
 		<header className={styles.header}>
@@ -19,14 +28,18 @@ export default function Header() {
 				</Link>
 			</div>
 
-			{userLogged ? (
+			{user ? (
 				<div className={styles.logoutWelcome}>
-					<label className={styles.logoutWelcomeInitials}>HT</label>
+					<label className={styles.logoutWelcomeInitials}>
+						{getUserInitials(user.name)}
+					</label>
 					<p className={styles.logoutWelcomeText}>
-						Hola,
-						<span className={styles.logoutWelcomeTextName}>Horacio Test</span>
+						Hola,{' '}
+						<span className={styles.logoutWelcomeTextName}>{user.name}</span>
 					</p>
-					<button className={styles.logoutBtn}>✕</button>
+					<button onClick={logOut} className={styles.logoutBtn}>
+						✕
+					</button>
 				</div>
 			) : (
 				<div className={styles.headerBtn}>
