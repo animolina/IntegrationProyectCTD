@@ -1,0 +1,66 @@
+[
+    {
+        "id": 0,
+        "title": "Hermitage Hotel",
+        "description": "Ea sint aliquam omnis id. Officia corporis or tempor veniam fugit architecto veritatis. Quasi autem tempor and dolores dolores, yet ratione but tempor. Laboriosam. Architecto laudantium but veniam molestiae explicabo numquam or eaque. Ipsam dolorem. Nihil aspernatur ad laboriosam but dolores.",
+        "urlImg": "https://www.revistalimpiezas.es/wp-content/uploads/sites/4/2020/05/interior-1026452-1920-1200x800.jpg",
+        "location": "Mendoza, A 900 mts del centro.",
+        "category": "Hotel"
+    },
+    {
+        "id": 1,
+        "title": "B&B Hostel",
+        "description": "Ea sint aliquam omnis id. Officia corporis or tempor veniam fugit architecto veritatis. Quasi autem tempor and dolores dolores, yet ratione but tempor. Laboriosam. Architecto laudantium but veniam molestiae explicabo numquam or eaque. Ipsam dolorem. Nihil aspernatur ad laboriosam but dolores.",
+        "urlImg": "https://www.revistalimpiezas.es/wp-content/uploads/sites/4/2020/05/interior-1026452-1920-1200x800.jpg",
+        "location": "Buenos Aires, A 900 mts del centro.",
+        "category": "Hostel"
+    },
+    {
+        "id": 2,
+        "title": "Esperanza departamentos",
+        "description": "Ea sint aliquam omnis id. Officia corporis or tempor veniam fugit architecto veritatis. Quasi autem tempor and dolores dolores, yet ratione but tempor. Laboriosam. Architecto laudantium but veniam molestiae explicabo numquam or eaque. Ipsam dolorem. Nihil aspernatur ad laboriosam but dolores.",
+        "urlImg": "https://www.revistalimpiezas.es/wp-content/uploads/sites/4/2020/05/interior-1026452-1920-1200x800.jpg",
+        "location": "San Luis, A 900 mts del centro.",
+        "category": "Departamento"
+    },
+    {
+        "id": 3,
+        "title": "Lo de Manuel",
+        "description": "Ea sint aliquam omnis id. Officia corporis or tempor veniam fugit architecto veritatis. Quasi autem tempor and dolores dolores, yet ratione but tempor. Laboriosam. Architecto laudantium but veniam molestiae explicabo numquam or eaque. Ipsam dolorem. Nihil aspernatur ad laboriosam but dolores.",
+        "urlImg": "https://www.revistalimpiezas.es/wp-content/uploads/sites/4/2020/05/interior-1026452-1920-1200x800.jpg",
+        "location": "Santa Fe. A 900 mts del centro.",
+        "category": "Bed & Breakfast"
+    },
+    {
+        "id": 4,
+        "title": "Diplomatic",
+        "description": "Ea sint aliquam omnis id. Officia corporis or tempor veniam fugit architecto veritatis. Quasi autem tempor and dolores dolores, yet ratione but tempor. Laboriosam. Architecto laudantium but veniam molestiae explicabo numquam or eaque. Ipsam dolorem. Nihil aspernatur ad laboriosam but dolores.",
+        "urlImg": "https://www.revistalimpiezas.es/wp-content/uploads/sites/4/2020/05/interior-1026452-1920-1200x800.jpg",
+        "location": "Córdoba, A 900 mts del centro.",
+        "category": "Hotel"
+    },
+    {
+        "id": 5,
+        "title": "Gato Negro",
+        "description": "Ea sint aliquam omnis id. Officia corporis or tempor veniam fugit architecto veritatis. Quasi autem tempor and dolores dolores, yet ratione but tempor. Laboriosam. Architecto laudantium but veniam molestiae explicabo numquam or eaque. Ipsam dolorem. Nihil aspernatur ad laboriosam but dolores.",
+        "urlImg": "https://www.revistalimpiezas.es/wp-content/uploads/sites/4/2020/05/interior-1026452-1920-1200x800.jpg",
+        "location": "Bariloche. A 900 mts del centro.",
+        "category": "Hostel"
+    },
+    {
+        "id": 6,
+        "title": "Aguila Mora",
+        "description": "Ea sint aliquam omnis id. Officia corporis or tempor veniam fugit architecto veritatis. Quasi autem tempor and dolores dolores, yet ratione but tempor. Laboriosam. Architecto laudantium but veniam molestiae explicabo numquam or eaque. Ipsam dolorem. Nihil aspernatur ad laboriosam but dolores.",
+        "urlImg": "https://www.revistalimpiezas.es/wp-content/uploads/sites/4/2020/05/interior-1026452-1920-1200x800.jpg",
+        "location": "Bariloche. A 900 mts del centro.",
+        "category": "Hotel"
+    },
+    {
+        "id": 7,
+        "title": "Huinid Obelisco",
+        "description": "Ea sint aliquam omnis id. Officia corporis or tempor veniam fugit architecto veritatis. Quasi autem tempor and dolores dolores, yet ratione but tempor. Laboriosam. Architecto laudantium but veniam molestiae explicabo numquam or eaque. Ipsam dolorem. Nihil aspernatur ad laboriosam but dolores.",
+        "urlImg": "https://www.revistalimpiezas.es/wp-content/uploads/sites/4/2020/05/interior-1026452-1920-1200x800.jpg",
+        "location": "Buenos Aires. A 900 mts del centro.",
+        "category": "Departamento"
+    }
+]
