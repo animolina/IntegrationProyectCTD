@@ -17,19 +17,21 @@ export default function DatePicker({ customInput }) {
 	};
 
 	return (
-		<ReactDatePicker
-			monthsShown={2}
-			selected={startDate}
-			selectsRange={true}
-			startDate={startDate}
-			endDate={endDate}
-			onChange={onChange}
-			customInput={customInput}
-			calendarClassName='datePickerCalendar'
-			locale='es'
-			formatWeekDay={nameOfDay => nameOfDay.substr(0, 1).toUpperCase()}
-			dateFormat='dd MMM'
-			placeholderText='Check-in - Check-out'
-		/>
+		<div>
+			<ReactDatePicker
+				monthsShown={2}
+				selected={startDate}
+				selectsRange={true}
+				startDate={startDate}
+				endDate={endDate}
+				onChange={onChange}
+				customInput={customInput}
+				calendarClassName='datePickerCalendar'
+				locale='es'
+				formatWeekDay={nameOfDay => nameOfDay.substr(0, 1).toUpperCase()}
+				dateFormat='dd MMM'
+				placeholderText='Check-in - Check-out'
+			/>
+		</div>
 	);
 }

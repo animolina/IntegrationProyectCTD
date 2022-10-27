@@ -1,10 +1,13 @@
 .datePickerCalendar {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    padding: 25px 30px;
+    padding: 25px;
+}
 
-
+.datePickerCalendar .react-datepicker-popper {
+    max-width: 40rem;
 }
 
 .datePickerCalendar .react-datepicker__header {
@@ -59,4 +62,27 @@
     background-color: var(--main-color) !important;
     color: var(--white-color);
 
+}
+
+.datePickerCalendar .react-datepicker__navigation {
+    display: none;
+}
+
+/* ------------------------------- responsive ------------------------------- */
+
+@media screen and (max-width: 1190px) {
+
+    .datePickerCalendar {
+        max-width: 21rem;
+        display: block;
+    }
+
+    .datePickerCalendar .react-datepicker__month-container:nth-child(even) {
+        border-bottom: solid 1px grey;
+        border-right: 0;
+    }
+
+    .datePickerCalendar .react-datepicker__month-container {
+        height: 290px;
+    }
 }
