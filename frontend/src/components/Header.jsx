@@ -4,7 +4,7 @@ import styles from '../styles/header.module.css';
 import Button from './Button';
 import { Link, useNavigate } from 'react-router-dom';
 import Sidebar from '../utils/Sidebar';
-import { UserContext } from '../context/userContext';
+import { UserContext } from '../context/UserContext';
 
 export default function Header() {
 	const { user, setUser } = useContext(UserContext);
