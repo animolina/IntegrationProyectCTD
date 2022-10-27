@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import isotipo from '../assets/isotipo.svg';
+import isotipo from '../assets/icons/isotipo.svg';
 import styles from '../styles/header.module.css';
 import Button from './Button';
 import { Link, useNavigate } from 'react-router-dom';

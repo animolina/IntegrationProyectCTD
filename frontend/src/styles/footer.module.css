@@ -7,7 +7,6 @@
 	height: 3.625rem;
 	position: fixed;
 	bottom: 0;
-	z-index: 500;
 }
 
 .footerCopyright {
@@ -16,18 +15,19 @@
 	color: var(--bg-color);
 }
 
-.footerSocial {
+/* .footerSocial {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	gap: 1.875rem;
 	margin-right: 2.5rem;
-}
+} */
 
 /* ------------------------------- responsive ------------------------------- */
 
-@media screen and (max-width: 480px) {
+/* @media screen and (max-width: 480px) {
 	.footerSocial {
 		display: none;
 	}
 }
+ */

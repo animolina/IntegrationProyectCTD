@@ -1,4 +1,5 @@
 import { slide as Menu } from 'react-burger-menu';
+import Social from './../components/Social';
 // eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
 import '../styles/sidebar.css';
@@ -25,6 +26,9 @@ export default function Sidebar() {
 			<a className='menu-item' href='/login'>
 				Iniciar sesión
 			</a>
+			<footer className={styles.footer}>
+				<Social />
+			</footer>
 		</Menu>
 	);
 }

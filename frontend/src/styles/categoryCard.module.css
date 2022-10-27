@@ -1,4 +1,6 @@
 .categoryCard {
+	flex: 1 0;
+	max-width: 21rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -10,7 +12,7 @@
 .cardImg {
 	width: auto;
 	height: 11rem;
-	object-fit: cover;
+	object-fit: fill;
 	border-radius: 8px 8px 0px 0px;
 }
 .cardBody {
