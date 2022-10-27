@@ -2,13 +2,17 @@ import { useContext } from 'react';
 import isotipo from '../assets/icons/isotipo.svg';
 import styles from '../styles/header.module.css';
 import Button from './Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from '../utils/Sidebar';
 import { UserContext } from '../context/UserContext';
+
+const loginRoute = '/login';
+const signUpRoute = '/sign-up';
 
 export default function Header() {
 	const { user, setUser } = useContext(UserContext);
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const getUserInitials = name => {
 		const fragments = name.split(' ');
@@ -18,6 +22,22 @@ export default function Header() {
 	const logOut = () => {
 		setUser(null);
 	};
+
+	const signUpButton = (
+		<Button
+			type={'outline'}
+			innerText={'Crear cuenta'}
+			handleClick={() => navigate('/sign-up')}
+		/>
+	);
+
+	const loginButton = (
+		<Button
+			type={'outline'}
+			innerText={'Iniciar sesión'}
+			handleClick={() => navigate('/login')}
+		/>
+	);
 
 	return (
 		<header className={styles.header}>
@@ -43,16 +63,15 @@ export default function Header() {
 				</div>
 			) : (
 				<div className={styles.headerBtn}>
-					<Button
-						type={'outline'}
-						innerText={'Crear cuenta'}
-						handleClick={() => navigate('/sign-up')}
-					/>
-					<Button
-						type={'outline'}
-						innerText={'Iniciar sesión'}
-						handleClick={() => navigate('/login')}
-					/>
+					{location.pathname === loginRoute && signUpButton}
+					{location.pathname === signUpRoute && loginButton}
+					{location.pathname !== loginRoute &&
+						location.pathname !== signUpRoute && (
+							<>
+								{signUpButton}
+								{loginButton}
+							</>
+						)}
 				</div>
 			)}
 			<div className={styles.headerBurger}>
