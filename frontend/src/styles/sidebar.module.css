@@ -29,3 +29,23 @@
 	background-color: rgb(88, 156, 21);
 }
  */
+
+.footer {
+	display: flex !important;
+	justify-content: flex-end !important;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 100vw;
+	filter: brightness(0) saturate(100%) invert(35%) sepia(7%) saturate(2127%)
+		hue-rotate(197deg) brightness(90%) contrast(85%);
+	height: 5rem;
+}
+
+@media screen and (max-width: 480px) {
+	.footer {
+		display: flex !important;
+	}
+}

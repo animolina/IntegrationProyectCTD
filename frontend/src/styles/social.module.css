@@ -1,0 +1,20 @@
+.footerSocial {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: 1.875rem;
+	margin-right: 2.5rem;
+}
+.burgerSocial {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: 1.875rem;
+	margin-right: 2.5rem;
+}
+
+@media screen and (max-width: 480px) {
+	.footerSocial {
+		display: none;
+	}
+}
