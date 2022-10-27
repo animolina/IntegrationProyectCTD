@@ -3,8 +3,10 @@ import styles from '../styles/auth.module.css';
 import { validateEmail } from '../utils';
 import users from '../mockedData/auth-users.json';
 import FormField from '../components/FormField';
-import { useState } from 'react';
-import Link from '../components/Link';
+import { useContext, useState } from 'react';
+import linkStyles from '../styles/link.module.css';
+import { UserContext } from '../context/userContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 const emailFieldConfig = {
 	fieldType: 'input',
@@ -23,6 +25,10 @@ const passwordFieldConfig = {
 export default function Login() {
 	const [emailError, setEmailError] = useState();
 	const [passwordError, setPasswordError] = useState();
+
+	const { setUser } = useContext(UserContext);
+
+	const navigate = useNavigate();
 
 	let isFormValid = false;
 
@@ -48,7 +54,8 @@ export default function Login() {
 		const user = users.find(u => u.email === email.value);
 
 		if (user && user.password === password.value) {
-			window.location.href = '/';
+			setUser(user);
+			navigate('/')
 		} else {
 			alert('Por favor vuelva a intentarlo, sus credenciales son inválidas');
 		}
@@ -90,7 +97,9 @@ export default function Login() {
 
 				<span>
 					¿Aún no tenés cuenta?{' '}
-					<Link path={'sign-up'} text={'Registrate'}></Link>
+					<Link to={'/sign-up'} className={linkStyles.link}>
+						Registrate
+					</Link>
 				</span>
 			</form>
 		</div>
