@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import App from './App';
 import 'normalize.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import AppRouter from './routes/Routes';
+import AppRouter from './AppRouter';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		<Header />
-		<AppRouter />
-		<Footer />
+		<AppRouter>
+			<App />
+		</AppRouter>
 	</React.StrictMode>
 );

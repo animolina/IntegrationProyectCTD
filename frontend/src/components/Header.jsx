@@ -7,8 +7,17 @@ import Sidebar from '../utils/Sidebar';
 import { UserContext } from '../context/userContext';
 
 export default function Header() {
-	const { user } = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
 	const navigate = useNavigate();
+
+	const getUserInitials = name => {
+		const fragments = name.split(' ');
+		return fragments[0][0].toUpperCase() + fragments[1][0].toUpperCase();
+	};
+
+	const logOut = () => {
+		setUser(null);
+	};
 
 	return (
 		<header className={styles.header}>
@@ -21,12 +30,16 @@ export default function Header() {
 
 			{user ? (
 				<div className={styles.logoutWelcome}>
-					<label className={styles.logoutWelcomeInitials}>HT</label>
+					<label className={styles.logoutWelcomeInitials}>
+						{getUserInitials(user.name)}
+					</label>
 					<p className={styles.logoutWelcomeText}>
-						Hola {user.name},
-						<span className={styles.logoutWelcomeTextName}>Horacio Test</span>
+						Hola,{' '}
+						<span className={styles.logoutWelcomeTextName}>{user.name}</span>
 					</p>
-					<button className={styles.logoutBtn}>✕</button>
+					<button onClick={logOut} className={styles.logoutBtn}>
+						✕
+					</button>
 				</div>
 			) : (
 				<div className={styles.headerBtn}>

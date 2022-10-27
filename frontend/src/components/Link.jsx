@@ -1,6 +1,6 @@
 import styles from '../styles/link.module.css';
 
-export default function Link({ path, text, openOnNewTab }) {
+export default function CustomLink({ path, text, openOnNewTab }) {
 	return (
 		<a
 			href={path}
