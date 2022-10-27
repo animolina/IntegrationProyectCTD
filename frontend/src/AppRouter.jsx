@@ -4,6 +4,8 @@ import App from './App';
 import { UserContext } from './context/userContext';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function AppRouter() {
 	const [user, setUser] = useState(null);
@@ -13,11 +15,13 @@ function AppRouter() {
 	return (
 		<UserContext.Provider value={value}>
 			<BrowserRouter>
+				<Header />
 				<Routes>
 					<Route exact path='/' element={<App />}></Route>
 					<Route exact path='login' element={<Login />}></Route>
 					<Route exact path='sign-up' element={<SignUp />}></Route>
 				</Routes>
+				<Footer />
 			</BrowserRouter>
 		</UserContext.Provider>
 	);
