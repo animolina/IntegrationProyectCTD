@@ -6,9 +6,20 @@
 	--bg-color: #f3f1ed;
 	--details-color: #545776;
 	--white-color: #fff;
+
 }
 
 a {
 	all: unset;
 	cursor: pointer;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
 }
