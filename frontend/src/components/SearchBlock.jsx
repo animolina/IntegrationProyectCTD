@@ -32,21 +32,23 @@ export default function SearchBlock() {
 
 	return (
 		<div className={styles.mainContainer}>
-			<h1>Buscá ofertas en hoteles, casas y mucho más </h1>
-			<div id='searchBlockForm' className={styles.formContainer}>
-				<TypeAheadDropDown
-					data={cities.map(city => ({
-						name: city.name,
-						secondaryText: city.country,
-					}))}
-					renderSuggestion={renderCitySuggestion}
-					placeholder='¿A dónde vamos?'
-					onSelectSuggestion={onSelectSuggestion}
-				/>
-				<DatePicker
-					customInput={<Input placeholder='Check in - Check out' />}
-				/>
-				<Button type='basic' innerText='Buscar'></Button>
+			<div className={styles.subContainer}>
+				<span className={styles.title}>
+					Buscá ofertas en hoteles, casas y mucho más{' '}
+				</span>
+				<form id='searchBlockForm' className={styles.formContainer}>
+					<TypeAheadDropDown
+						data={cities.map(city => ({
+							name: city.name,
+							secondaryText: city.country,
+						}))}
+						renderSuggestion={renderCitySuggestion}
+						placeholder='¿A dónde vamos?'
+						onSelectSuggestion={onSelectSuggestion}
+					/>
+					<DatePicker customInput={<Input />} />
+					<Button type='basic' innerText='Buscar'></Button>
+				</form>
 			</div>
 		</div>
 	);
