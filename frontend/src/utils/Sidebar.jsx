@@ -1,6 +1,5 @@
 import { slide as Menu } from 'react-burger-menu';
 import Social from './../components/Social';
-// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
 import '../styles/sidebar.css';
 import styles from '../styles/sidebar.module.css';
