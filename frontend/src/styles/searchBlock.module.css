@@ -1,5 +1,5 @@
 .mainContainer {
-	position: absolute;
+	position: fixed;
 	margin-top: 5rem;
 	display: flex;
 	flex-direction: column;
@@ -8,7 +8,7 @@
 	background-color: var(--details-color);
 	color: #f9f9f9;
 	width: 100vw;
-
+	z-index: 500;
 }
 
 .subContainer {
@@ -24,7 +24,6 @@
 .title {
 	font-size: 36px;
 	margin: 0;
-
 }
 
 .formContainer {
@@ -39,7 +38,6 @@
 	margin: 0;
 	width: 100%;
 }
-
 
 .citySuggestionTextContainer {
 	display: flex;
@@ -78,11 +76,9 @@
 	justify-content: flex-start;
 }
 
-
 /* ------------------------------- responsive ------------------------------- */
 
 @media screen and (max-width: 769px) {
-
 	.mainContainer {
 		position: relative;
 		top: 0;
@@ -100,7 +96,5 @@
 
 	.mainContainer h1 {
 		font-size: 30px;
-
 	}
-
 }
