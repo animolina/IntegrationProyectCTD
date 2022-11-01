@@ -1,0 +1,122 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100vw;
+	background-color: var(--white-color);
+	height: 5rem;
+	position: fixed;
+	top: 0;
+	z-index: 500;
+}
+
+.headerLeftContainer {
+	display: flex;
+	align-items: flex-end;
+	gap: 1rem;
+}
+
+.headerIsotipo {
+	padding-left: 2rem;
+}
+
+.headerSlogan {
+	display: block;
+	color: var(--text-color);
+	font-style: italic;
+	font-weight: 100;
+	font-size: 20px;
+	line-height: 23px;
+	margin-bottom: 0.3rem;
+}
+
+.headerBtn {
+	display: flex;
+	justify-content: space-around;
+	align-self: flex-start;
+	gap: 1rem;
+	margin-right: 2.5rem;
+	margin-bottom: 0.625rem;
+}
+
+.logoutBtn {
+	border: none;
+	background: none;
+	color: var(--text-color);
+	cursor: pointer;
+	align-self: flex-start;
+	position: relative;
+	top: 0.3rem;
+}
+
+.logoutWelcome {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-right: 2rem;
+}
+
+.logoutWelcomeText {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.logoutWelcomeInitials {
+	align-items: center;
+	background: var(--text-color);
+	border-radius: 100%;
+	color: var(--bg-color);
+	display: flex;
+	font-size: 1.25rem;
+	font-weight: bold;
+	height: 3rem;
+	justify-content: center;
+	margin-right: 0.63rem;
+	text-align: center;
+	width: 3rem;
+}
+
+.logoutWelcomeText {
+	color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	flex-direction: column;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1.19rem;
+}
+
+.logoutWelcomeTextName {
+	color: var(--main-color);
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.headerBurger {
+	display: none;
+	margin-right: 2rem;
+}
+
+/* ------------------------------- responsive ------------------------------- */
+
+@media screen and (max-width: 769px) {
+	.headerSlogan {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.headerBtn {
+		display: none;
+	}
+
+	.logoutWelcome {
+		display: none;
+	}
+
+	.headerBurger {
+		display: block;
+	}
+}

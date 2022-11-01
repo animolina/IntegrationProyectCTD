@@ -1,0 +1,25 @@
+:root {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	--main-color: #1dbeb4;
+	--text-color: #383b58;
+	--bg-color: #f3f1ed;
+	--details-color: #545776;
+	--white-color: #fff;
+
+}
+
+a {
+	all: unset;
+	cursor: pointer;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}

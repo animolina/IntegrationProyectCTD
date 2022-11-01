@@ -1,0 +1,100 @@
+.mainContainer {
+	position: fixed;
+	margin-top: 5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: var(--details-color);
+	color: #f9f9f9;
+	width: 100vw;
+	z-index: 500;
+}
+
+.subContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem 8rem;
+	max-width: 100rem;
+	text-align: center;
+}
+
+.title {
+	font-size: 36px;
+	margin: 0;
+}
+
+.formContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr 0.5fr;
+	padding: 1rem;
+	gap: 1rem;
+	width: 100%;
+}
+
+.formContainer button {
+	margin: 0;
+	width: 100%;
+}
+
+.citySuggestionTextContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.primaryText {
+	font-size: 18px;
+	font-weight: 700;
+	color: #000000;
+}
+
+.secondaryText {
+	font-weight: 700;
+	font-size: 14px;
+	color: var(--details-color);
+}
+
+.citySuggestion {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.citySuggestion img {
+	height: 2rem;
+	margin: 1rem;
+}
+
+.cityPlaceholder {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+/* ------------------------------- responsive ------------------------------- */
+
+@media screen and (max-width: 769px) {
+	.mainContainer {
+		position: relative;
+		top: 0;
+		z-index: 0;
+	}
+
+	.formContainer {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+
+	.subContainer {
+		width: 100%;
+		height: 100%;
+	}
+
+	.mainContainer h1 {
+		font-size: 30px;
+	}
+}

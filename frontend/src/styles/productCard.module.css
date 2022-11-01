@@ -1,0 +1,118 @@
+.productCard {
+	display: flex;
+	flex-direction: row;
+	background-color: var(--white-color);
+	height: 17.688rem;
+	width: 38.5rem;
+	border-radius: 8px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.productCardImg {
+	max-width: 20rem;
+	height: 17.688rem;
+	object-fit: fill;
+	border-radius: 8px;
+}
+
+.productCardBody {
+	max-width: 30rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 1rem;
+}
+
+.productCardBody button {
+	margin: 0.5rem;
+	width: 100%;
+}
+
+.productCardTitle {
+	margin: 0.8rem 0;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 23px;
+	color: var(--text-color);
+	height: 1.625rem;
+}
+
+.productCardText {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16px;
+	color: var(--text-color);
+	opacity: 0.6;
+	margin-bottom: 0.424;
+	text-overflow: ellipsis ' [..]';
+	overflow: hidden;
+}
+
+.productCardCategory {
+	font-size: 14px;
+	font-weight: 700;
+	color: grey;
+}
+
+.productCardCategoryStars {
+	color: var(--main-color);
+}
+
+.productCardLocation {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	text-align: center;
+}
+
+.productCardLocation img {
+	height: 1.5rem;
+	margin-right: 0.5rem;
+}
+
+.productCardLocation a {
+	text-decoration: none;
+	color: var(--main-color);
+}
+
+.productCardLocationText {
+	font-size: 14px;
+	font-weight: 700;
+	color: var(--text-color);
+	margin: 0.5rem;
+}
+
+/* ------------------------------- responsive ------------------------------- */
+
+@media screen and (max-width: 769px) {
+	.productCardLocation a {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.productCardLocation {
+		display: none;
+	}
+
+	.productCardCategoryStars {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.productCard {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+
+	.productCardImg {
+		max-width: 40rem;
+	}
+}

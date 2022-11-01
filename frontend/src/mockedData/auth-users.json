@@ -1,0 +1,32 @@
+[
+	{
+		"email": "mauri.paez@test.com",
+		"name": "Mauri Páez",
+		"password": "Test1234"
+	},
+	{
+		"email": "herni.arroyo@test.com",
+		"name": "Herni Arroyo",
+		"password": "Test1234"
+	},
+	{
+		"email": "ani.molina@test.com",
+		"name": "Ani Molina",
+		"password": "Test1234"
+	},
+	{
+		"email": "oli.mateo@test.com",
+		"name": "Oli Mateo",
+		"password": "Test1234"
+	},
+	{
+		"email": "vir.giardino@test.com",
+		"name": "Vir Giardino",
+		"password": "Test1234"
+	},
+	{
+		"email": "emi.sartirana@test.com",
+		"name": "Emi Sartirana",
+		"password": "Test1234"
+	}
+]
