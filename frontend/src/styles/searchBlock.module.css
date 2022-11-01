@@ -1,14 +1,13 @@
 .mainContainer {
-	position: absolute;
+	position: fixed;
 	margin-top: 5rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
 	background-color: var(--details-color);
 	color: #f9f9f9;
 	width: 100vw;
-
+	z-index: 500;
 }
 
 .subContainer {
@@ -16,15 +15,14 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 2rem;
-	max-width: 70rem;
+	padding: 1rem 8rem;
+	max-width: 100rem;
 	text-align: center;
 }
 
 .title {
 	font-size: 36px;
 	margin: 0;
-
 }
 
 .formContainer {
@@ -39,7 +37,6 @@
 	margin: 0;
 	width: 100%;
 }
-
 
 .citySuggestionTextContainer {
 	display: flex;
@@ -78,14 +75,13 @@
 	justify-content: flex-start;
 }
 
-
 /* ------------------------------- responsive ------------------------------- */
 
 @media screen and (max-width: 769px) {
-
 	.mainContainer {
 		position: relative;
 		top: 0;
+		z-index: 0;
 	}
 
 	.formContainer {
@@ -100,7 +96,5 @@
 
 	.mainContainer h1 {
 		font-size: 30px;
-
 	}
-
 }

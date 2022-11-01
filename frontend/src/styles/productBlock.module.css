@@ -1,20 +1,23 @@
 .mainContainer {
+	background-color: darkblue;
+}
+
+.mainContainer {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
-	width: 100vw;
+	width: 100%;
 	position: relative;
-	top: 16rem;
-	padding: 1rem 3rem 8rem 3rem;
+	top: 14rem;
+	padding: 0rem 0 0.3rem 0;
 	height: 100%;
 	background-color: var(--bg-color);
-
 }
 
 .title {
 	color: var(--text-color);
-	margin: 0 0 0.5rem;
+	padding: 0 0 1rem 2rem;
 	height: 1.75rem;
 }
 
