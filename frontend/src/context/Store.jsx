@@ -17,24 +17,22 @@ export default function Store({ children }) {
 
 	useEffect(() => {
 		(async () => {
-			const test = await getCategories();
-			/* console.log(test); */
-			setCategories(test);
+			const dataCategories = await getCategories();
+			setCategories(dataCategories);
 		})();
 	}, []);
 
 	useEffect(() => {
 		(async () => {
-			const test = await getProducts();
-			/* console.log(test); */
-			setProducts(test);
+			const dataProducts = await getProducts();
+			setProducts(dataProducts);
 		})();
 	}, []);
+
 	useEffect(() => {
 		(async () => {
-			const test = await getCities();
-			/* console.log(test); */
-			setCities(test);
+			const dataCities = await getCities();
+			setCities(dataCities);
 		})();
 	}, []);
 

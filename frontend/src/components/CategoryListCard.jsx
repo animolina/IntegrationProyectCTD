@@ -7,7 +7,7 @@ export default function CategoryListCard() {
 	const categories = store.categories;
 	return (
 		<div className={styles.mainContainer}>
-			{console.log(store.categories)}
+			{/* {console.log(store.categories)} */}
 			{categories.map(category => (
 				<CategoryCard
 					key={category.id}
