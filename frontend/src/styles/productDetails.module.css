@@ -1,0 +1,8 @@
+.productDetailsContainer {
+	background: blue;
+	position: relative;
+	margin-top: 5rem;
+	display: flex;
+	height: 80vh;
+	width: 100vw;
+}

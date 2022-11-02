@@ -7,9 +7,19 @@
 	--details-color: #545776;
 	--white-color: #fff;
 
-}
+	--font-heading1: bold 24px 'Roboto';
+	--font-heading2: bold 20px 'Roboto';
+	--font-heading3: bold 16px 'Roboto';
+	--font-heading4: bold 14px 'Roboto';
 
+	--font-botton1: bold 14px 'Roboto';
+	--font-botton2: bold 16px 'Roboto';
+
+	--font-text1: medium 14px 'Roboto';
+	--font-text2: medium 12px 'Roboto';
+}
 a {
+	font-weight: bolder;
 	all: unset;
 	cursor: pointer;
 }
