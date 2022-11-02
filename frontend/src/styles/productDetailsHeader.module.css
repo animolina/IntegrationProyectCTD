@@ -16,7 +16,6 @@
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: center;
-	background-color: #00ff00;
 }
 .productDetailsTitle {
 	font: var(--font-heading1);
@@ -26,8 +25,4 @@
 .productDetailsCategory {
 	margin: 0;
 	font: var(--font-heading4);
-}
-
-.backArrow {
-	background-color: brown;
 }

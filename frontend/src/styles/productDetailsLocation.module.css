@@ -1,0 +1,50 @@
+.productDetailsLocation {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	background-color: var(--bg-color);
+	height: 3.438rem;
+	padding: 0.5rem 2rem;
+	font: var(--font-text1);
+}
+
+.locationContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.locationText > p,
+spam {
+	padding: 0;
+	margin: 0;
+	padding-left: 0.5rem;
+}
+
+.scoreContaniner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.scoreOpinion > p,
+span {
+	margin: 0;
+
+	color: var(--text-color);
+	font: var(--font-heading4);
+}
+.scoreNumber {
+	border-radius: 10px;
+	background-color: var(--details-color);
+	color: var(--white-color);
+	padding: 0.5rem;
+	width: 2.125rem;
+	text-align: center;
+}
+
+.scoreStars {
+	color: var(--main-color);
+}
