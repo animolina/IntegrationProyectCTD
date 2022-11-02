@@ -8,12 +8,14 @@
 	height: 3.75rem;
 	width: 100vw;
 	font-weight: bold;
+	padding: 0.5rem 2rem;
 }
 
 .container {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	justify-content: center;
 	background-color: #00ff00;
 }
 .productDetailsTitle {
