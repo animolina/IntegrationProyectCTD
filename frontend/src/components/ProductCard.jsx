@@ -13,7 +13,7 @@ export default function ProductCard({
 			<img className={styles.productCardImg} src={urlImg} alt='Product Image' />
 			<div className={styles.productCardBody}>
 				<span className={styles.productCardCategory}>
-					{category.toUpperCase()}{' '}
+					{category?.toUpperCase()}{' '}
 					<span className={styles.productCardCategoryStars}>★ ★ ★ ★ ★ </span>
 				</span>
 				<h5 className={styles.productCardTitle}>{title}</h5>
