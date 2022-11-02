@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProductDetails from './pages/ProductDetails';
+import Test from './pages/Test';
 
 function AppRouter() {
 	const [user, setUser] = useState(null);
@@ -26,6 +27,7 @@ function AppRouter() {
 						path='product-details'
 						element={<ProductDetails />}
 					></Route>
+					<Route exact path='test' element={<Test />}></Route>
 				</Routes>
 				<Footer />
 			</BrowserRouter>
