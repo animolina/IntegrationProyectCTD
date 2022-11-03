@@ -80,6 +80,7 @@
 
 .booking .datePickerCalendar .react-datepicker__month-container {
     width: 50%;
+    height: 100%;
 }
 
 .booking .datePickerCalendar .react-datepicker__week,
