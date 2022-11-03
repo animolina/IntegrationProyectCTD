@@ -1,12 +1,16 @@
 import ReactDatePicker, { registerLocale } from 'react-datepicker';
-
 import { useState } from 'react';
 import '../styles/datePicker.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import es from 'date-fns/locale/es';
 registerLocale('es', es);
 
-export default function DatePicker({ customInput }) {
+export default function DatePicker({
+	customInput,
+	inline,
+	placeholder,
+	calendarType,
+}) {
 	const [startDate, setStartDate] = useState(null);
 	const [endDate, setEndDate] = useState(null);
 
@@ -17,7 +21,7 @@ export default function DatePicker({ customInput }) {
 	};
 
 	return (
-		<div>
+		<div className={calendarType === 'booking' ? 'booking' : ' '}>
 			<ReactDatePicker
 				monthsShown={2}
 				selected={startDate}
@@ -30,7 +34,10 @@ export default function DatePicker({ customInput }) {
 				locale='es'
 				formatWeekDay={nameOfDay => nameOfDay.substr(0, 1).toUpperCase()}
 				dateFormat='dd MMM'
-				placeholderText='Check-in - Check-out'
+				placeholderText={placeholder}
+				inline={inline}
+				minDate={new Date()} // it disables previous dates
+				calendarType={calendarType}
 			/>
 		</div>
 	);

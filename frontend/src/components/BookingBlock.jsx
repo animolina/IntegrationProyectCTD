@@ -6,7 +6,7 @@ export default function BookingBlock() {
 		<div className={styles.mainContainer}>
 			<h2 className={styles.title}>Fechas disponibles</h2>
 			<div className={styles.secondaryContainer}>
-				<DatePicker />
+				<DatePicker inline='inline' calendarType='booking' />
 				<div className={styles.bookingCard}>
 					<h3>Agregá tus fechas de viaje para obtener precios exactos</h3>
 					<Button type='basic' innerText='Iniciar reserva'></Button>
