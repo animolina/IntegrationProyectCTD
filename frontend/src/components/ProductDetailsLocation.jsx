@@ -11,8 +11,8 @@ export default function ProductDetailsLocation() {
 				</div>
 			</div>
 			<div className={styles.scoreContaniner}>
-				<div className={styles.scoreOpinion}>
-					<p>Muy bueno</p>
+				<div>
+					<p className={styles.scoreOpinion}>Muy bueno</p>
 					<span className={styles.scoreStars}>★ ★ ★ ★ ★ </span>
 				</div>
 

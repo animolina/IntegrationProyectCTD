@@ -29,14 +29,13 @@ spam {
 	gap: 0.5rem;
 }
 
-.scoreOpinion > p,
-span {
+.scoreOpinion {
 	margin: 0;
-
 	color: var(--text-color);
 	font: var(--font-heading4);
 }
 .scoreNumber {
+	font: var(--font-heading4);
 	border-radius: 10px;
 	background-color: var(--details-color);
 	color: var(--white-color);
