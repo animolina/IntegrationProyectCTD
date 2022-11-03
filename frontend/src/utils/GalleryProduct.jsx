@@ -5,29 +5,25 @@ import { Gallery, Item } from 'react-photoswipe-gallery';
 import styles from '../styles/galleryProduct.module.css';
 
 export default function GalleryProduct() {
-	const smallItemStyles = {
-		/* cursor: 'pointer',
-		objectFit: 'cover',
-		width: '100%',
-		maxHeight: '100%', */
+	const onOpen = pswpInstance => {
+		pswpInstance.currSlide.zoomTo(1, { x: 0, y: 0 }, 2000, true);
+		// console.log("init")
+	};
+
+	const onBeforeOpen = pswpInstance => {
+		pswpInstance.on('change', () => {
+			// console.log(pswpInstance);
+			// console.log('slide was changed');
+			// TODO next slide 3sec
+		});
 	};
 	return (
-		<Gallery>
-			<div
-				className={styles.itemContainer}
-				// style={{
-				// 	display: 'grid',
-				// 	gridTemplateColumns: '240px 171px 171px',
-				// 	gridTemplateRows: '114px 114px',
-				// 	gridGap: 12,
-				// }}
-			>
+		<Gallery onBeforeOpen={onBeforeOpen} onOpen={onOpen}>
+			<div className={styles.itemContainer}>
 				<div className={styles.itemPrincipal}>
 					<Item
 						original='https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg'
 						thumbnail='https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg'
-						// width='5rem'
-						// height='5rem'
 						alt='Photo of seashore by Folkert Gorter'
 					>
 						{({ ref, open }) => (
@@ -50,7 +46,6 @@ export default function GalleryProduct() {
 					>
 						{({ ref, open }) => (
 							<img
-								style={smallItemStyles}
 								src='https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg'
 								ref={ref}
 								onClick={open}
@@ -66,7 +61,6 @@ export default function GalleryProduct() {
 					>
 						{({ ref, open }) => (
 							<img
-								style={smallItemStyles}
 								src='https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg'
 								ref={ref}
 								onClick={open}
@@ -82,7 +76,6 @@ export default function GalleryProduct() {
 					>
 						{({ ref, open }) => (
 							<img
-								style={{ ...smallItemStyles, gridColumnStart: 2 }}
 								ref={ref}
 								onClick={open}
 								src='https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg'
@@ -98,7 +91,6 @@ export default function GalleryProduct() {
 					>
 						{({ ref, open }) => (
 							<img
-								style={smallItemStyles}
 								ref={ref}
 								onClick={open}
 								src='https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg'

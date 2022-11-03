@@ -7,7 +7,7 @@ export default function ProductDetailsLocation() {
 				<img src={locationIcon} alt='' />
 				<div className={styles.locationText}>
 					<p>Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina</p>
-					<spam>A 940 m del centro</spam>
+					<span>A 940 m del centro</span>
 				</div>
 			</div>
 			<div className={styles.scoreContaniner}>

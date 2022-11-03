@@ -4,9 +4,9 @@
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
-	background-color: red;
+	background-color: var(--white-color);
 	gap: 0.7rem;
-	padding: 1rem 1rem 1rem 1rem;
+	padding: 1rem;
 }
 img {
 	border-radius: 8px;
