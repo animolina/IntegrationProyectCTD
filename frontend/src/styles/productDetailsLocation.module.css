@@ -31,6 +31,7 @@ span {
 
 .scoreOpinion {
 	margin: 0;
+	text-align: center;
 	color: var(--text-color);
 	font: var(--font-heading4);
 }
