@@ -1,9 +1,9 @@
-import MyGallery from '../utils/MyGallery';
+import GalleryProduct from '../utils/GalleryProduct';
 
 export default function Test() {
 	return (
 		<div>
-			<MyGallery />
+			<GalleryProduct />
 		</div>
 	);
 }

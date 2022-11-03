@@ -1,0 +1,31 @@
+.itemContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	background-color: red;
+	gap: 0.7rem;
+	padding: 1rem 1rem 1rem 1rem;
+}
+img {
+	border-radius: 8px;
+}
+.itemPrincipal > img {
+	width: 39.875rem;
+	height: 24.83rem;
+}
+
+.itemGroup {
+	width: 50%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+.itemGroup > img {
+	width: 19.625rem;
+	height: 11.813rem;
+}
