@@ -46,7 +46,11 @@ export default function SearchBlock() {
 						placeholder='¿A dónde vamos?'
 						onSelectSuggestion={onSelectSuggestion}
 					/>
-					<DatePicker customInput={<Input />} />
+					<DatePicker
+						customInput={<Input />}
+						placeholder='Check-in - Check-out'
+						
+					/>
 					<Button type='basic' innerText='Buscar'></Button>
 				</form>
 			</div>
