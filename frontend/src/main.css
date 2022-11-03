@@ -7,16 +7,16 @@
 	--details-color: #545776;
 	--white-color: #fff;
 
-	--font-heading1: bold 24px 'Roboto';
-	--font-heading2: bold 20px 'Roboto';
-	--font-heading3: bold 16px 'Roboto';
-	--font-heading4: bold 14px 'Roboto';
+	--font-heading1: bold 24px Roboto, sans-serif;
+	--font-heading2: bold 20px Roboto, sans-serif;
+	--font-heading3: bold 16px Roboto, sans-serif;
+	--font-heading4: bold 14px Roboto, sans-serif;
 
-	--font-botton1: bold 14px 'Roboto';
-	--font-botton2: bold 16px 'Roboto';
+	--font-botton1: bold 14px Roboto, sans-serif;
+	--font-botton2: bold 16px Roboto, sans-serif;
 
-	--font-text1: medium 14px 'Roboto';
-	--font-text2: medium 12px 'Roboto';
+	--font-text1: bold 16px Roboto, sans-serif;
+	--font-text2: medium 12px Roboto, sans-serif;
 }
 a {
 	font-weight: bolder;
