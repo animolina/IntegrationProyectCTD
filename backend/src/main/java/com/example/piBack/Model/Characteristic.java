@@ -18,6 +18,10 @@ public class Characteristic {
     @Column
     private String description;
 
+    @ManyToMany()
+    @JoinColumn(name="ID_product")
+    private Product product;
+
     public Characteristic() {
     }
 

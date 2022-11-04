@@ -32,6 +32,10 @@ public class Product {
     @JoinColumn(name="ID_city")
     private City city;
 
+    @ManyToMany()
+    @JoinColumn(name="ID_characteristic")
+    private Characteristic characteristic;
+
     public Product() {
     }
 

@@ -19,15 +19,13 @@ public class Category {
     private String title;
     @Column
     private String description;
-    @Column
-    private String urlImage;
 
     public Category() {
     }
 
-    public Category(String title, String description, String urlImage) {
+    public Category(String title, String description) {
         this.title = title;
         this.description = description;
-        this.urlImage = urlImage;
+
     }
 }
