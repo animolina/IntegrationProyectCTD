@@ -30,3 +30,9 @@ img {
 	width: 19.625rem;
 	height: 11.813rem;
 }
+
+@media screen and (max-width: 769px) {
+	.itemGroup > img {
+		display: none;
+	}
+}
