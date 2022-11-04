@@ -11,6 +11,9 @@
 }
 img {
 	border-radius: 8px;
+	max-width: 100%;
+	display: block;
+	height: auto;
 }
 .itemPrincipal > img {
 	width: 39.875rem;
