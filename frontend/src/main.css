@@ -19,8 +19,7 @@
 	--font-text1: bold 16px Roboto, sans-serif;
 	--font-text2: medium 12px Roboto, sans-serif;
 }
-a {
-	font-weight: bolder;
+a {	
 	all: unset;
 	cursor: pointer;
 }
