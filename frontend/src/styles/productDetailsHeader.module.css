@@ -1,0 +1,28 @@
+.productDetailsHeader {
+	display: flex;
+	justify-content: space-between;
+	background: var(--details-color);
+	position: relative;
+	color: var(--bg-color);
+	display: flex;
+	height: 3.75rem;
+	width: 100vw;
+	font-weight: bold;
+	padding: 0.5rem 2rem;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+}
+.productDetailsTitle {
+	font: var(--font-heading1);
+	margin: 0;
+}
+
+.productDetailsCategory {
+	margin: 0;
+	font: var(--font-heading4);
+}
