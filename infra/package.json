@@ -8,7 +8,9 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "start-session": "aws --profile MPPersonal ssm start-session --target i-074779215afb613d4",
+    "deploy": "cdk deploy --profile MPPersonal"
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
