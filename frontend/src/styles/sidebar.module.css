@@ -7,7 +7,6 @@
 	left: 0;
 	width: 100%;
 	height: 10.938rem;
-
 	background: var(--main-color);
 }
 .title {
@@ -17,18 +16,6 @@
 	margin: 0;
 	color: var(--white-color);
 }
-
-/* .containerItems {
-	height: 5rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: end;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 5;
-	background-color: rgb(88, 156, 21);
-}
- */
 
 .footer {
 	display: flex !important;

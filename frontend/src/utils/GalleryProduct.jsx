@@ -28,7 +28,6 @@ export default function GalleryProduct() {
 					>
 						{({ ref, open }) => (
 							<img
-								style={{ cursor: 'pointer' }}
 								ref={ref}
 								onClick={open}
 								src='https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg'

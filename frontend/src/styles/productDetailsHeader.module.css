@@ -26,3 +26,12 @@
 	margin: 0;
 	font: var(--font-heading4);
 }
+
+.backArrow {
+	padding: 0.5rem;
+}
+
+.backArrow:hover {
+	transition: 0.5s;
+	transform: translate3d(-10px, 0px, 0px);
+}

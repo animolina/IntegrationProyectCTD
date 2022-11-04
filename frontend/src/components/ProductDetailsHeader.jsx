@@ -1,5 +1,6 @@
 import styles from '../styles/productDetailsHeader.module.css';
 import backArrow from '../assets/imgs/backArrow.png';
+import { Link } from 'react-router-dom';
 
 export default function ProductDetailsHeader() {
 	return (
@@ -8,7 +9,9 @@ export default function ProductDetailsHeader() {
 				<p className={styles.productDetailsCategory}>HOTEL</p>
 				<h2 className={styles.productDetailsTitle}>Hermitage Hotel</h2>
 			</div>
-			<img className={styles.backArrow} src={backArrow} alt='' />
+			<Link to='/'>
+				<img className={styles.backArrow} src={backArrow} alt='' />
+			</Link>
 		</header>
 	);
 }

@@ -16,7 +16,6 @@
 	}
 }
 
-
 .innerText {
 	font-size: 1rem;
 	font-weight: 700;
@@ -26,11 +25,17 @@
 
 .outlineButton {
 	color: var(--main-color);
-	background-color: white;
+	background-color: var(--white-color);
 	margin: 2rem 0px;
 	border-radius: 5px;
 	height: 2.5rem;
 	width: 12.875rem;
 	border: 1px solid var(--main-color);
 	cursor: pointer;
+}
+
+.outlineButton:hover {
+	color: var(--white-color);
+	background-color: var(--main-color);
+	transition: 0.5s;
 }

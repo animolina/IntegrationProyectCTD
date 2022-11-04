@@ -8,11 +8,18 @@
 	padding: 1rem;
 	width: 100vw;
 }
-img {
+
+.itemContainer img {
 	border-radius: 8px;
 	max-width: 100%;
 	display: block;
 	height: auto;
+	cursor: pointer;
+}
+.itemContainer img:hover {
+	filter: brightness(110%);
+	-webkit-filter: brightness(110%);
+	-moz-filter: brightness(110%);
 }
 .itemPrincipal > img {
 	width: 39.875rem;

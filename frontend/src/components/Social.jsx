@@ -11,7 +11,7 @@ export default function Social({ type }) {
 			className={type === 'footer' ? styles.footerSocial : styles.burgerSocial}
 		>
 			<a
-				className='menu-item'
+				className='socialFacebook'
 				href='https://www.facebook.com/'
 				target='_blank'
 				rel='noopener noreferrer'
