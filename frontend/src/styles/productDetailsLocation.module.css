@@ -13,6 +13,8 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	/* white-space: wrap;
+	overflow: hidden; */
 }
 
 .locationText > p,
@@ -47,4 +49,18 @@ span {
 
 .scoreStars {
 	color: var(--main-color);
+}
+
+/* ------------------------------- responsive ------------------------------- */
+
+@media screen and (max-width: 769px) {
+	.locationText > span {
+		display: none;
+	}
+	.locationText > p {
+		font-size: 0.8rem;
+	}
+	.scoreStars {
+		display: none;
+	}
 }
