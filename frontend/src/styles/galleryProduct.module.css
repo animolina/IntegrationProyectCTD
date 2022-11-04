@@ -38,4 +38,7 @@ img {
 	.itemGroup > img {
 		display: none;
 	}
+	.itemPrincipal > img {
+		width: 100vw;
+	}
 }
