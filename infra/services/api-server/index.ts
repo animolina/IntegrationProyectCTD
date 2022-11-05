@@ -41,6 +41,11 @@ export class ApiServerStack extends Stack {
       Port.tcp(443),
       "Allow HTTPS traffic from anywhere"
     );
+    apiServerSG.addIngressRule(
+      Peer.anyIpv4(),
+      Port.tcp(8080),
+      "Allow HTTP traffic to the Spring API from anywhere"
+    );
 
     const userData = UserData.forLinux();
     userData.addCommands(
