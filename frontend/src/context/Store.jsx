@@ -11,7 +11,7 @@ const AppContext = createContext({
 });
 
 export default function Store({ children }) {
-	const [categories, setCategories] = useState([]);
+	const [categories, setCategories] = useState(null);
 	const [products, setProducts] = useState([]);
 	const [cities, setCities] = useState([]);
 

@@ -1,0 +1,43 @@
+.itemContainer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--white-color);
+	gap: 0.7rem;
+	padding: 1rem;
+	width: 100vw;
+}
+img {
+	border-radius: 8px;
+	max-width: 100%;
+	display: block;
+	height: auto;
+}
+.itemPrincipal > img {
+	width: 39.875rem;
+	height: 24.83rem;
+}
+
+.itemGroup {
+	width: 50%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+.itemGroup > img {
+	width: 19.625rem;
+	height: 11.813rem;
+}
+
+@media screen and (max-width: 769px) {
+	.itemGroup > img {
+		display: none;
+	}
+	.itemPrincipal > img {
+		width: 100vw;
+	}
+}

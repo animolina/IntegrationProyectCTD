@@ -1,0 +1,47 @@
+.politicTitle {
+	padding: 1.5rem;
+	width: 100vw;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid var(--main-color);
+	color: var(--text-color);
+}
+
+.productDetailsPolitic {
+	width: 100vw;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	gap: 2rem;
+	padding-left: 1.5rem;
+	margin-bottom: 2rem;
+	align-items: flex-start;
+}
+
+.politicItem {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 20rem;
+	list-style: none;
+	white-space: wrap;
+	overflow: hidden;
+}
+
+.politicItem > ul {
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	gap: 2rem 0;
+}
+.politicItem > ul > li {
+	font: var(--font-text2);
+	list-style: none;
+	color: #4f4f50;
+}
+
+.politicItemTitle {
+	font: var(--font-heading2);
+	color: var(--details-color);
+}

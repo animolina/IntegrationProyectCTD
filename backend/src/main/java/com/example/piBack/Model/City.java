@@ -18,13 +18,16 @@ public class City {
     @Column
     private String name;
     @Column
-    private String province;
+    private String state;
+    @Column
+    private String country;
 
     public City() {
     }
 
-    public City(String name, String province) {
+    public City(String name, String state, String country) {
         this.name = name;
-        this.province = province;
+        this.state = state;
+        this.country = country;
     }
 }

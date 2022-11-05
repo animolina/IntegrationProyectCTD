@@ -6,6 +6,8 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ProductDetails from './pages/ProductDetails';
+import Test from './pages/Test';
 
 function AppRouter() {
 	const [user, setUser] = useState(null);
@@ -20,6 +22,12 @@ function AppRouter() {
 					<Route exact path='/' element={<App />}></Route>
 					<Route exact path='login' element={<Login />}></Route>
 					<Route exact path='sign-up' element={<SignUp />}></Route>
+					<Route
+						exact
+						path='product-details'
+						element={<ProductDetails />}
+					></Route>
+					<Route exact path='test' element={<Test />}></Route>
 				</Routes>
 				<Footer />
 			</BrowserRouter>
