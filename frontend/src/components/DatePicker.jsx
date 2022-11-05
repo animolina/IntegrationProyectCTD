@@ -38,7 +38,6 @@ export default function DatePicker({
 				inline={inline}
 				minDate={new Date()} // it disables previous dates
 				calendarType={calendarType}
-				/* showDisabledMonthNavigation */
 				previousMonthButtonLabel=''
 				nextMonthButtonLabel=''
 			/>
