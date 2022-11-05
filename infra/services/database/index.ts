@@ -59,7 +59,7 @@ export class DatabaseStack extends Stack {
       publiclyAccessible: false,
     });
 
-    dbInstance.connections.allowFrom(apiServerInstance, Port.tcp(5432));
+    dbInstance.connections.allowFrom(apiServerInstance, Port.tcp(3306));
 
     new CfnOutput(this, "dbEndpoint", {
       value: dbInstance.instanceEndpoint.hostname,
