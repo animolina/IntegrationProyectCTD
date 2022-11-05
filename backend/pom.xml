@@ -13,7 +13,7 @@
 	<artifactId>piBack</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>piBack</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Spring Boot API</description>
 	<packaging>jar</packaging>
 	<properties>
 		<java.version>17</java.version>
