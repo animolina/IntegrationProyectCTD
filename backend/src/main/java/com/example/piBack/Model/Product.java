@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,8 +23,10 @@ public class Product {
     private String description;
     @Column
     private String availability;
-    @Column
-    private String policy;
+
+    @ManyToOne()
+    @JoinColumn(name="ID_policy")
+    private Policy policy;
 
     @ManyToOne()
     @JoinColumn(name="ID_category")
@@ -32,14 +36,16 @@ public class Product {
     @JoinColumn(name="ID_city")
     private City city;
 
-    @ManyToMany()
-    @JoinColumn(name="ID_characteristic")
-    private Characteristic characteristic;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "characteristic_product",
+            joinColumns = {@JoinColumn(name = "ID_products")},
+            inverseJoinColumns = {@JoinColumn(name = "ID_characteristic")})
+    private Set<Characteristic> characteristics = new HashSet<>();
 
     public Product() {
     }
 
-    public Product(String title, String description, String availability, String policy, Category category, City city) {
+    public Product(String title, String description, String availability, Policy policy, Category category, City city) {
         this.title = title;
         this.description = description;
         this.availability = availability;
