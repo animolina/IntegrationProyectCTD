@@ -13,7 +13,7 @@ build-frontend-job:
     - npm run build
   artifacts:
     paths:
-      - dist
+      - frontend/dist
 
 build-backend-job:
   stage: build
@@ -69,9 +69,8 @@ deploy-backend-job:
     - aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" --profile default
     - aws configure set region "$AWS_DEFAULT_REGION" --profile default
     - aws configure set output "text" --profile default
-    - curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux_64bit/session-manager-plugin.rpm" -o "session-manager-plugin.rpm"
-    - apt-get install yum -y
-    - yum install -y session-manager-plugin.rpm
+    - curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+    - dpkg -i session-manager-plugin.deb
     - cd infra
     - npm ci
     - npm run start-session
