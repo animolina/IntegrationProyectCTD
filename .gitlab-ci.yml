@@ -72,7 +72,5 @@ deploy-backend-job:
     - curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
     - dpkg -i session-manager-plugin.deb
     - apt-get install expect -y
-    - unbuffer aws ssm start-session --target i-074779215afb613d4
-    - cd /grupo-01/backend
-    - ./deploy.sh development
+    - unbuffer aws ssm start-session --target i-074779215afb613d4 --parameters '{"command":["cd /grupo-01/backend", "./deploy.sh development", "exit"]}'
     - echo "API successfully deployed."
