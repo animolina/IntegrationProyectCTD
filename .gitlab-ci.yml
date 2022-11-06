@@ -6,6 +6,7 @@ build-frontend-job:
   stage: build
   script:
     - echo "Compiling the React app..."
+    - ls
     - cd /frontend
     - npm ci
     - npm run build
