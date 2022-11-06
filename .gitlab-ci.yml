@@ -39,8 +39,8 @@ deploy-frontend-job:
   stage: deploy
   image: node:fermium-slim
   script:
-    - apt-get -y curl
-    - apt-get -y unzip
+    - apt-get install curl -y
+    - apt-get install unzip -y
     - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     - unzip awscliv2.zip
     - ./aws/install
@@ -56,8 +56,8 @@ deploy-backend-job:
   stage: deploy
   image: node:fermium-slim
   script:
-    - apt-get -y curl
-    - apt-get -y unzip
+    - apt-get install curl -y
+    - apt-get install unzip -y
     - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     - unzip awscliv2.zip
     - ./aws/install
