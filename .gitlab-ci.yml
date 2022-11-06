@@ -4,7 +4,7 @@ stages:
 
 build-frontend-job:
   stage: build
-  image: alpine:latest
+  image: node:fermium-slim
   script:
     - echo "Compiling the React app..."
     - cd frontend
@@ -17,17 +17,14 @@ build-backed-job:
   script:
     - echo "Compiling the Spring boot app..."
     - cd backend
-    - mvn clean install
+    - mvn clean install -D skipTests
 
 deploy-frontend-job:
   stage: deploy
   script:
-    - cd /infra
+    - cd infra
     - yarn deploy-frontend
-    - yarn start-session
-    - cd /grupo-01/backend
-    - ./deploy.sh
-    - echo "Application successfully deployed."
+    - echo "Web App successfully deployed."
   rules:
     - changes:
       - frontend/**/*
@@ -35,11 +32,11 @@ deploy-frontend-job:
 deploy-backend-job:
   stage: deploy
   script:
-    - cd /infra
+    - cd infra
     - yarn start-session
     - cd /grupo-01/backend
     - ./deploy.sh
-    - echo "Application successfully deployed."
+    - echo "API successfully deployed."
   rules:
     - changes:
       - backend/**/*
