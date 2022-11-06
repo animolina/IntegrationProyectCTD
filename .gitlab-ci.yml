@@ -11,6 +11,9 @@ build-frontend-job:
     - cd frontend
     - npm ci
     - npm run build
+  rules:
+    - changes:
+      - frontend/**/*
   artifacts:
     paths:
       - frontend/dist
@@ -22,18 +25,27 @@ build-backend-job:
     - echo "Compiling the Spring boot app..."
     - cd backend
     - mvn clean install -D skipTests
+  rules:
+    - changes:
+      - backend/**/*
 
 unit-tests-frontend:
   stage: test
   script:
     - cd frontend
     - echo "Pending to add tests on the frontend project..."
+  rules:
+    - changes:
+      - frontend/**/*
 
 unit-tests-backend:
   stage: test
   script:
     - cd backend
     - echo "Pending to add tests on the frontend project..."
+  rules:
+    - changes:
+      - backend/**/*
 
 deploy-frontend-job:
   stage: deploy
@@ -54,6 +66,9 @@ deploy-frontend-job:
     - npm ci
     - npm run deploy-frontend
     - echo "Web App successfully deployed."
+  rules:
+    - changes:
+      - frontend/**/*
 
 deploy-backend-job:
   stage: deploy
@@ -74,3 +89,6 @@ deploy-backend-job:
     - apt-get install expect -y
     - unbuffer aws ssm start-session --target i-074779215afb613d4 --document-name AWS-StartInteractiveCommand --parameters '{"command":["cd ~ && ./release-api.sh development"]}'
     - echo "API successfully deployed."
+  rules:
+    - changes:
+      - backend/**/*
