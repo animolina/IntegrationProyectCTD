@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Automation files ###
+/process-id.txt
+/process.log

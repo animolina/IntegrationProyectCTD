@@ -1,0 +1,4 @@
+.featureItem {
+	text-transform: capitalize;
+	font: var(--font-text1);
+}

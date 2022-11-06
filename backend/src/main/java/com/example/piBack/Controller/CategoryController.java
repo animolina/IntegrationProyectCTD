@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("category")
@@ -26,21 +27,25 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.listCategory());
     }
 
-    @PutMapping
-    public ResponseEntity<Category> editCategory(@RequestBody Category category) {
-        return ResponseEntity.ok(categoryService.editCategory(category));
+    @PutMapping("/{id}")
+    public ResponseEntity<Category> editCategory(@PathVariable("id") long id, @RequestBody Category category) {
+        Optional<Category> category_ = categoryService.findCategory(id);
+
+        if (category_.isPresent()) {
+            return new ResponseEntity<>(categoryService.editCategory(category_.get()), HttpStatus.OK);
+        } else {
+            return new ResponseEntity("Category with id "+id+" not found", HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteCategory (@PathVariable Long id) {
-        ResponseEntity response = null;
-        if (categoryService.findCategory(id) != null){
+        try {
             categoryService.deleteCategory(id);
-            response = ResponseEntity.status(HttpStatus.OK).build();
-        }else
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
-        return response;
+            return new ResponseEntity("Category deleted", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity("Category with id" + id + " not found", HttpStatus.NOT_FOUND);
+        }
     }
 
 }

@@ -1,0 +1,94 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build-frontend-job:
+  stage: build
+  image: node:fermium-slim
+  script:
+    - echo "Compiling the React app..."
+    - cd frontend
+    - npm ci
+    - npm run build
+  rules:
+    - changes:
+      - frontend/**/*
+  artifacts:
+    paths:
+      - frontend/dist
+
+build-backend-job:
+  stage: build
+  image: maven:latest
+  script:
+    - echo "Compiling the Spring boot app..."
+    - cd backend
+    - mvn clean install -D skipTests
+  rules:
+    - changes:
+      - backend/**/*
+
+unit-tests-frontend:
+  stage: test
+  script:
+    - cd frontend
+    - echo "Pending to add tests on the frontend project..."
+  rules:
+    - changes:
+      - frontend/**/*
+
+unit-tests-backend:
+  stage: test
+  script:
+    - cd backend
+    - echo "Pending to add tests on the frontend project..."
+  rules:
+    - changes:
+      - backend/**/*
+
+deploy-frontend-job:
+  stage: deploy
+  image: node:fermium-slim
+  script:
+    - apt-get update
+    - apt-get install curl -y
+    - apt-get install unzip -y
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip
+    - ./aws/install
+    - aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID" --profile default
+    - aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" --profile default
+    - aws configure set region "$AWS_DEFAULT_REGION" --profile default
+    - aws configure set output "text" --profile default
+    - ls
+    - cd infra
+    - npm ci
+    - npm run deploy-frontend
+    - echo "Web App successfully deployed."
+  rules:
+    - changes:
+      - frontend/**/*
+
+deploy-backend-job:
+  stage: deploy
+  image: node:fermium-slim
+  script:
+    - apt-get update
+    - apt-get install curl -y
+    - apt-get install unzip -y
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip
+    - ./aws/install
+    - aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID" --profile default
+    - aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" --profile default
+    - aws configure set region "$AWS_DEFAULT_REGION" --profile default
+    - aws configure set output "text" --profile default
+    - curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+    - dpkg -i session-manager-plugin.deb
+    - apt-get install expect -y
+    - unbuffer aws ssm start-session --target i-074779215afb613d4 --document-name AWS-StartInteractiveCommand --parameters '{"command":["cd ~ && ./release-api.sh development"]}'
+    - echo "API successfully deployed."
+  rules:
+    - changes:
+      - backend/**/*

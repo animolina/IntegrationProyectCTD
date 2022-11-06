@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,6 +19,9 @@ public class Characteristic {
 
     @Column
     private String description;
+
+    @ManyToMany(mappedBy = "characteristics")
+    private Set<Product> products = new HashSet<>();
 
     public Characteristic() {
     }

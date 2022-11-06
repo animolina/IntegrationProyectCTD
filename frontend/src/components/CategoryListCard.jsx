@@ -5,9 +5,15 @@ import { useAppContext } from '../context/Store';
 export default function CategoryListCard() {
 	const store = useAppContext();
 	const categories = store.categories;
+
+	if (categories === null) {
+		return (
+			<div style={{ backgroundColor: 'red', width: '50rem' }}>Loading</div>
+		);
+	}
+
 	return (
 		<div className={styles.mainContainer}>
-			{/* {console.log(store.categories)} */}
 			{categories.map(category => (
 				<CategoryCard
 					key={category.id}

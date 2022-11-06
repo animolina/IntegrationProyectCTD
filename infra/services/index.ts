@@ -1,6 +1,6 @@
 import { App, Environment } from "aws-cdk-lib";
 
-import { APIServerStack } from "./api-server";
+import { ApiServerStack } from "./api-server";
 import { DatabaseStack } from "./database";
 import { VPCStack } from "./vpc";
 import { WebHostingStack } from "./web-hosting";
@@ -12,11 +12,11 @@ const env: Environment = {
 
 export class InfraServices {
   public readonly vpcStack: VPCStack;
-  public readonly apiServerStack: APIServerStack;
+  public readonly apiServerStack: ApiServerStack;
 
   constructor(scope: App) {
     this.vpcStack = new VPCStack(scope, "VpcStack", { env });
-    this.apiServerStack = new APIServerStack(scope, "APIServerStack", {
+    this.apiServerStack = new ApiServerStack(scope, "APIServerStack", {
       env,
       vpc: this.vpcStack.vpc,
     });
