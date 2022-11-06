@@ -34,22 +34,18 @@ unit-tests-backend:
 
 deploy-frontend-job:
   stage: deploy
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   script:
     - cd infra
     - yarn deploy-frontend
     - echo "Web App successfully deployed."
-  rules:
-    - changes:
-      - frontend/**/*
 
 deploy-backend-job:
   stage: deploy
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   script:
     - cd infra
     - yarn start-session
     - cd /grupo-01/backend
     - ./deploy.sh
     - echo "API successfully deployed."
-  rules:
-    - changes:
-      - backend/**/*
