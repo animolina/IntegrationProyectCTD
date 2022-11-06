@@ -67,9 +67,9 @@ deploy-frontend-job:
     - npm run deploy-frontend
     - echo "Web App successfully deployed."
   rules:
-    - changes:
-      - frontend/**/*
     - if: '$CI_COMMIT_BRANCH == "development"'
+      changes:
+        - frontend/**/*
 
 deploy-backend-job:
   stage: deploy
@@ -91,6 +91,6 @@ deploy-backend-job:
     - unbuffer aws ssm start-session --target i-074779215afb613d4 --document-name AWS-StartInteractiveCommand --parameters '{"command":["cd ~ && ./release-api.sh development"]}'
     - echo "API successfully deployed."
   rules:
-    - changes:
-      - backend/**/*
     - if: '$CI_COMMIT_BRANCH == "development"'
+      changes:
+        - backend/**/*
