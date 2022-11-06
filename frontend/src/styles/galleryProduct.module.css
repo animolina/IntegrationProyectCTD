@@ -46,5 +46,14 @@
 	}
 	.itemPrincipal > img {
 		width: 100vw;
+		border-radius: 0;
+	}
+	.itemContainer {
+		padding: 0;
+	}
+}
+@media screen and (max-width: 1330px) {
+	.itemGroup > img {
+		display: none;
 	}
 }
