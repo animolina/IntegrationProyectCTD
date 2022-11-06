@@ -1,0 +1,10 @@
+.shareProduct {
+	width: 100vw;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 1rem;
+	padding: 0.5rem 2rem;
+	font: var(--font-heading2);
+	color: var(--text-color);
+}
