@@ -4,14 +4,22 @@ stages:
 
 build-frontend-job:
   stage: build
+  image: alpine:latest
   script:
     - echo "Compiling the React app..."
-    - ls
     - cd frontend
     - npm ci
     - npm run build
 
-deploy-job:
+build-backed-job:
+  stage: build
+  image: maven:latest
+  script:
+    - echo "Compiling the Spring boot app..."
+    - cd backend
+    - mvn clean install
+
+deploy-frontend-job:
   stage: deploy
   script:
     - cd /infra
@@ -20,3 +28,18 @@ deploy-job:
     - cd /grupo-01/backend
     - ./deploy.sh
     - echo "Application successfully deployed."
+  rules:
+    - changes:
+      - frontend/**/*
+
+deploy-backend-job:
+  stage: deploy
+  script:
+    - cd /infra
+    - yarn start-session
+    - cd /grupo-01/backend
+    - ./deploy.sh
+    - echo "Application successfully deployed."
+  rules:
+    - changes:
+      - backend/**/*
