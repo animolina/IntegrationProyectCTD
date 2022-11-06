@@ -10,7 +10,8 @@ import {
 import styles from '../styles/shareProduct.module.css';
 
 export default function ShareProduct() {
-	const shareUrl = 'https://www.google.com/';
+	const shareUrl =
+		'webhostingstack-proyectointegrador76c04b8a-f53xg8im6uu.s3-website-us-east-1.amazonaws.com';
 
 	return (
 		<div className={styles.shareProduct}>
@@ -19,7 +20,6 @@ export default function ShareProduct() {
 				url={shareUrl}
 				title={'this is a title'}
 				separator={'this is a separator'}
-				iconFillColor={'transparent'}
 			>
 				<WhatsappIcon className={styles.shareButton} size={40} round={true} />
 			</WhatsappShareButton>
