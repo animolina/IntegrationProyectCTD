@@ -37,17 +37,22 @@ unit-tests-backend:
 
 deploy-frontend-job:
   stage: deploy
-  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  image: node:fermium-slim
   script:
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip
+    - sudo ./aws/install
     - cd infra
-    - apt-get npm -y
     - npm run deploy-frontend
     - echo "Web App successfully deployed."
 
 deploy-backend-job:
   stage: deploy
-  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  image: node:fermium-slim
   script:
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip
+    - sudo ./aws/install
     - cd infra
     - apt-get npm -y
     - npm run start-session
