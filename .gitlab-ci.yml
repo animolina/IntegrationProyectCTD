@@ -50,6 +50,7 @@ deploy-frontend-job:
     - aws configure set region "$AWS_DEFAULT_REGION" --profile default
     - aws configure set output "text" --profile default
     - cd infra
+    - npm ci
     - npm run deploy-frontend
     - echo "Web App successfully deployed."
 
@@ -67,7 +68,10 @@ deploy-backend-job:
     - aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" --profile default
     - aws configure set region "$AWS_DEFAULT_REGION" --profile default
     - aws configure set output "text" --profile default
+    - curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux_64bit/session-manager-plugin.rpm" -o "session-manager-plugin.rpm"
+    - yum install -y session-manager-plugin.rpm
     - cd infra
+    - npm ci
     - npm run start-session
     - cd /grupo-01/backend
     - ./deploy.sh
