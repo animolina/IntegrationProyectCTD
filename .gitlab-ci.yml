@@ -12,8 +12,9 @@ build-frontend-job:
     - npm ci
     - npm run build
   rules:
-    - changes:
-      - frontend/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - frontend/**/*
   artifacts:
     paths:
       - frontend/dist
@@ -26,8 +27,9 @@ build-backend-job:
     - cd backend
     - mvn clean install -D skipTests
   rules:
-    - changes:
-      - backend/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - backend/**/*
 
 unit-tests-frontend:
   stage: test
@@ -35,8 +37,9 @@ unit-tests-frontend:
     - cd frontend
     - echo "Pending to add tests on the frontend project..."
   rules:
-    - changes:
-      - frontend/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - frontend/**/*
 
 unit-tests-backend:
   stage: test
@@ -44,8 +47,9 @@ unit-tests-backend:
     - cd backend
     - echo "Pending to add tests on the frontend project..."
   rules:
-    - changes:
-      - backend/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - backend/**/*
 
 deploy-frontend-job:
   stage: deploy
@@ -67,7 +71,7 @@ deploy-frontend-job:
     - npm run deploy-frontend
     - echo "Web App successfully deployed."
   rules:
-    - if: '$CI_COMMIT_BRANCH == "development"'
+    - if: $CI_COMMIT_BRANCH == "development"
       changes:
         - frontend/**/*
 
@@ -91,6 +95,6 @@ deploy-backend-job:
     - unbuffer aws ssm start-session --target i-074779215afb613d4 --document-name AWS-StartInteractiveCommand --parameters '{"command":["cd ~ && ./release-api.sh development"]}'
     - echo "API successfully deployed."
   rules:
-    - if: '$CI_COMMIT_BRANCH == "development"'
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == "development"
       changes:
         - backend/**/*
