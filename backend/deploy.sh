@@ -4,8 +4,7 @@ function deploy_api {
     echo "<=============== Fetching last changes... ===============>"
     git checkout ${1} && git pull
     echo "<=============== Removing old jar file... ===============>"
-    rm -rf pi-api.jar
-    cd ~/grupo-01/backend
+    rm -rf ~/grupo-01/backend/target/pi-api.jar
     echo "<=============== Compiling project... ===================>"
     mvn clean install
     echo "<=============== Running API... =========================>"
