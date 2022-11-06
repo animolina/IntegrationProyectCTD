@@ -4,9 +4,9 @@
 	align-items: center;
 	justify-content: center;
 	background-color: var(--white-color);
-	gap: 0.7rem;
+
 	padding: 1rem;
-	padding-top: 0;
+
 	width: 100vw;
 }
 
