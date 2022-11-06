@@ -10,6 +10,8 @@ function deploy_api {
     echo "<=============== Running API... =========================>"
     cd ~/grupo-01/backend/target
     nohup java -jar pi-api.jar > ~/grupo-01/backend/process.log 2>&1 &
+    echo "New process ID $!"
+    ps -ef | grep "java -jar pi-api.jar"
     echo $! > ~/grupo-01/backend/process-id.txt
     echo "<============= API successfully deployed! ===============>"
 }
@@ -17,8 +19,10 @@ function deploy_api {
 if [ -s ./process-id.txt ]
 then
     echo "<========== Killing current active process... ============>"
+    ps -ef | grep "java -jar pi-api.jar"
     processId=$(cat ./process-id.txt)
     kill $processId
+    echo "<========== Successfully killed process $processId ============>"
     deploy_api
 else
     deploy_api
