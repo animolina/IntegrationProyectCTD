@@ -10,8 +10,9 @@ function deploy_api {
     mvn clean install
     echo "<=============== Running API... =========================>"
     cd ~/grupo-01/backend/target
-    nohup java -jar pi-api.jar > process.log 2>&1 &
-    echo $! > process-id.txt
+    nohup java -jar pi-api.jar > ~/grupo-01/backend/process.log 2>&1 &
+    echo $! > ~/grupo-01/backend/process-id.txt
+    echo "<============= API successfully deployed! ===============>"
 }
 
 if [ -s ./process-id.txt ]
