@@ -7,7 +7,7 @@ build-frontend-job:
   script:
     - echo "Compiling the React app..."
     - ls
-    - cd /frontend
+    - cd frontend
     - npm ci
     - npm run build
 
