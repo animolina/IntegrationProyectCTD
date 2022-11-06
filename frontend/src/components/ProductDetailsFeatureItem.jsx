@@ -19,6 +19,7 @@ import { useState, useEffect } from 'react';
 const itemFeature = {
 	'aire acondicionado': iconAir,
 	'estacionamiento gratuito': iconCar,
+	'apto mascotas': iconPet,
 	checkIn: iconCheckIn,
 	smoke: iconSmoke,
 	star: iconStar,
@@ -26,7 +27,6 @@ const itemFeature = {
 	wifi: iconWifi,
 	creditCard: iconCreditCard,
 	smokingOff: iconSmokingOff,
-	'apto mascotas': iconPet,
 	cocina: iconKitchen,
 	noParty: iconNoParty,
 	pileta: iconPool,
