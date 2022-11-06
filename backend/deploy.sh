@@ -1,8 +1,6 @@
 #!/bin/bash
 function deploy_api {
     cd ~/grupo-01/backend
-    echo "<=============== Fetching last changes... ===============>"
-    git checkout ${1} && git pull
     echo "<=============== Removing old jar file... ===============>"
     rm -rf ~/grupo-01/backend/target/pi-api.jar
     echo "<=============== Compiling project... ===================>"
