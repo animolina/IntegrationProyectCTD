@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
   - deploy
 
 build-frontend-job:
@@ -11,13 +12,25 @@ build-frontend-job:
     - npm ci
     - npm run build
 
-build-backed-job:
+build-backend-job:
   stage: build
   image: maven:latest
   script:
     - echo "Compiling the Spring boot app..."
     - cd backend
     - mvn clean install -D skipTests
+
+unit-tests-frontend:
+  stage: test
+  script:
+    - cd frontend
+    - echo "Pending to add tests on the frontend project..."
+
+unit-tests-backend:
+  stage: test
+  script:
+    - cd backend
+    - echo "Pending to add tests on the frontend project..."
 
 deploy-frontend-job:
   stage: deploy
