@@ -4,7 +4,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
-	padding: 1.5rem;
+	padding: 0.5rem 2rem;
 	width: 100vw;
 	gap: 0.5rem;
 	color: var(--text-color);
@@ -19,5 +19,6 @@
 .descriptionText {
 	font: var(--font-text2);
 	padding-right: 2rem;
+	margin-top: 0;
 	width: 100%;
 }
