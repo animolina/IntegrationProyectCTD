@@ -39,9 +39,11 @@ deploy-frontend-job:
   stage: deploy
   image: node:fermium-slim
   script:
+    - apt-get -y curl
+    - apt-get -y unzip
     - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     - unzip awscliv2.zip
-    - sudo ./aws/install
+    - ./aws/install
     - aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID" --profile default
     - aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" --profile default
     - aws configure set region "$AWS_DEFAULT_REGION" --profile default
@@ -54,9 +56,11 @@ deploy-backend-job:
   stage: deploy
   image: node:fermium-slim
   script:
+    - apt-get -y curl
+    - apt-get -y unzip
     - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     - unzip awscliv2.zip
-    - sudo ./aws/install
+    - ./aws/install
     - aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID" --profile default
     - aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" --profile default
     - aws configure set region "$AWS_DEFAULT_REGION" --profile default
