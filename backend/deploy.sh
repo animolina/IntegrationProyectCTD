@@ -2,7 +2,7 @@
 function deploy_api {
     cd ~/grupo-01/backend
     echo "<=============== Fetching last changes... ===============>"
-    git checkout feature/infra-server-setup && git pull
+    git checkout ${1} && git pull
     echo "<=============== Removing old jar file... ===============>"
     rm -rf pi-api.jar
     cd ~/grupo-01/backend
