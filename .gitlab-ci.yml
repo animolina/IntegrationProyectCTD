@@ -40,7 +40,7 @@ deploy-frontend-job:
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   script:
     - cd infra
-    - sudo apt-get npm -y
+    - apt-get npm -y
     - npm run deploy-frontend
     - echo "Web App successfully deployed."
 
@@ -49,7 +49,7 @@ deploy-backend-job:
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   script:
     - cd infra
-    - sudo apt-get npm -y
+    - apt-get npm -y
     - npm run start-session
     - cd /grupo-01/backend
     - ./deploy.sh
