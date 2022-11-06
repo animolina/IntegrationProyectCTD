@@ -71,9 +71,8 @@ deploy-backend-job:
     - aws configure set output "text" --profile default
     - curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
     - dpkg -i session-manager-plugin.deb
-    - cd infra
-    - npm ci
-    - npm run start-session
+    - apt-get install expect -y
+    - unbuffer aws ssm start-session --target i-074779215afb613d4
     - cd /grupo-01/backend
-    - ./deploy.sh
+    - ./deploy.sh development
     - echo "API successfully deployed."
