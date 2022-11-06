@@ -103,6 +103,10 @@
     z-index: 1;
 }
 
+.booking .datePickerCalendar .react-datepicker__navigation-icon {
+    padding: 0;
+}
+
 .booking .datePickerCalendar .react-datepicker__navigation-icon--next::before {
     border-color: white;
     position: relative;
@@ -110,11 +114,13 @@
     top: 0;
 }
 
+
 .booking .datePickerCalendar .react-datepicker__navigation-icon--previous::before {
     border-color: white;
     position: relative;
     right: 4px;
     top: 0;
+
 }
 
 
