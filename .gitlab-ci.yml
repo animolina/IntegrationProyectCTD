@@ -69,8 +69,7 @@ deploy-frontend-job:
   rules:
     - changes:
       - frontend/**/*
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: never
+    - if: '$CI_COMMIT_BRANCH == "development"'
 
 deploy-backend-job:
   stage: deploy
@@ -94,5 +93,4 @@ deploy-backend-job:
   rules:
     - changes:
       - backend/**/*
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: never
+    - if: '$CI_COMMIT_BRANCH == "development"'
