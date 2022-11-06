@@ -1,0 +1,21 @@
+stages:
+  - build
+  - deploy
+
+build-frontend-job:
+  stage: build
+  script:
+    - echo "Compiling the React app..."
+    - cd /frontend
+    - npm ci
+    - npm run build
+
+deploy-job:
+  stage: deploy
+  script:
+    - cd /infra
+    - yarn deploy-frontend
+    - yarn start-session
+    - cd /grupo-01/backend
+    - ./deploy.sh
+    - echo "Application successfully deployed."
