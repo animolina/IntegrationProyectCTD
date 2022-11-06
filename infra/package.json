@@ -10,7 +10,8 @@
     "test": "jest",
     "cdk": "cdk",
     "start-session": "aws --profile MPPersonal ssm start-session --target i-074779215afb613d4",
-    "deploy": "cdk deploy --profile MPPersonal"
+    "deploy": "cdk deploy --profile MPPersonal",
+    "deploy-frontend": "cdk deploy WebHostingStack --profile MPPersonal"
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
