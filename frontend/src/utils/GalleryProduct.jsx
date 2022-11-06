@@ -142,22 +142,7 @@ export default function GalleryProduct() {
 		>
 			<div className={styles.itemContainer}>
 				<div className={styles.itemPrincipal}>
-					{/* <Item
-						original='https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg'
-						thumbnail='https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg'
-						alt='Photo of seashore by Folkert Gorter'
-					>
-						{({ ref, open }) => (
-							<img
-								ref={ref}
-								onClick={open}
-								src='https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg'
-							/>
-						)}
-					</Item> */}
-
 					<Item
-						// content={<Content text="It's a React slide #1, nice!" />}
 						original='https://farm4.staticflickr.com/3920/15008465772_d50c8f0531_h.jpg'
 						thumbnail='https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg'
 						width='1600'
@@ -219,22 +204,6 @@ export default function GalleryProduct() {
 							/>
 						)}
 					</Item>
-
-					{/* 	<Item
-						original='https://farm4.staticflickr.com/3920/15008465772_d50c8f0531_h.jpg'
-						thumbnail='https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg'
-						width='1600'
-						height='1066'
-						alt='Photo of bear by Thomas Lefebvre'
-					>
-						{({ ref, open }) => (
-							<img
-								src='https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg'
-								ref={ref}
-								onClick={open}
-							/>
-						)}
-					</Item> */}
 
 					<Item
 						original='https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg'
