@@ -9,6 +9,7 @@ export class WebHostingStack extends Stack {
 
     const frontendBucket = new Bucket(this, "proyecto-integrador", {
       websiteIndexDocument: "index.html",
+      websiteErrorDocument: "index.html",
       publicReadAccess: true,
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,

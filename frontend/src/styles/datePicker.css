@@ -1,9 +1,14 @@
-.datePickerCalendar {
+.datePickerCalendar.react-datepicker {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 25px;
+    padding: 1.563rem;
+    width: 100%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none !important;
+    background-color: var(--white-color);
+    z-index: 500;
 }
 
 .datePickerCalendar .react-datepicker-popper {
@@ -20,8 +25,7 @@
 }
 
 .datePickerCalendar .react-datepicker__month-container {
-    width: 290px;
-    height: 257px;
+
     padding: 0.5rem;
 
 }
@@ -31,8 +35,9 @@
     padding: 0;
 }
 
-.datePickerCalendar .react-datepicker__month-container:nth-child(even) {
+.datePickerCalendar .react-datepicker__month-container:nth-of-type(even) {
     border-right: solid 1px grey;
+
 }
 
 .datePickerCalendar .react-datepicker__month {
@@ -65,24 +70,127 @@
 }
 
 .datePickerCalendar .react-datepicker__navigation {
-    display: none;
+    display: none !important;
 }
+
+/* ------------------------------- styles for calendar type booking ------------------------------- */
+
+.booking .datePickerCalendar.react-datepicker {
+    padding: 1rem 3rem;
+    z-index: 0;
+}
+
+.booking .datePickerCalendar .react-datepicker__month-container {
+    width: 50%;
+    height: 100%;
+
+}
+
+.booking .datePickerCalendar .react-datepicker__week,
+.booking .datePickerCalendar .react-datepicker__day-names {
+    padding: 0.3rem;
+}
+
+.booking .datePickerCalendar .react-datepicker__navigation {
+    background-color: var(--main-color);
+    border-radius: 50%;
+    margin: 0rem 0.2rem;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+}
+
+.booking .datePickerCalendar .react-datepicker__navigation-icon {
+    padding: 0;
+}
+
+.booking .datePickerCalendar .react-datepicker__navigation-icon--next::before {
+    border-color: white;
+    position: relative;
+    left: -4px;
+    top: 0;
+}
+
+
+.booking .datePickerCalendar .react-datepicker__navigation-icon--previous::before {
+    border-color: white;
+    position: relative;
+    right: 4px;
+    top: 0;
+
+}
+
+
+
+
+
 
 /* ------------------------------- responsive ------------------------------- */
 
 @media screen and (max-width: 1190px) {
 
-    .datePickerCalendar {
-        max-width: 21rem;
-        display: block;
+
+
+    .booking .datePickerCalendar .react-datepicker__month-container:nth-of-type(even) {
+        border-right: solid 1px grey;
+        border-bottom: 0;
     }
 
-    .datePickerCalendar .react-datepicker__month-container:nth-child(even) {
+    .booking .datePickerCalendar.react-datepicker {
+        padding: 0;
+        max-width: 50rem;
+        display: inline-block;
+
+    }
+
+    .booking .datePickerCalendar .react-datepicker__navigation {
+        top: 1rem;
+        background-color: var(--white-color);
+    }
+
+    .booking .datePickerCalendar .react-datepicker__navigation-icon--previous::before,
+    .booking .datePickerCalendar .react-datepicker__navigation-icon--next::before {
+        border-color: grey;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .datePickerCalendar.react-datepicker {
+        max-width: 20rem;
+        padding: 0;
+    }
+
+    .datePickerCalendar .react-datepicker__month-container:nth-of-type(even) {
         border-bottom: solid 1px grey;
         border-right: 0;
     }
+}
 
-    .datePickerCalendar .react-datepicker__month-container {
-        height: 290px;
+@media screen and (max-width: 480px) {
+
+
+
+    .booking .datePickerCalendar .react-datepicker__month-container:nth-of-type(odd) {
+        display: none;
     }
+
+    .booking .datePickerCalendar .react-datepicker__month-container {
+        border-right: none !important;
+    }
+
+    .booking .react-datepicker.datePickerCalendar {
+        max-width: 20rem;
+
+    }
+
+    .booking .datePickerCalendar .react-datepicker__month-container {
+        width: 100%;
+
+    }
+
+
 }

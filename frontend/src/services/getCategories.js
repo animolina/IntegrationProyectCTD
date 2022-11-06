@@ -5,7 +5,7 @@ export const getCategories = async () => {
 		method: 'GET',
 
 		/* url: 'http://localhost:8080/category', */
-		url: 'http://127.0.0.1:5500/src/mockedData/categories.json',
+		url: 'http://127.0.0.1:5500/grupo-01/frontend/src/mockedData/categories.json',
 	};
 	return await ajax(optionsRequest);
 };

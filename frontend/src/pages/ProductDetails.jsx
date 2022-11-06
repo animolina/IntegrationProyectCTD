@@ -5,6 +5,7 @@ import ProductDetailsLocation from './../components/ProductDetailsLocation';
 import ProductDetailsDescription from './../components/ProductDetailsDescription';
 import ProductDetailsFeature from '../components/ProductDetailsFeature.jsx';
 import ProductDetailsPolitic from './../components/ProductDetailsPolitic';
+import BookingBlock from './../components/BookingBlock';
 
 import ShareProduct from '../utils/ShareProduct';
 
@@ -17,6 +18,7 @@ export default function ProductDetails() {
 			<GalleryProduct />
 			<ProductDetailsDescription />
 			<ProductDetailsFeature />
+			<BookingBlock />
 			<ProductDetailsPolitic />
 		</div>
 	);

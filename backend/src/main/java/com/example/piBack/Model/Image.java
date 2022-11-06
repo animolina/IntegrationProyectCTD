@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name="category")
-public class Category {
+@Table(name="image")
+public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,14 +18,18 @@ public class Category {
     @Column
     private String title;
     @Column
-    private String description;
+    private String URL;
 
-    public Category() {
+    @ManyToOne()
+    @JoinColumn(name="ID_product")
+    private Product product;
+
+    public Image() {
     }
 
-    public Category(String title, String description) {
+    public Image(String title, String URL, Product product) {
         this.title = title;
-        this.description = description;
-
+        this.URL = URL;
+        this.product = product;
     }
 }

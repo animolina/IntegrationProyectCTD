@@ -4,28 +4,29 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name="category")
-public class Category {
+@Table(name="characteristic")
+public class Characteristic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private String title;
-    @Column
     private String description;
 
-    public Category() {
+    @ManyToMany(mappedBy = "characteristics")
+    private Set<Product> products = new HashSet<>();
+
+    public Characteristic() {
     }
 
-    public Category(String title, String description) {
-        this.title = title;
+    public Characteristic(String description) {
         this.description = description;
-
     }
 }
