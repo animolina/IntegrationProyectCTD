@@ -13,6 +13,12 @@
 	margin-right: 2.5rem;
 }
 
+.footerSocial a:hover {
+	transition: 0.5s;
+	filter: brightness(0) saturate(100%) invert(35%) sepia(7%) saturate(2127%)
+		hue-rotate(197deg) brightness(90%) contrast(85%);
+}
+
 @media screen and (max-width: 480px) {
 	.footerSocial {
 		display: none;

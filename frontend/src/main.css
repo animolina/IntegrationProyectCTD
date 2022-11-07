@@ -19,13 +19,14 @@
 	--font-text1: 500 14px Roboto, sans-serif;
 	--font-text2: medium 12px Roboto, sans-serif;
 }
-a {	
+a {
 	all: unset;
 	cursor: pointer;
 }
 
 html {
 	box-sizing: border-box;
+	overflow-x: hidden;
 }
 
 *,

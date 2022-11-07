@@ -4,15 +4,21 @@
 	align-items: center;
 	justify-content: center;
 	background-color: var(--white-color);
-	gap: 0.7rem;
 	padding: 1rem;
 	width: 100vw;
 }
-img {
+
+.itemContainer img {
 	border-radius: 8px;
 	max-width: 100%;
 	display: block;
 	height: auto;
+	cursor: pointer;
+}
+.itemContainer img:hover {
+	filter: brightness(110%);
+	-webkit-filter: brightness(110%);
+	-moz-filter: brightness(110%);
 }
 .itemPrincipal > img {
 	width: 39.875rem;
@@ -39,5 +45,14 @@ img {
 	}
 	.itemPrincipal > img {
 		width: 100vw;
+		border-radius: 0;
+	}
+	.itemContainer {
+		padding: 0;
+	}
+}
+@media screen and (max-width: 1330px) {
+	.itemGroup > img {
+		display: none;
 	}
 }

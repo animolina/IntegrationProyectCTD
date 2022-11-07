@@ -1,7 +1,8 @@
 .politicTitle {
 	padding: 1.5rem;
 	width: 100vw;
-	padding-bottom: 1rem;
+
+	padding: 0.5rem 2rem;
 	border-bottom: 1px solid var(--main-color);
 	color: var(--text-color);
 }
@@ -12,7 +13,7 @@
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	gap: 2rem;
-	padding-left: 1.5rem;
+	padding-left: 2rem;
 	margin-bottom: 2rem;
 	align-items: flex-start;
 }
