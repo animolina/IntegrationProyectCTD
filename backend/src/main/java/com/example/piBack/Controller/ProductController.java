@@ -3,6 +3,10 @@ package com.example.piBack.Controller;
 import com.example.piBack.Model.Image;
 import com.example.piBack.Model.Product;
 import com.example.piBack.Service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +22,25 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @PostMapping
-    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
-        return ResponseEntity.ok(productService.addProduct(product));
-    }
+    @Operation(summary="This is to fetch all the products stored in DB")
+    @ApiResponses(value= {
+            @ApiResponse(responseCode = "200",
+            description = "Fetched all the products from DB",
+            content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode="404",
+            description="Not Found",
+            content = @Content)
+    })
 
     @GetMapping
     public ResponseEntity<Collection<Product>> listProduct() {
         return ResponseEntity.ok(productService.listProduct());
     }
 
+    @PostMapping
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        return ResponseEntity.ok(productService.addProduct(product));
+    }
     @PutMapping("/{id}")
     public ResponseEntity<Product> editProduct(@PathVariable("id") long id, @RequestBody Product product) {
         Optional<Product> product_ = productService.findProduct(id);
