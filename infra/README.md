@@ -1,14 +1,18 @@
-# Welcome to your CDK TypeScript project
+# AWS CDK - Proyecto Integrador
 
-This is a blank project for CDK development with TypeScript.
+Esta app de CDK escrita en Typescript contiene toda el código necesario
+para provisionar la infraestructura para el API en Spring Boot y la web
+app en React.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Servicios/Stacks
 
-## Useful commands
+- `VPC`             crea una VPC a ser usada por otros servicios
+- `API Server`      crea una instancia de EC2 con la configuración de red necesaria para interactuar con RDS
+- `Database`        crea una instancia de RDS y almacena las credenciales en SecretsManager
+- `Web Hosting`     crea un bucket privado de S3 para la aplicación de React y una distribución de Cloudfront
+- `Assets`          crea un bucket de S3 para almacenar imágenes y lo pone en una distribución de Cloudfront
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+## URLs importantes
+- `API URL`         http://ec2-54-242-48-104.compute-1.amazonaws.com:8080
+- `Web App`         https://d209by8b725mia.cloudfront.net
+- `Assets Bucket`   https://d28crswe7tp8oj.cloudfront.net
