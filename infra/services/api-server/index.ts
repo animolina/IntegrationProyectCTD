@@ -48,11 +48,6 @@ export class ApiServerStack extends Stack {
     );
 
     const userData = UserData.forLinux();
-    userData.addCommands(
-      "yum install -y nginx",
-      "chkconfig nginx on",
-      "service nginx start"
-    );
 
     const SSM_AGENT_RPM =
       "https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm";

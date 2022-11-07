@@ -1,6 +1,7 @@
 import { App, Environment } from "aws-cdk-lib";
 
 import { ApiServerStack } from "./api-server";
+import { AssetsStack } from "./assets";
 import { DatabaseStack } from "./database";
 import { VPCStack } from "./vpc";
 import { WebHostingStack } from "./web-hosting";
@@ -26,5 +27,6 @@ export class InfraServices {
       apiServerInstance: this.apiServerStack.apiServerInstance,
     });
     new WebHostingStack(scope, "WebHostingStack", { env });
+    new AssetsStack(scope, "AssetsStack", { env });
   }
 }

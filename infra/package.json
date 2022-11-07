@@ -11,7 +11,8 @@
     "cdk": "cdk",
     "start-session": "aws ssm start-session --target i-074779215afb613d4",
     "deploy": "npx cdk deploy",
-    "deploy-frontend": "npx cdk deploy WebHostingStack"
+    "deploy-frontend": "npx cdk deploy WebHostingStack",
+    "sync-assets": "aws s3 sync ../frontend/src/assets/imgs s3://assets-bucket"
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
