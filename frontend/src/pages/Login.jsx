@@ -55,6 +55,8 @@ export default function Login() {
 
 		if (user && user.password === password.value) {
 			setUser(user);
+			sessionStorage.setItem('name', user.name); // save session storage user name.
+			sessionStorage.setItem('email', user.email); // save session storage user email.
 			navigate('/');
 		} else {
 			alert('Por favor vuelva a intentarlo, sus credenciales son inválidas');

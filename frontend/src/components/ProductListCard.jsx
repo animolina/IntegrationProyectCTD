@@ -1,43 +1,54 @@
 import ProductCard from './ProductCard';
 import styles from '../styles/productListCard.module.css';
 import { useAppContext } from '../context/Store';
-import { useState, useEffect } from 'react';
-// import { UserContext } from '../context/UserContext';
+import { useUser } from '../hooks/User.hooks';
 
 export default function ProductListCard() {
 	const store = useAppContext();
 	const products = store.products;
-	// const { user, setUser } = useContext(UserContext);
+	const { user } = useUser();
 
 	const shuffleArray = array => {
-		let i = array.length;
+		const newArray = [...array];
+		let i = newArray.length;
 		while (--i > 0) {
 			const randIndex = Math.floor(Math.random() * (i + 1));
-			[array[randIndex], array[i]] = [array[i], array[randIndex]]; // fisher yates shuffle algorithm
+			[newArray[randIndex], newArray[i]] = [newArray[i], newArray[randIndex]]; // fisher yates shuffle algorithm
 		}
-		return array;
+		return newArray;
 	};
 
-	const [randomArray, setRandomArray] = useState([products]);
-
-	useEffect(() => {
-		setRandomArray(shuffleArray(products));
-	});
-
 	return (
-		<div className={styles.mainContainer}>
-			{randomArray
-				.filter((product, index) => index < 8)
-				.map(product => (
-					<ProductCard
-						key={product?.id}
-						title={product?.title}
-						description={product?.description}
-						urlImg={product?.urlImg}
-						location={product?.location}
-						category={product?.category}
-					/>
-				))}
-		</div> // filter is used to limit the quantity of product recomendations being displayed on home page.
+		<>
+			{user ? (
+				<div className={styles.mainContainer}>
+					{products.slice(0, 8).map(product => (
+						<ProductCard
+							key={product?.id}
+							title={product?.title}
+							description={product?.description}
+							urlImg={product?.urlImg}
+							location={product?.location}
+							category={product?.category}
+						/>
+					))}
+				</div> // slice is used to limit the quantity of product recomendations being displayed on home page.(8 products)
+			) : (
+				<div className={styles.mainContainer}>
+					{shuffleArray(products)
+						.filter((product, index) => index < 8)
+						.map(product => (
+							<ProductCard
+								key={product?.id}
+								title={product?.title}
+								description={product?.description}
+								urlImg={product?.urlImg}
+								location={product?.location}
+								category={product?.category}
+							/>
+						))}
+				</div>
+			)}
+		</>
 	);
 }

@@ -1,16 +1,15 @@
-import { useContext } from 'react';
 import isotipo from '../assets/icons/isotipo.svg';
 import styles from '../styles/header.module.css';
 import Button from './Button';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from '../utils/Sidebar';
-import { UserContext } from '../context/UserContext';
+import { useUser } from '../hooks/User.hooks';
 
 const loginRoute = '/login';
 const signUpRoute = '/sign-up';
 
 export default function Header() {
-	const { user, setUser } = useContext(UserContext);
+	const { user, setUser } = useUser();
 	const navigate = useNavigate();
 	const location = useLocation();
 
@@ -21,6 +20,8 @@ export default function Header() {
 
 	const logOut = () => {
 		setUser(null);
+		sessionStorage.clear(); // delete session storage information.
+		window.location.reload(); // reloads page after logout.
 	};
 
 	const signUpButton = (
