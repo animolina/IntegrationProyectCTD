@@ -13,5 +13,6 @@ app en React.
 - `Assets`          crea un bucket de S3 para almacenar imágenes y lo pone en una distribución de Cloudfront
 
 ## URLs importantes
+- `API URL`         http://ec2-54-242-48-104.compute-1.amazonaws.com:8080
 - `Web App`         https://d209by8b725mia.cloudfront.net
 - `Assets Bucket`   https://d28crswe7tp8oj.cloudfront.net
