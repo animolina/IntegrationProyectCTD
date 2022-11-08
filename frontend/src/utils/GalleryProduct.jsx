@@ -122,6 +122,7 @@ export default function GalleryProduct() {
 					>
 						{({ ref, open }) => (
 							<img
+								className={styles.imgItem}
 								src='https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg'
 								ref={ref}
 								onClick={open}
@@ -137,6 +138,7 @@ export default function GalleryProduct() {
 					>
 						{({ ref, open }) => (
 							<img
+								className={styles.imgItem}
 								src='https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg'
 								ref={ref}
 								onClick={open}
@@ -152,6 +154,7 @@ export default function GalleryProduct() {
 					>
 						{({ ref, open }) => (
 							<img
+								className={styles.imgItem}
 								ref={ref}
 								onClick={open}
 								src='https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg'
@@ -167,14 +170,17 @@ export default function GalleryProduct() {
 						alt='Photo of seashore by Folkert Gorter'
 					>
 						{({ ref, open }) => (
-							<img
-								src='https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg'
-								ref={ref}
-								onClick={open}
-							/>
+							<div style={{ position: 'relative' }}>
+								<img
+									src='https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg'
+									ref={ref}
+									onClick={open}
+									className={styles.imgItem}
+								/>
+								<span className={styles.seeMore}>Ver más</span>
+							</div>
 						)}
 					</Item>
-					<span className={styles.seeMore}>Ver más</span>
 				</div>
 			</div>
 		</Gallery>
