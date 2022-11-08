@@ -1,6 +1,7 @@
 package com.example.piBack.Controller;
 
 import com.example.piBack.Model.Image;
+import com.example.piBack.Model.Policy;
 import com.example.piBack.Model.Product;
 import com.example.piBack.Service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,6 +38,14 @@ public class ProductController {
         return ResponseEntity.ok(productService.listProduct());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> findProduct(@PathVariable Long id){
+        if(productService.findProduct(id).isPresent()) {
+            return ResponseEntity.ok(productService.findProduct(id).get());
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
     @PostMapping
     public ResponseEntity<Product> addProduct(@RequestBody Product product) {
         return ResponseEntity.ok(productService.addProduct(product));

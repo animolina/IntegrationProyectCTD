@@ -36,7 +36,7 @@ public class Product {
     @JoinColumn(name="ID_city")
     private City city;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(name = "characteristic_product",
             joinColumns = {@JoinColumn(name = "ID_products")},
             inverseJoinColumns = {@JoinColumn(name = "ID_characteristic")})

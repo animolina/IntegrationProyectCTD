@@ -1,5 +1,6 @@
 package com.example.piBack.Controller;
 
+import com.example.piBack.Model.Image;
 import com.example.piBack.Model.Policy;
 import com.example.piBack.Service.PolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,14 @@ public class PolicyController {
         return ResponseEntity.ok(policyService.listPolicy());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Policy> findPolicy(@PathVariable Long id){
+        if(policyService.findPolicy(id).isPresent()) {
+            return ResponseEntity.ok(policyService.findPolicy(id).get());
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
     @PutMapping("/{id}")
     public ResponseEntity<Policy> editPolicy(@PathVariable("id") long id, @RequestBody Policy policy) {
         Optional<Policy> policy_ = policyService.findPolicy(id);
