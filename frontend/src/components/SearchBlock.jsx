@@ -1,4 +1,4 @@
-import cities from '../mockedData/cities.json';
+import { useAppContext } from '../context/Store';
 import styles from '../styles/searchBlock.module.css';
 import TypeAheadDropDown from './TypeAheadDropDown';
 import DatePicker from './DatePicker';
@@ -8,8 +8,11 @@ import { useState } from 'react';
 import Input from './Input';
 
 export default function SearchBlock() {
-	// eslint-disable-next-line no-unused-vars
-	const [selectedCity, setSelectedCity] = useState();
+	const [setSelectedCity] = useState();
+	const store = useAppContext();
+	const cities = store.cities; // to get array of cities from APIs endpoint.
+	console.log(cities);
+
 	const renderCitySuggestion = citySuggestion => {
 		// function for city suggestions.
 		return (
@@ -39,7 +42,7 @@ export default function SearchBlock() {
 				<form id='searchBlockForm' className={styles.formContainer}>
 					<TypeAheadDropDown
 						data={cities.map(city => ({
-							name: city.name,
+							name: city.state,
 							secondaryText: city.country,
 						}))}
 						renderSuggestion={renderCitySuggestion}
@@ -49,7 +52,6 @@ export default function SearchBlock() {
 					<DatePicker
 						customInput={<Input />}
 						placeholder='Check-in - Check-out'
-						
 					/>
 					<Button type='basic' innerText='Buscar'></Button>
 				</form>
