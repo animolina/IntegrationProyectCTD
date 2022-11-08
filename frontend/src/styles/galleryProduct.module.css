@@ -1,4 +1,5 @@
 .itemContainer {
+	position: relative;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -8,13 +9,16 @@
 	width: 100vw;
 }
 
-.itemContainer img {
+.imgItem {
 	border-radius: 8px;
 	max-width: 100%;
 	display: block;
 	height: auto;
 	cursor: pointer;
+	height: 11.813rem;
+	width: 19.625rem;
 }
+
 .itemContainer img:hover {
 	filter: brightness(110%);
 	-webkit-filter: brightness(110%);
@@ -23,9 +27,11 @@
 .itemPrincipal > img {
 	width: 39.875rem;
 	height: 24.83rem;
+	border-radius: 8px;
 }
 
 .itemGroup {
+	position: relative;
 	width: 50%;
 	display: flex;
 	flex-wrap: wrap;
@@ -34,13 +40,24 @@
 	justify-content: center;
 	gap: 1rem;
 }
-.itemGroup > img {
-	width: 19.625rem;
-	height: 11.813rem;
+
+.seeMore {
+	width: 5rem;
+	position: absolute;
+	right: 1rem;
+	bottom: 1rem;
+	color: var(--white-color);
+	font: var(--font-heading3);
+	text-decoration: underline;
+	pointer-events: none;
 }
 
+/* .seeMore:hover {
+	color: var(--main-color);
+} */
+
 @media screen and (max-width: 769px) {
-	.itemGroup > img {
+	.imgItem {
 		display: none;
 	}
 	.itemPrincipal > img {
@@ -50,9 +67,18 @@
 	.itemContainer {
 		padding: 0;
 	}
+	.seeMore {
+		position: relative;
+		bottom: 0;
+	}
 }
 @media screen and (max-width: 1330px) {
-	.itemGroup > img {
+	.imgItem {
 		display: none;
+	}
+	.seeMore {
+		position: relative;
+		bottom: 2.5rem;
+		right: auto;
 	}
 }
