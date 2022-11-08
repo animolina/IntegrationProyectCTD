@@ -10,7 +10,7 @@ export default function ProductDetailsHeader() {
 				<h2 className={styles.productDetailsTitle}>Hermitage Hotel</h2>
 			</div>
 			<Link to='/'>
-				<img className={styles.backArrow} src={backArrow} alt='' />
+				<img className={styles.backArrow} src={backArrow} alt='Back Arrow' />
 			</Link>
 		</header>
 	);
