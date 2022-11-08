@@ -1,5 +1,6 @@
 package com.example.piBack.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +22,8 @@ public class Characteristic {
     private String description;
 
     @ManyToMany(mappedBy = "characteristics")
-    private Set<Product> products = new HashSet<>();
+    @JsonIgnore
+    private Set<Product> products ;
 
     public Characteristic() {
     }

@@ -26,6 +26,14 @@ public class CategoryController {
     public ResponseEntity<Collection<Category>> listCategory() {
         return ResponseEntity.ok(categoryService.listCategory());
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> findCategory(@PathVariable Long id){
+        if(categoryService.findCategory(id).isPresent()) {
+            return ResponseEntity.ok(categoryService.findCategory(id).get());
+        }else{
+            return new ResponseEntity("Category with id "+id+" not found", HttpStatus.NOT_FOUND);
+        }
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Category> editCategory(@PathVariable("id") long id, @RequestBody Category category) {
