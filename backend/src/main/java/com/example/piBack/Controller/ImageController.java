@@ -1,5 +1,6 @@
 package com.example.piBack.Controller;
 
+import com.example.piBack.Model.City;
 import com.example.piBack.Model.Image;
 import com.example.piBack.Service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,15 @@ public class ImageController {
     @GetMapping
     public ResponseEntity<Collection<Image>> listImage() {
         return ResponseEntity.ok(imageService.listImage());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Image> findImage(@PathVariable Long id){
+        if(imageService.findImage(id).isPresent()) {
+            return ResponseEntity.ok(imageService.findImage(id).get());
+        }else{
+            return new ResponseEntity("Image with id "+id+" not found", HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/{id}")
