@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '../styles/sidebar.css';
 import styles from '../styles/sidebar.module.css';
 import { useState } from 'react';
+import crossIcon from '../assets/icons/crossIcon.svg';
 
 export default function Sidebar(props) {
 	const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +16,7 @@ export default function Sidebar(props) {
 	return (
 		<Menu
 			{...props}
+			customCrossIcon={<img style={{ width: '5px' }} src={crossIcon} />}
 			isOpen={isOpen}
 			onStateChange={handleStateChange}
 			width={'100%'}
