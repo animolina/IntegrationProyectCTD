@@ -1,5 +1,6 @@
 package com.example.piBack.Controller;
 
+import com.example.piBack.Model.Category;
 import com.example.piBack.Model.Characteristic;
 import com.example.piBack.Service.CharacteristicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,15 @@ public class CharacteristicController {
     @GetMapping
     public ResponseEntity<Collection<Characteristic>> listCharacteristic() {
         return ResponseEntity.ok(characteristicService.listCharacteristic());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Characteristic> findCharacteristic(@PathVariable Long id){
+        if(characteristicService.findCharacteristic(id).isPresent()) {
+            return ResponseEntity.ok(characteristicService.findCharacteristic(id).get());
+        }else{
+            return new ResponseEntity("Characteristic with id "+id+" not found", HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/{id}")

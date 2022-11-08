@@ -1,5 +1,6 @@
 package com.example.piBack.Controller;
 
+import com.example.piBack.Model.Characteristic;
 import com.example.piBack.Model.City;
 import com.example.piBack.Service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,15 @@ public class CityController {
     @GetMapping
     public ResponseEntity<Collection<City>> listCity() {
         return ResponseEntity.ok(cityService.listCity());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<City> findCity(@PathVariable Long id){
+        if(cityService.findCity(id).isPresent()) {
+            return ResponseEntity.ok(cityService.findCity(id).get());
+        }else{
+            return new ResponseEntity("City with id "+id+" not found", HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/{id}")
