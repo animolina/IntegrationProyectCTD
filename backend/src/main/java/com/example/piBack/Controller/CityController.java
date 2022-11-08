@@ -33,7 +33,7 @@ public class CityController {
         if(cityService.findCity(id).isPresent()) {
             return ResponseEntity.ok(cityService.findCity(id).get());
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return new ResponseEntity("City with id "+id+" not found", HttpStatus.NOT_FOUND);
         }
     }
 

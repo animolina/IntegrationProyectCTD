@@ -33,7 +33,7 @@ public class ImageController {
         if(imageService.findImage(id).isPresent()) {
             return ResponseEntity.ok(imageService.findImage(id).get());
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return new ResponseEntity("Image with id "+id+" not found", HttpStatus.NOT_FOUND);
         }
     }
 

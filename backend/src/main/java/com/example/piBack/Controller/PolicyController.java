@@ -33,7 +33,7 @@ public class PolicyController {
         if(policyService.findPolicy(id).isPresent()) {
             return ResponseEntity.ok(policyService.findPolicy(id).get());
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return new ResponseEntity("Policy with id "+id+" not found", HttpStatus.NOT_FOUND);
         }
     }
     @PutMapping("/{id}")

@@ -33,7 +33,7 @@ public class CharacteristicController {
         if(characteristicService.findCharacteristic(id).isPresent()) {
             return ResponseEntity.ok(characteristicService.findCharacteristic(id).get());
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return new ResponseEntity("Characteristic with id "+id+" not found", HttpStatus.NOT_FOUND);
         }
     }
 

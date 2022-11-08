@@ -43,7 +43,7 @@ public class ProductController {
         if(productService.findProduct(id).isPresent()) {
             return ResponseEntity.ok(productService.findProduct(id).get());
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return new ResponseEntity("Product with id "+id+" not found", HttpStatus.NOT_FOUND);
         }
     }
     @PostMapping
