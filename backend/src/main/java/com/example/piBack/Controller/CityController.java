@@ -42,7 +42,7 @@ public class CityController {
         Optional<City> city_ = cityService.findCity(id);
 
         if (city_.isPresent()) {
-            return new ResponseEntity<>(cityService.editCity(city_.get()), HttpStatus.OK);
+            return new ResponseEntity<>(cityService.editCity(city), HttpStatus.OK);
         } else {
             return new ResponseEntity("City with id "+id+" not found", HttpStatus.NOT_FOUND);
         }

@@ -42,7 +42,7 @@ public class ImageController {
         Optional<Image> image_ = imageService.findImage(id);
 
         if (image_.isPresent()) {
-            return new ResponseEntity<>(imageService.editImage(image_.get()), HttpStatus.OK);
+            return new ResponseEntity<>(imageService.editImage(image), HttpStatus.OK);
         } else {
             return new ResponseEntity("Image with id "+id+" not found", HttpStatus.NOT_FOUND);
         }

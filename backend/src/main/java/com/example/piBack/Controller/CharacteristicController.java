@@ -42,7 +42,7 @@ public class CharacteristicController {
         Optional<Characteristic> characteristic_ = characteristicService.findCharacteristic(id);
 
         if (characteristic_.isPresent()) {
-            return new ResponseEntity<>(characteristicService.editCharacteristic(characteristic_.get()), HttpStatus.OK);
+            return new ResponseEntity<>(characteristicService.editCharacteristic(characteristic), HttpStatus.OK);
         } else {
             return new ResponseEntity("Characteristic with id "+id+" not found", HttpStatus.NOT_FOUND);
         }

@@ -55,7 +55,7 @@ public class ProductController {
         Optional<Product> product_ = productService.findProduct(id);
 
         if (product_.isPresent()) {
-            return new ResponseEntity<>(productService.editProduct(product_.get()), HttpStatus.OK);
+            return new ResponseEntity<>(productService.editProduct(product), HttpStatus.OK);
         } else {
             return new ResponseEntity("Product with id "+id+" not found", HttpStatus.NOT_FOUND);
         }
