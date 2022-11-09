@@ -3,17 +3,20 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { getCategories } from '../services/getCategories';
 import { getProducts } from '../services/getProducts';
 import { getCities } from '../services/getCities';
+import { getFeatures } from '../services/getFeatures';
 
 const AppContext = createContext({
 	categories: [],
 	products: [],
 	cities: [],
+	features: [],
 });
 
 export default function Store({ children }) {
 	const [categories, setCategories] = useState(null);
 	const [products, setProducts] = useState([]);
 	const [cities, setCities] = useState([]);
+	const [features, setFeatures] = useState([]);
 
 	useEffect(() => {
 		(async () => {
@@ -35,6 +38,12 @@ export default function Store({ children }) {
 			setCities(dataCities);
 		})();
 	}, []);
+	useEffect(() => {
+		(async () => {
+			const dataFeatures = await getFeatures();
+			setFeatures(dataFeatures);
+		})();
+	}, []);
 
 	return (
 		<AppContext.Provider
@@ -42,6 +51,7 @@ export default function Store({ children }) {
 				categories,
 				products,
 				cities,
+				features,
 			}}
 		>
 			{children}
