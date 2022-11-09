@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -46,6 +47,17 @@ public class ProductController {
             return new ResponseEntity("Product with id "+id+" not found", HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/cityID/{ID_city}")
+    public ResponseEntity<List<Product>> findAllByCity(@PathVariable Long ID_city) {
+        return ResponseEntity.ok(productService.findAllByCity(ID_city));
+    }
+
+    @GetMapping("/categoryID/{ID_category}")
+    public ResponseEntity<List<Product>> findAllByCategory(@PathVariable Long ID_category) {
+        return ResponseEntity.ok(productService.findAllByCategory(ID_category));
+    }
+
     @PostMapping
     public ResponseEntity<Product> addProduct(@RequestBody Product product) {
         return ResponseEntity.ok(productService.addProduct(product));
