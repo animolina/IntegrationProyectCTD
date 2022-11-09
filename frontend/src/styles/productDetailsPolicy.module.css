@@ -1,4 +1,4 @@
-.politicTitle {
+.policyTitle {
 	padding: 1.5rem;
 	width: 100vw;
 
@@ -7,7 +7,7 @@
 	color: var(--text-color);
 }
 
-.productDetailsPolitic {
+.productDetailsPolicy {
 	width: 100vw;
 	display: flex;
 	justify-content: flex-start;
@@ -18,7 +18,7 @@
 	align-items: flex-start;
 }
 
-.politicItem {
+.policyItem {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -28,7 +28,7 @@
 	overflow: hidden;
 }
 
-.politicItem > ul {
+.policyItem > ul {
 	display: flex;
 	flex-direction: column;
 	padding: 0;
@@ -36,13 +36,13 @@
 	list-style: none;
 	gap: 2rem 0;
 }
-.politicItem > ul > li {
+.policyItem > ul > li {
 	font: var(--font-text2);
 	list-style: none;
 	color: #4f4f50;
 }
 
-.politicItemTitle {
+.policyItemTitle {
 	font: var(--font-heading2);
 	color: var(--details-color);
 }
