@@ -19,7 +19,7 @@ export default function CategoryListCard() {
 					key={category.id}
 					title={category.title}
 					description={category.description}
-					urlImg={category.urlImg}
+					urlImg={category.imageURL}
 				/>
 			))}
 		</div>

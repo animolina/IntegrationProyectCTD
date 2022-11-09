@@ -25,24 +25,21 @@ export default function Store({ children }) {
 	const [product, setProduct] = useState(null);
 
 	useEffect(() => {
-		(async () => {
+		const loadCategories = async () => {
 			const dataCategories = await getCategories();
 			setCategories(dataCategories);
-		})();
-	}, []);
-
-	useEffect(() => {
-		(async () => {
+		};
+		const loadProducts = async () => {
 			const dataProducts = await getProducts();
 			setProducts(dataProducts);
-		})();
-	}, []);
-
-	useEffect(() => {
-		(async () => {
+		};
+		const loadCities = async () => {
 			const dataCities = await getCities();
 			setCities(dataCities);
-		})();
+		};
+		loadCategories();
+		loadProducts();
+		loadCities();
 	}, []);
 	useEffect(() => {
 		(async () => {

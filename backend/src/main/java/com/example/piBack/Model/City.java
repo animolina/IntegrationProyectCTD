@@ -16,8 +16,10 @@ public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_city;
+    private Long id;
 
+    @Column
+    private String city;
     @Column
     private String state;
     @Column
