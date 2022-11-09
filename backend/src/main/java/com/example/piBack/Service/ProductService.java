@@ -24,6 +24,14 @@ public class ProductService {
         return products;
     }
 
+    public List<Product> findAllByCity(Long ID_city){
+        return productRepository.findAllByCity(ID_city);
+    }
+
+    public List<Product> findAllByCategory(Long ID_category){
+        return productRepository.findAllByCategory(ID_category);
+    }
+
     public Product editProduct(Product product) {
         productRepository.save(product);
         return product;

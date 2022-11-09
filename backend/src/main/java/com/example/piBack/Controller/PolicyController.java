@@ -41,7 +41,7 @@ public class PolicyController {
         Optional<Policy> policy_ = policyService.findPolicy(id);
 
         if (policy_.isPresent()) {
-            return new ResponseEntity<>(policyService.editPolicy(policy_.get()), HttpStatus.OK);
+            return new ResponseEntity<>(policyService.editPolicy(policy), HttpStatus.OK);
         } else {
             return new ResponseEntity("Policy with id "+id+" not found", HttpStatus.NOT_FOUND);
         }

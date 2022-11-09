@@ -40,7 +40,7 @@ public class CategoryController {
         Optional<Category> category_ = categoryService.findCategory(id);
 
         if (category_.isPresent()) {
-            return new ResponseEntity<>(categoryService.editCategory(category_.get()), HttpStatus.OK);
+            return new ResponseEntity<>(categoryService.editCategory(category), HttpStatus.OK);
         } else {
             return new ResponseEntity("Category with id "+id+" not found", HttpStatus.NOT_FOUND);
         }
