@@ -18,8 +18,7 @@ export default function ProductDetailsLocation() {
 				<img src={locationIcon} alt='' />
 				<div className={styles.locationText}>
 					<p>
-						{product.city.state}, Ciudad Autónoma de Buenos Aires,{' '}
-						{product.city.country}
+						{product.city.city}, {product.city.state}, {product.city.country}
 					</p>
 					{/* 	<span>A 940 m del centro</span> */}
 				</div>

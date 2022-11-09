@@ -3,7 +3,20 @@ import { Gallery, Item } from 'react-photoswipe-gallery';
 import 'photoswipe/dist/photoswipe.css';
 import styles from '../styles/galleryProduct.module.css';
 
+import { useAppContext } from '../context/Store';
+
 export default function GalleryProduct() {
+	const store = useAppContext();
+	const product = store.product;
+
+	if (product === null) {
+		return (
+			<div style={{ backgroundColor: 'red', width: '50rem' }}>Loading</div>
+		);
+	}
+
+	console.log(product?.images);
+
 	/* -------------------------------- thumbnail ------------------------------- */
 	const uiElements = [
 		{
