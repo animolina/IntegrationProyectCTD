@@ -25,6 +25,7 @@
 .productDetailsCategory {
 	margin: 0;
 	font: var(--font-heading4);
+	text-transform: uppercase;
 }
 
 .backArrow {

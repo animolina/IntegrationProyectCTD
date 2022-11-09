@@ -5,6 +5,7 @@ import { getProducts } from '../services/getProducts';
 import { getCities } from '../services/getCities';
 import { getFeatures } from '../services/getFeatures';
 import { getPolicy } from '../services/getPolicy';
+import { getProductById } from '../services/getProductById';
 
 const AppContext = createContext({
 	categories: [],
@@ -12,6 +13,7 @@ const AppContext = createContext({
 	cities: [],
 	features: [],
 	policy: {},
+	product: {},
 });
 
 export default function Store({ children }) {
@@ -20,6 +22,7 @@ export default function Store({ children }) {
 	const [cities, setCities] = useState([]);
 	const [features, setFeatures] = useState([]);
 	const [policy, setPolicy] = useState(null);
+	const [product, setProduct] = useState(null);
 
 	useEffect(() => {
 		(async () => {
@@ -53,6 +56,12 @@ export default function Store({ children }) {
 			setPolicy(dataPolicy);
 		})();
 	}, []);
+	useEffect(() => {
+		(async () => {
+			const dataProduct = await getProductById();
+			setProduct(dataProduct);
+		})();
+	}, []);
 
 	return (
 		<AppContext.Provider
@@ -62,6 +71,7 @@ export default function Store({ children }) {
 				cities,
 				features,
 				policy,
+				product,
 			}}
 		>
 			{children}

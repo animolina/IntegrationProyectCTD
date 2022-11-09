@@ -6,21 +6,21 @@ import { useAppContext } from '../context/Store';
 
 export default function ProductDetailsFeature() {
 	const store = useAppContext();
-	const features = store.features;
+	const product = store.product;
 
-	if (features === null) {
+	if (product === null) {
 		return (
 			<div style={{ backgroundColor: 'red', width: '50rem' }}>Loading</div>
 		);
 	}
 
-	console.log(features);
+	/* console.log(product?.characteristics); */
 	return (
 		<>
 			<h2 className={styles.featureTitle}>¿Qué ofrece este lugar?</h2>
 			<div className={styles.productDetailsFeature}>
 				<ul className={styles.featureGroup}>
-					{features.map(feature => (
+					{product?.characteristics.map(feature => (
 						<ProductDetailsFeatureItem
 							key={feature.id}
 							type={feature.description}
