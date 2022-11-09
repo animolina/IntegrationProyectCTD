@@ -26,7 +26,6 @@
 }
 
 .productCardBody button {
-	margin: 0.5rem;
 	width: 100%;
 }
 
@@ -56,6 +55,7 @@
 	font-size: 14px;
 	font-weight: 700;
 	color: grey;
+	padding: 0;
 }
 
 .productCardCategoryStars {
@@ -67,7 +67,7 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
-	text-align: center;
+
 }
 
 .productCardLocation img {
@@ -78,13 +78,15 @@
 .productCardLocation a {
 	text-decoration: none;
 	color: var(--main-color);
+	margin-left: 0.5rem;
+	font-size: 14px;
 }
 
 .productCardLocationText {
 	font-size: 14px;
 	font-weight: 700;
 	color: var(--text-color);
-	margin: 0.5rem;
+
 }
 
 /* ------------------------------- responsive ------------------------------- */

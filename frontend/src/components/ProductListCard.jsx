@@ -28,23 +28,23 @@ export default function ProductListCard() {
 							title={product?.title}
 							description={product?.description}
 							urlImg={product?.urlImg}
-							location={product?.location}
-							category={product?.category}
+							location={product?.city.state}
+							category={product?.category.title}
 						/>
 					))}
 				</div> // slice is used to limit the quantity of product recomendations being displayed on home page.(8 products)
 			) : (
 				<div className={styles.mainContainer}>
 					{shuffleArray(products)
-						.filter((product, index) => index < 8)
+						.slice(0, 8)
 						.map(product => (
 							<ProductCard
 								key={product?.id}
 								title={product?.title}
 								description={product?.description}
 								urlImg={product?.urlImg}
-								location={product?.location}
-								category={product?.category}
+								location={product?.city.state}
+								category={product?.category.title}
 							/>
 						))}
 				</div>
