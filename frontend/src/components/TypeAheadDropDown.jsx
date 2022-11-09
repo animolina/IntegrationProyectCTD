@@ -10,7 +10,6 @@ export default function TypeAheadDropDown({
 	const [suggestions, setSuggestions] = useState([]); // array of suggestions to populate the autocomplete menu.
 	const [suggestionsActive, setSuggestionsActive] = useState(false); // used to toggle the visibility of the autocomplete suggestions.
 	const [value, setValue] = useState(''); // autocomplete suggestion that the user has selected.
-	console.log(suggestions);
 
 	const handleChange = e => {
 		// monitor for changes to the input field
