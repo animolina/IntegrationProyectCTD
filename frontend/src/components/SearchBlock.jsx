@@ -8,10 +8,13 @@ import { useState } from 'react';
 import Input from './Input';
 
 export default function SearchBlock() {
-	const [setSelectedCity] = useState();
+	const [, setSelectedCity] = useState();
 	const store = useAppContext();
 	const cities = store.cities; // to get array of cities from APIs endpoint.
-	console.log(cities);
+	const citiesData = cities.map(city => ({
+		name: city.state,
+		secondaryText: city.country,
+	}));
 
 	const renderCitySuggestion = citySuggestion => {
 		// function for city suggestions.
@@ -41,10 +44,7 @@ export default function SearchBlock() {
 				</span>
 				<form id='searchBlockForm' className={styles.formContainer}>
 					<TypeAheadDropDown
-						data={cities.map(city => ({
-							name: city.state,
-							secondaryText: city.country,
-						}))}
+						data={citiesData}
 						renderSuggestion={renderCitySuggestion}
 						placeholder='¿A dónde vamos?'
 						onSelectSuggestion={onSelectSuggestion}
