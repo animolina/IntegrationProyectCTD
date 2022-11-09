@@ -78,7 +78,7 @@
 .productCardLocation a {
 	text-decoration: none;
 	color: var(--main-color);
-	margin: 0.5rem;
+	margin-left: 0.5rem;
 	font-size: 14px;
 }
 

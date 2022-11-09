@@ -36,7 +36,7 @@ export default function ProductListCard() {
 			) : (
 				<div className={styles.mainContainer}>
 					{shuffleArray(products)
-						.filter((product, index) => index < 8)
+						.slice(0, 8)
 						.map(product => (
 							<ProductCard
 								key={product?.id}
