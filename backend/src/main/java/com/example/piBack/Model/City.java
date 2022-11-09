@@ -19,6 +19,8 @@ public class City {
     private Long id;
 
     @Column
+    private String city;
+    @Column
     private String state;
     @Column
     private String country;
