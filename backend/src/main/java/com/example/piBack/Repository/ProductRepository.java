@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query("SELECT products FROM City u WHERE u.id_city = :ID_city")
+    @Query("SELECT products FROM City u WHERE u.id = :ID_city")
     List<Product> findAllByCity(@Param("ID_city") Long ID_city);
 
-    @Query("SELECT products FROM Category u WHERE u.id_category = :ID_category")
+    @Query("SELECT products FROM Category u WHERE u.id = :ID_category")
     List<Product> findAllByCategory(@Param("ID_category") Long ID_category);
 }
