@@ -1,5 +1,7 @@
 package com.example.piBack.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +26,10 @@ public class Product {
     @Column
     private String availability;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<Image> images;
+
     @ManyToOne()
     @JoinColumn(name="ID_policy")
     private Policy policy;
@@ -45,12 +51,14 @@ public class Product {
     public Product() {
     }
 
-    public Product(String title, String description, String availability, Policy policy, Category category, City city) {
+    public Product(String title, String description, String availability, Set<Image> images, Policy policy, Category category, City city, Set<Characteristic> characteristics) {
         this.title = title;
         this.description = description;
         this.availability = availability;
+        this.images = images;
         this.policy = policy;
         this.category = category;
         this.city = city;
+        this.characteristics = characteristics;
     }
 }
