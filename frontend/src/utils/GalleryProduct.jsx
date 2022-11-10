@@ -4,10 +4,13 @@ import 'photoswipe/dist/photoswipe.css';
 import styles from '../styles/galleryProduct.module.css';
 
 import { useAppContext } from '../context/Store';
+import GalleryProductItem from './GalleryProductItem';
 
 export default function GalleryProduct() {
 	const store = useAppContext();
 	const product = store.product;
+
+	const extraImages = product?.images.slice(5);
 
 	if (product === null) {
 		return <div>Loading</div>;
@@ -105,6 +108,7 @@ export default function GalleryProduct() {
 		>
 			<div className={styles.itemContainer}>
 				<div className={styles.itemPrincipal}>
+					{/* 	<GalleryProductItem productImg={product?.images[0]?.url} /> */}
 					<Item
 						original={product?.images[0]?.url}
 						thumbnail={product?.images[0]?.url}
@@ -118,75 +122,17 @@ export default function GalleryProduct() {
 					</Item>
 				</div>
 				<div className={styles.itemGroup}>
-					<Item
-						original={product?.images[1]?.url}
-						thumbnail={product?.images[1]?.url}
-						width='1600'
-						height='1068'
-						alt='Photo of mountain lake by Samuel Rohl'
-					>
-						{({ ref, open }) => (
-							<img
-								className={styles.imgItem}
-								src={product?.images[1]?.url}
-								ref={ref}
-								onClick={open}
-							/>
-						)}
-					</Item>
-					<Item
-						original={product?.images[2]?.url}
-						thumbnail={product?.images[2]?.url}
-						width='1600'
-						height='1066'
-						alt='Photo of fog in the village by Ales Krivec'
-					>
-						{({ ref, open }) => (
-							<img
-								className={styles.imgItem}
-								src={product?.images[2]?.url}
-								ref={ref}
-								onClick={open}
-							/>
-						)}
-					</Item>
-					<Item
-						original={product?.images[3]?.url}
-						thumbnail={product?.images[3]?.url}
-						width='1600'
-						height='1066'
-						alt='Photo of river sunset by Michael Hull'
-					>
-						{({ ref, open }) => (
-							<img
-								className={styles.imgItem}
-								ref={ref}
-								onClick={open}
-								src={product?.images[3]?.url}
-							/>
-						)}
-					</Item>
-
-					<Item
-						original={product?.images[4]?.url}
-						thumbnail={product?.images[4]?.url}
-						width='1600'
-						height='1066'
-						alt='Photo of seashore by Folkert Gorter'
-					>
-						{({ ref, open }) => (
-							<div style={{ position: 'relative' }}>
-								<img
-									src={product?.images[4]?.url}
-									ref={ref}
-									onClick={open}
-									className={styles.imgItem}
-								/>
-								<span className={styles.seeMore}>Ver más</span>
-							</div>
-						)}
-					</Item>
+					<GalleryProductItem productImg={product?.images[1]?.url} />
+					<GalleryProductItem productImg={product?.images[2]?.url} />
+					<GalleryProductItem productImg={product?.images[3]?.url} />
+					<GalleryProductItem
+						productImg={product?.images[4]?.url}
+						seeMore={true}
+					/>
 				</div>
+				{extraImages.map(img => (
+					<GalleryProductItem hiden={true} key={img.id} productImg={img.url} />
+				))}
 			</div>
 		</Gallery>
 	);
