@@ -10,9 +10,7 @@ export default function GalleryProduct() {
 	const product = store.product;
 
 	if (product === null) {
-		return (
-			<div style={{ backgroundColor: 'red', width: '50rem' }}>Loading</div>
-		);
+		return <div>Loading</div>;
 	}
 
 	console.log(product?.images);
@@ -110,25 +108,21 @@ export default function GalleryProduct() {
 			<div className={styles.itemContainer}>
 				<div className={styles.itemPrincipal}>
 					<Item
-						original='https://farm4.staticflickr.com/3920/15008465772_d50c8f0531_h.jpg'
-						thumbnail='https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg'
+						original={product?.images[5]?.url}
+						thumbnail={product?.images[5]?.url}
 						width='1600'
 						height='1066'
 						alt='Photo of bear by Thomas Lefebvre'
 					>
 						{({ ref, open }) => (
-							<img
-								src='https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg'
-								ref={ref}
-								onClick={open}
-							/>
+							<img src={product?.images[5]?.url} ref={ref} onClick={open} />
 						)}
 					</Item>
 				</div>
 				<div className={styles.itemGroup}>
 					<Item
-						original='https://farm6.staticflickr.com/5591/15008867125_b61960af01_h.jpg'
-						thumbnail='https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg'
+						original={product?.images[3]?.url}
+						thumbnail={product?.images[3]?.url}
 						width='1600'
 						height='1068'
 						alt='Photo of mountain lake by Samuel Rohl'
@@ -136,15 +130,15 @@ export default function GalleryProduct() {
 						{({ ref, open }) => (
 							<img
 								className={styles.imgItem}
-								src='https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg'
+								src={product?.images[3]?.url}
 								ref={ref}
 								onClick={open}
 							/>
 						)}
 					</Item>
 					<Item
-						original='https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_b.jpg'
-						thumbnail='https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg'
+						original={product?.images[4]?.url}
+						thumbnail={product?.images[4]?.url}
 						width='1600'
 						height='1066'
 						alt='Photo of fog in the village by Ales Krivec'
@@ -152,15 +146,15 @@ export default function GalleryProduct() {
 						{({ ref, open }) => (
 							<img
 								className={styles.imgItem}
-								src='https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg'
+								src={product?.images[4]?.url}
 								ref={ref}
 								onClick={open}
 							/>
 						)}
 					</Item>
 					<Item
-						original='https://farm6.staticflickr.com/5584/14985868676_b51baa4071_h.jpg'
-						thumbnail='https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg'
+						original={product?.images[1]?.url}
+						thumbnail={product?.images[1]?.url}
 						width='1600'
 						height='1066'
 						alt='Photo of river sunset by Michael Hull'
@@ -170,14 +164,14 @@ export default function GalleryProduct() {
 								className={styles.imgItem}
 								ref={ref}
 								onClick={open}
-								src='https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg'
+								src={product?.images[1]?.url}
 							/>
 						)}
 					</Item>
 
 					<Item
-						original='https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg'
-						thumbnail='https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg'
+						original={product?.images[0]?.url}
+						thumbnail={product?.images[0]?.url}
 						width='1600'
 						height='1066'
 						alt='Photo of seashore by Folkert Gorter'
@@ -185,7 +179,7 @@ export default function GalleryProduct() {
 						{({ ref, open }) => (
 							<div style={{ position: 'relative' }}>
 								<img
-									src='https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg'
+									src={product?.images[0]?.url}
 									ref={ref}
 									onClick={open}
 									className={styles.imgItem}

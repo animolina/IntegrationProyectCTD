@@ -7,9 +7,7 @@ export default function ProductDetailsLocation() {
 	const product = store.product;
 
 	if (product === null) {
-		return (
-			<div style={{ backgroundColor: 'red', width: '50rem' }}>Loading</div>
-		);
+		return <div>Loading</div>;
 	}
 
 	return (
