@@ -10,8 +10,8 @@
     "test": "jest",
     "cdk": "cdk",
     "start-session": "aws ssm start-session --target i-074779215afb613d4",
-    "deploy": "npx cdk deploy --require-approval never",
-    "deploy-frontend": "npx cdk deploy WebHostingStack --require-approval never",
+    "deploy": "npx cdk deploy --require-approval='never'",
+    "deploy-frontend": "npx cdk deploy WebHostingStack --require-approval='never'",
     "sync-assets": "aws s3 sync ../frontend/src/assets/imgs s3://assets-bucket"
   },
   "devDependencies": {
