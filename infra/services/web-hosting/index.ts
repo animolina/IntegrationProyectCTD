@@ -15,12 +15,14 @@ export class WebHostingStack extends Stack {
     super(scope, id, props);
 
     const frontendBucket = new Bucket(this, "proyecto-integrador", {
-      publicReadAccess: false,
-      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
-      accessControl: BucketAccessControl.PRIVATE,
-      encryption: BucketEncryption.S3_MANAGED,
+      publicReadAccess: true,
+      websiteIndexDocument: 'index.html',
+      websiteErrorDocument: 'index.html',
+      // blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
+      // accessControl: BucketAccessControl.PRIVATE,
+      // encryption: BucketEncryption.S3_MANAGED,
       removalPolicy: RemovalPolicy.DESTROY,
-      autoDeleteObjects: true,
+      // autoDeleteObjects: true,
     });
 
     const bucketDeployment = new BucketDeployment(
@@ -33,25 +35,25 @@ export class WebHostingStack extends Stack {
     );
     bucketDeployment.node.addDependency(frontendBucket);
 
-    const originAccessIdentity = new OriginAccessIdentity(
-      this,
-      "OriginAccessIdentity"
-    );
-    frontendBucket.grantRead(originAccessIdentity);
+    // const originAccessIdentity = new OriginAccessIdentity(
+    //   this,
+    //   "OriginAccessIdentity"
+    // );
+    // frontendBucket.grantRead(originAccessIdentity);
 
-    const distribution = new Distribution(this, "pi-distribution", {
-      defaultRootObject: "index.html",
-      errorResponses: [
-        { responsePagePath: "/index.html", httpStatus: 404 },
-        { responsePagePath: "/index.html", httpStatus: 403 },
-      ],
-      defaultBehavior: {
-        origin: new S3Origin(frontendBucket, { originAccessIdentity }),
-      },
-    });
+    // const distribution = new Distribution(this, "pi-distribution", {
+    //   defaultRootObject: "index.html",
+    //   errorResponses: [
+    //     { responsePagePath: "/index.html", httpStatus: 404 },
+    //     { responsePagePath: "/index.html", httpStatus: 403 },
+    //   ],
+    //   defaultBehavior: {
+    //     origin: new S3Origin(frontendBucket, { originAccessIdentity }),
+    //   },
+    // });
 
     new CfnOutput(this, "DistributionDomainName", {
-      value: `https://${distribution.domainName}`,
+      value: frontendBucket.bucketWebsiteUrl,
       description: "React App URL",
       exportName: "webAppUrl",
     });

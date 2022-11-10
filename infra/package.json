@@ -10,17 +10,17 @@
     "test": "jest",
     "cdk": "cdk",
     "start-session": "aws ssm start-session --target i-074779215afb613d4",
-    "deploy": "npx cdk deploy",
-    "deploy-frontend": "npx cdk deploy WebHostingStack",
+    "deploy": "npx cdk deploy --require-approval='never'",
+    "deploy-frontend": "npx cdk deploy WebHostingStack --require-approval='never'",
     "sync-assets": "aws s3 sync ../frontend/src/assets/imgs s3://assets-bucket"
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
     "@types/node": "10.17.27",
     "@types/prettier": "2.6.0",
+    "aws-cdk": "^2.50.0",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.4",
-    "aws-cdk": "2.45.0",
     "ts-node": "^10.9.1",
     "typescript": "~3.9.7"
   },
