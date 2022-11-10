@@ -15,6 +15,7 @@ const AppContext = createContext({
 	product: {},
 	features: [],
 	policy: {},
+	setIdProduct: id => {},
 });
 
 export default function Store({ children }) {
@@ -24,6 +25,7 @@ export default function Store({ children }) {
 	const [product, setProduct] = useState(null);
 	const [features, setFeatures] = useState([]);
 	const [policy, setPolicy] = useState(null);
+	const [idProduct, setIdProduct] = useState(1);
 
 	useEffect(() => {
 		const loadCategories = async () => {
@@ -56,10 +58,11 @@ export default function Store({ children }) {
 	}, []); */
 	useEffect(() => {
 		(async () => {
-			const dataProduct = await getProductById();
+			/* console.log(idProduct); */
+			const dataProduct = await getProductById(idProduct);
 			setProduct(dataProduct);
 		})();
-	}, []);
+	}, [idProduct]);
 
 	return (
 		<AppContext.Provider
@@ -70,6 +73,7 @@ export default function Store({ children }) {
 				product,
 				features,
 				policy,
+				setIdProduct,
 			}}
 		>
 			{children}

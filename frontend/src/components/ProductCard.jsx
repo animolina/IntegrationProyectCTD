@@ -1,12 +1,15 @@
 import styles from '../styles/productCard.module.css';
 import locationIcon from '../../src/assets/icons/location-dot-solid.svg';
+
 import Button from './Button';
+import { Link } from 'react-router-dom';
 export default function ProductCard({
 	title,
 	description,
 	urlImg,
 	location,
 	category,
+	id,
 }) {
 	return (
 		<div className={styles.productCard}>
@@ -25,7 +28,9 @@ export default function ProductCard({
 					<a>MOSTRAR EN MAPA</a>
 				</div>
 				<p className={styles.productCardText}>{description}</p>
-				<Button type='basic' innerText='Ver más'></Button>
+				<Link to={`/product-details/${id}`}>
+					<Button type='basic' innerText='Ver más'></Button>
+				</Link>
 			</div>
 		</div>
 	);
