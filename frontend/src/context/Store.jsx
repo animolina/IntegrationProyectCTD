@@ -1,28 +1,29 @@
+/* eslint-disable no-unused-vars */
 import { createContext, useContext, useState, useEffect } from 'react';
 
 import { getCategories } from '../services/getCategories';
 import { getProducts } from '../services/getProducts';
 import { getCities } from '../services/getCities';
+import { getProductById } from '../services/getProductById';
 import { getFeatures } from '../services/getFeatures';
 import { getPolicy } from '../services/getPolicy';
-import { getProductById } from '../services/getProductById';
 
 const AppContext = createContext({
 	categories: [],
 	products: [],
 	cities: [],
+	product: {},
 	features: [],
 	policy: {},
-	product: {},
 });
 
 export default function Store({ children }) {
 	const [categories, setCategories] = useState(null);
 	const [products, setProducts] = useState([]);
 	const [cities, setCities] = useState([]);
+	const [product, setProduct] = useState(null);
 	const [features, setFeatures] = useState([]);
 	const [policy, setPolicy] = useState(null);
-	const [product, setProduct] = useState(null);
 
 	useEffect(() => {
 		const loadCategories = async () => {
@@ -41,7 +42,7 @@ export default function Store({ children }) {
 		loadProducts();
 		loadCities();
 	}, []);
-	useEffect(() => {
+	/* useEffect(() => {
 		(async () => {
 			const dataFeatures = await getFeatures();
 			setFeatures(dataFeatures);
@@ -52,7 +53,7 @@ export default function Store({ children }) {
 			const dataPolicy = await getPolicy();
 			setPolicy(dataPolicy);
 		})();
-	}, []);
+	}, []); */
 	useEffect(() => {
 		(async () => {
 			const dataProduct = await getProductById();
@@ -66,9 +67,9 @@ export default function Store({ children }) {
 				categories,
 				products,
 				cities,
+				product,
 				features,
 				policy,
-				product,
 			}}
 		>
 			{children}

@@ -13,8 +13,6 @@ export default function GalleryProduct() {
 		return <div>Loading</div>;
 	}
 
-	console.log(product?.images);
-
 	/* -------------------------------- thumbnail ------------------------------- */
 	const uiElements = [
 		{
