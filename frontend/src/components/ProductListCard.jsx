@@ -27,7 +27,7 @@ export default function ProductListCard() {
 							key={product?.id}
 							title={product?.title}
 							description={product?.description}
-							urlImg={product?.urlImg}
+							urlImg={product?.images[0]?.url}
 							location={product?.city.state}
 							category={product?.category.title}
 						/>
@@ -42,7 +42,7 @@ export default function ProductListCard() {
 								key={product?.id}
 								title={product?.title}
 								description={product?.description}
-								urlImg={product?.urlImg}
+								urlImg={product?.images[0]?.url}
 								location={product?.city.state}
 								category={product?.category.title}
 							/>
