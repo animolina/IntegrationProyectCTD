@@ -24,7 +24,7 @@ function AppRouter() {
 					<Route exact path='sign-up' element={<SignUp />}></Route>
 					<Route
 						exact
-						path='product-details'
+						path='product-details/:id'
 						element={<ProductDetails />}
 					></Route>
 					<Route exact path='test' element={<Test />}></Route>

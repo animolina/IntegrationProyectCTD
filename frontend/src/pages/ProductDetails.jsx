@@ -9,7 +9,21 @@ import BookingBlock from './../components/BookingBlock';
 
 import ShareProduct from '../utils/ShareProduct';
 
+import { useParams } from 'react-router-dom';
+
+import { useAppContext } from '../context/Store';
+import { useEffect } from 'react';
+
 export default function ProductDetails() {
+	const store = useAppContext();
+	const { id } = useParams();
+
+	useEffect(() => {
+		store.setIdProduct(id);
+		/* console.log(id); */
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<div className={styles.productDetailsContainer}>
 			<ProductDetailsHeader />
