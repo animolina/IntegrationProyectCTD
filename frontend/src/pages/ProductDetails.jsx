@@ -4,7 +4,7 @@ import GalleryProduct from '../utils/GalleryProduct';
 import ProductDetailsLocation from './../components/ProductDetailsLocation';
 import ProductDetailsDescription from './../components/ProductDetailsDescription';
 import ProductDetailsFeature from '../components/ProductDetailsFeature.jsx';
-import ProductDetailsPolitic from './../components/ProductDetailsPolitic';
+import ProductDetailsPolicy from './../components/ProductDetailsPolicy';
 import BookingBlock from './../components/BookingBlock';
 
 import ShareProduct from '../utils/ShareProduct';
@@ -19,7 +19,7 @@ export default function ProductDetails() {
 			<ProductDetailsDescription />
 			<ProductDetailsFeature />
 			<BookingBlock />
-			<ProductDetailsPolitic />
+			<ProductDetailsPolicy />
 		</div>
 	);
 }

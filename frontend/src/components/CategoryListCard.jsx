@@ -7,9 +7,7 @@ export default function CategoryListCard() {
 	const categories = store.categories;
 
 	if (categories === null) {
-		return (
-			<div style={{ backgroundColor: 'red', width: '50rem' }}>Loading</div>
-		);
+		return <div>Loading</div>;
 	}
 
 	return (

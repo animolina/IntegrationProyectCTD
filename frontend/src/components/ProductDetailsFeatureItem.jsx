@@ -17,19 +17,19 @@ import styles from '../styles/productDetailsFeatureItem.module.css';
 import { useState, useEffect } from 'react';
 
 const itemFeature = {
-	'aire acondicionado': iconAir,
-	'estacionamiento gratuito': iconCar,
-	'apto mascotas': iconPet,
+	'Apto para mascotas': iconPet,
+	'Aire acondicionado': iconAir,
+	Pileta: iconPool,
+	Cocina: iconKitchen,
+	Televisor: iconTv,
+	Wifi: iconWifi,
+	'Estacionamiento gratuito': iconCar,
 	checkIn: iconCheckIn,
 	smoke: iconSmoke,
 	star: iconStar,
-	televisor: iconTv,
-	wifi: iconWifi,
 	creditCard: iconCreditCard,
 	smokingOff: iconSmokingOff,
-	cocina: iconKitchen,
 	noParty: iconNoParty,
-	pileta: iconPool,
 };
 
 function getObjKey(obj, value) {

@@ -50,6 +50,7 @@
 	font: var(--font-heading3);
 	text-decoration: underline;
 	pointer-events: none;
+	background: rgba(0, 0, 0, 0.3);
 }
 
 /* .seeMore:hover {
@@ -80,5 +81,6 @@
 		position: relative;
 		bottom: 2.5rem;
 		right: auto;
+		padding: 0.5rem;
 	}
 }
