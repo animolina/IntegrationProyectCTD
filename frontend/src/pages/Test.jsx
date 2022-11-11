@@ -1,9 +1,9 @@
-import GoogleMap from '../utils/GoogleMap';
+import Loader from '../utils/Loader';
 
 export default function Test() {
 	return (
 		<div>
-			<GoogleMap />
+			<Loader />
 		</div>
 	);
 }

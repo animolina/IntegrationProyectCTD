@@ -2,12 +2,13 @@ import styles from '../styles/productDetailsHeader.module.css';
 import backArrow from '../assets/imgs/backArrow.png';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../context/Store';
+import Loader from './../utils/Loader';
 
 export default function ProductDetailsHeader() {
 	const store = useAppContext();
 	const product = store.product;
 	if (product === null) {
-		return <div>Loading</div>;
+		return <Loader />;
 	}
 	return (
 		<header className={styles.productDetailsHeader}>
