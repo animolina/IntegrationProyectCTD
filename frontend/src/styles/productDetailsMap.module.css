@@ -1,0 +1,14 @@
+.mapTitle {
+	width: 100vw;
+	border-bottom: 1px solid var(--main-color);
+	color: var(--text-color);
+	padding: 0.5rem 2rem;
+}
+.mapContainer {
+	height: 50vh;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	width: 100vw;
+	padding: 0.5rem 2rem;
+}
