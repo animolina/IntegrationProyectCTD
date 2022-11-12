@@ -1,9 +1,9 @@
-import GalleryProduct from '../utils/GalleryProduct';
+import GoogleMap from '../utils/GoogleMap';
 
 export default function Test() {
 	return (
 		<div>
-			<GalleryProduct />
+			<GoogleMap />
 		</div>
 	);
 }

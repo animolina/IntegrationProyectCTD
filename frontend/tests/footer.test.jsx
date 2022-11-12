@@ -1,23 +1,16 @@
-import { describe, it, expect, afterEach } from "vitest";
+import { describe, it, afterEach } from "vitest";
 import { render, cleanup } from "@testing-library/react";
-import Social from "../src/components/Social";
 import Footer from "../src/components/Footer";
 
 describe("Footer", () => {
-  afterEach(cleanup);
+    afterEach(cleanup);
+    const component = render(<Footer />);
 
-  it(" Footer should be render", () => {
-    const footer = render(<Footer />);
-    expect(footer).toBeDefined();
-  });
+    it("should render copyright text in footer", () => {
+        const copyrightText = "©2022 Digital Booking";
 
-  it(" should contain social media icons", () => {
-    const social = render(<Social />);
-    expect(social).toBeTruthy();
-  });
+        component.getByText(copyrightText);
 
-  it(" Footer should have copyright", () => {
-    const text = "©2022 Digital Booking";
-    expect(text).toBeDefined();
-  });
+        /* expect(screen.getByText("sarasa")).toBe(); */
+    });
 });

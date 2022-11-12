@@ -13,6 +13,7 @@ import { useParams } from 'react-router-dom';
 
 import { useAppContext } from '../context/Store';
 import { useEffect } from 'react';
+import ProductDetailsMap from './../components/ProductDetailsMap';
 
 export default function ProductDetails() {
 	const store = useAppContext();
@@ -33,6 +34,7 @@ export default function ProductDetails() {
 			<ProductDetailsDescription />
 			<ProductDetailsFeature />
 			<BookingBlock />
+			<ProductDetailsMap />
 			<ProductDetailsPolicy />
 		</div>
 	);
