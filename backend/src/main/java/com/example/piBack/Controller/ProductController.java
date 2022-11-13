@@ -1,7 +1,5 @@
 package com.example.piBack.Controller;
 
-import com.example.piBack.Model.Image;
-import com.example.piBack.Model.Policy;
 import com.example.piBack.Model.Product;
 import com.example.piBack.Service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -59,8 +57,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
-        return ResponseEntity.ok(productService.addProduct(product));
+    public ResponseEntity<Object> addProduct(@RequestBody Product product) {
+        try {
+            Product newProduct = productService.addProduct(product);
+            return new ResponseEntity<>("Product ID: "+newProduct.getId()+" created", HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>("Server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     @PutMapping("/{id}")
     public ResponseEntity<Product> editProduct(@PathVariable("id") long id, @RequestBody Product product) {

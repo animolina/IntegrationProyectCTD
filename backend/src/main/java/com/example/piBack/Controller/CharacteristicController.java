@@ -1,6 +1,5 @@
 package com.example.piBack.Controller;
 
-import com.example.piBack.Model.Category;
 import com.example.piBack.Model.Characteristic;
 import com.example.piBack.Service.CharacteristicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,13 @@ public class CharacteristicController {
     private CharacteristicService characteristicService;
 
     @PostMapping
-    public ResponseEntity<Characteristic> addCharacteristic(@RequestBody Characteristic characteristic) {
-        return ResponseEntity.ok(characteristicService.addCharacteristic(characteristic));
+    public ResponseEntity<Object> addCharacteristic(@RequestBody Characteristic characteristic) {
+        try {
+            Characteristic newCharacteristic = characteristicService.addCharacteristic(characteristic);
+            return new ResponseEntity<>("Characteristic ID: "+newCharacteristic.getId()+" created", HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>("Server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping
