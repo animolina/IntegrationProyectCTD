@@ -1,6 +1,5 @@
 package com.example.piBack.Controller;
 
-import com.example.piBack.Model.City;
 import com.example.piBack.Model.Image;
 import com.example.piBack.Service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,13 @@ public class ImageController {
     private ImageService imageService;
 
     @PostMapping
-    public ResponseEntity<Image> addImage(@RequestBody Image image) {
-        return ResponseEntity.ok(imageService.addImage(image));
+    public ResponseEntity<Object> addImage(@RequestBody Image image) {
+        try {
+            Image newImage = imageService.addImage(image);
+            return new ResponseEntity<>("Image ID: "+newImage.getId()+" created", HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>("Server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping
