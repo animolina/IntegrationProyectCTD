@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useAppContext } from '../context/Store';
 import Loader from './../utils/Loader';
 
-export default function ProductDetailsHeader() {
+export default function ProductDetailsHeader({ linkPath }) {
 	const store = useAppContext();
 	const product = store.product;
 	if (product === null) {
@@ -18,7 +18,7 @@ export default function ProductDetailsHeader() {
 				</p>
 				<h2 className={styles.productDetailsTitle}>{product.title}</h2>
 			</div>
-			<Link to='/'>
+			<Link to={linkPath || '/'} relative='path'>
 				<img className={styles.backArrow} src={backArrow} alt='Back Arrow' />
 			</Link>
 		</header>

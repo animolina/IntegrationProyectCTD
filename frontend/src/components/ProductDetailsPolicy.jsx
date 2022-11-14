@@ -19,6 +19,7 @@ export default function ProductDetailsPolicy() {
 					<h3 className={styles.policyItemTitle}>Normas de la casa</h3>
 					<ul>
 						<li>Checkout: {product?.policy.checkout}</li>
+						{console.log(product)}
 						{product?.policy.partyAllowed || <li>No se permiten fiestas</li>}
 						{product?.policy.smokeAllowed || <li>No se permiten fumar</li>}
 					</ul>
