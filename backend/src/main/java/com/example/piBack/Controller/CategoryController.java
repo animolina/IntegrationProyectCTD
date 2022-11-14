@@ -18,14 +18,20 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping
-    public ResponseEntity<Category> addCategory(@RequestBody Category category) {
-        return ResponseEntity.ok(categoryService.addCategory(category));
+    public ResponseEntity<Object> addCategory(@RequestBody Category category) {
+        try {
+            Category newCategory = categoryService.addCategory(category);
+            return new ResponseEntity<>("Category ID: "+newCategory.getId()+" created", HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>("Server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping
     public ResponseEntity<Collection<Category>> listCategory() {
         return ResponseEntity.ok(categoryService.listCategory());
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Category> findCategory(@PathVariable Long id){
         if(categoryService.findCategory(id).isPresent()) {

@@ -1,6 +1,5 @@
 package com.example.piBack.Controller;
 
-import com.example.piBack.Model.Characteristic;
 import com.example.piBack.Model.City;
 import com.example.piBack.Service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,13 @@ public class CityController {
     CityService cityService;
 
     @PostMapping
-    public ResponseEntity<City> addCity(@RequestBody City city) {
-        return ResponseEntity.ok(cityService.addCity(city));
+    public ResponseEntity<Object> addCity(@RequestBody City city) {
+        try {
+            City newCity = cityService.addCity(city);
+            return new ResponseEntity<>("City ID: "+newCity.getId()+" created", HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>("Server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping

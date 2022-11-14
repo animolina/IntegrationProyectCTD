@@ -1,6 +1,5 @@
 package com.example.piBack.Controller;
 
-import com.example.piBack.Model.Image;
 import com.example.piBack.Model.Policy;
 import com.example.piBack.Service.PolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,13 @@ public class PolicyController {
     private PolicyService policyService;
 
     @PostMapping
-    public ResponseEntity<Policy> addPolicy(@RequestBody Policy policy) {
-        return ResponseEntity.ok(policyService.addPolicy(policy));
+    public ResponseEntity<Object> addPolicy(@RequestBody Policy policy) {
+        try {
+            Policy newPolicy = policyService.addPolicy(policy);
+            return new ResponseEntity<>("Policy ID: "+newPolicy.getId()+" created", HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>("Server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping

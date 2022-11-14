@@ -1,12 +1,10 @@
 package com.example.piBack.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -46,7 +44,7 @@ public class Product {
     @JoinTable(name = "characteristic_product",
             joinColumns = {@JoinColumn(name = "ID_products")},
             inverseJoinColumns = {@JoinColumn(name = "ID_characteristic")})
-    private Set<Characteristic> characteristics = new HashSet<>();
+    private Set<Characteristic> characteristics;
 
     public Product() {
     }
