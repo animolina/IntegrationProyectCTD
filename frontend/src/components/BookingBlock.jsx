@@ -2,13 +2,15 @@ import DatePicker from './DatePicker';
 import Button from './Button';
 import styles from '../styles/bookingBlock.module.css';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useUser } from '../hooks/User.hooks';
 
 export default function BookingBlock() {
 	const { id } = useParams();
 	const navigate = useNavigate();
+	const { user } = useUser();
 
 	const handleClick = () => {
-		navigate(`/product-details/${id}/reservation`);
+		user ? navigate(`/product-details/${id}/reservation`) : navigate(`/login`);
 	};
 
 	return (

@@ -2,8 +2,12 @@ import styles from '../styles/detailsCard.module.css';
 import imgDetails from '../assets/imgs/testHotel.jpg';
 import locationIcon from '../assets/icons/location-dot-solid.svg';
 import Button from './Button';
+import { useAppContext } from '../context/Store';
 
 export default function DetailsCard() {
+	const store = useAppContext();
+	const product = store.product;
+
 	return (
 		<div className={styles.detailsCard}>
 			<h3 className={styles.detailsCardTitle}>Detalle de la reserva</h3>
@@ -14,20 +18,14 @@ export default function DetailsCard() {
 			/>
 			<div className={styles.detailsCardBody}>
 				<div className={styles.container}>
-					<p className={styles.detailsCategory}>
-						{/* product.category.title */} HOTEL
-					</p>
-					<h2 className={styles.detailsTitle}>
-						{/* product.title */} Hermitage Hotel
-					</h2>
+					<p className={styles.detailsCategory}>{product?.category.title}</p>
+					<h2 className={styles.detailsTitle}>{product?.title}</h2>
 					<span className={styles.detailsStars}>★ ★ ★ ★ ★ </span>
 					<div className={styles.locationContainer}>
 						<img src={locationIcon} alt='Location Icon' />
 
 						<p className={styles.locationText}>
-							{/* 	product.city.city, product.city.state,product.city.country */}
-							Av. Colón 1643, Buenos Aires, Ciudad Autónoma de Buenos Aires,
-							Argentina
+							{product.city.city}, {product?.city.state},{product?.city.country}
 						</p>
 					</div>
 
