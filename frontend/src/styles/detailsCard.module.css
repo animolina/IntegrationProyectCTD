@@ -1,0 +1,78 @@
+.detailsCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	border: 0;
+	padding: 0;
+	width: 25.563rem;
+	/* margin-left: 2rem; */
+	background-color: var(--white-color);
+	border-radius: 8px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.detailsCardTitle {
+	font: var(--font-heading1);
+	color: var(--text-color);
+	margin: 1rem;
+}
+
+.detailsCardImg {
+	/* 	border: 3px solid black; */
+	margin-bottom: 1rem;
+	background-color: rgb(164, 159, 152);
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 1rem;
+	color: var(--text-color);
+}
+.detailsCategory {
+	margin: 0;
+	font: var(--font-heading4);
+	text-transform: uppercase;
+}
+.detailsTitle {
+	font: var(--font-heading1);
+	margin: 0;
+}
+
+.detailsStars {
+	color: var(--main-color);
+	padding: 0;
+}
+
+.locationContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 1rem 0;
+}
+
+.locationText {
+	padding-left: 0.5rem;
+	margin: 0;
+}
+.timeCheck {
+	height: 4rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	/* padding-bottom: 2rem; */
+	border-top: 1px var(--gray-color) solid;
+
+	width: 100%;
+	box-sizing: content-box;
+}
+
+.reservationButton {
+	border-top: 1px var(--gray-color) solid;
+	width: 100%;
+}
+.reservationButton > button {
+	width: 100%;
+}

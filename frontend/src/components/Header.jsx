@@ -21,7 +21,8 @@ export default function Header() {
 	const logOut = () => {
 		setUser(null);
 		sessionStorage.clear(); // delete session storage information.
-		window.location.reload(); // reloads page after logout.
+		/* window.location.reload(); // reloads page after logout. */
+		navigate('/');
 	};
 
 	const signUpButton = (

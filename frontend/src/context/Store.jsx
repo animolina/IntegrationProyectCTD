@@ -58,7 +58,6 @@ export default function Store({ children }) {
 	}, []); */
 	useEffect(() => {
 		(async () => {
-			/* console.log(idProduct); */
 			const dataProduct = await getProductById(idProduct);
 			setProduct(dataProduct);
 		})();

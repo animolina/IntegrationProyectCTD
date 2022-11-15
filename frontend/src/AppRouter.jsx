@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProductDetails from './pages/ProductDetails';
+import Reservation from './pages/Reservation';
 import Test from './pages/Test';
 
 function AppRouter() {
@@ -26,6 +27,11 @@ function AppRouter() {
 						exact
 						path='product-details/:id'
 						element={<ProductDetails />}
+					></Route>
+					<Route
+						exact
+						path='product-details/:id/reservation'
+						element={<Reservation />}
 					></Route>
 					<Route exact path='test' element={<Test />}></Route>
 				</Routes>

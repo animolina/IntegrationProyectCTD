@@ -5,9 +5,6 @@ export default function ProductDetailsPolicy() {
 	const store = useAppContext();
 	const product = store.product;
 
-	/* console.log(policy); */
-	/* console.log(product?.policy); */
-
 	if (product === null) {
 		return <div>Loading</div>;
 	}

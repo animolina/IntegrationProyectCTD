@@ -29,9 +29,10 @@
 	margin: 2rem 0px;
 	border-radius: 5px;
 	height: 2.5rem;
-	width: 12.875rem;
+	min-width: 12.875rem;
 	border: 1px solid var(--main-color);
 	cursor: pointer;
+	font: var(--font-botton2);
 }
 
 .outlineButton:hover {
