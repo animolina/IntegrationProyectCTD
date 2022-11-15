@@ -1,5 +1,4 @@
 import styles from '../styles/detailsCard.module.css';
-import imgDetails from '../assets/imgs/testHotel.jpg';
 import locationIcon from '../assets/icons/location-dot-solid.svg';
 import Button from './Button';
 import { useAppContext } from '../context/Store';
@@ -13,7 +12,7 @@ export default function DetailsCard() {
 			<h3 className={styles.detailsCardTitle}>Detalle de la reserva</h3>
 			<img
 				className={styles.detailsCardImg}
-				src={imgDetails}
+				src={product?.images[0]?.url}
 				alt='Details Image'
 			/>
 			<div className={styles.detailsCardBody}>
@@ -23,7 +22,6 @@ export default function DetailsCard() {
 					<span className={styles.detailsStars}>★ ★ ★ ★ ★ </span>
 					<div className={styles.locationContainer}>
 						<img src={locationIcon} alt='Location Icon' />
-
 						<p className={styles.locationText}>
 							{product.city.city}, {product?.city.state},{product?.city.country}
 						</p>
