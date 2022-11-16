@@ -1,0 +1,17 @@
+.cartelWarning {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 28rem;
+	height: 3.875rem;
+	background-color: #ffe6e6;
+	color: #b00020;
+	border-radius: 8px;
+	padding: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+	.cartelWarning {
+		width: 18.75rem;
+	}
+}
