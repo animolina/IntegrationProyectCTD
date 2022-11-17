@@ -2,6 +2,7 @@ import styles from '../styles/detailsCard.module.css';
 import locationIcon from '../assets/icons/location-dot-solid.svg';
 import Button from './Button';
 import { useAppContext } from '../context/Store';
+import { Link } from 'react-router-dom';
 
 export default function DetailsCard() {
 	const store = useAppContext();
@@ -36,9 +37,9 @@ export default function DetailsCard() {
 						<span>__/__/____</span>
 					</div>
 
-					<div className={styles.reservationButton}>
+					<Link to={'/success'} className={styles.reservationButton}>
 						<Button innerText={'Confirmar reserva'} />
-					</div>
+					</Link>
 				</div>
 			</div>
 		</div>
