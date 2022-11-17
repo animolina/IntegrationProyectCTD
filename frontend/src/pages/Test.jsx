@@ -1,9 +1,9 @@
-import Loader from '../utils/Loader';
+import CartelWarning from './../components/CartelWarning';
 
 export default function Test() {
 	return (
 		<div>
-			<Loader />
+			<CartelWarning />
 		</div>
 	);
 }

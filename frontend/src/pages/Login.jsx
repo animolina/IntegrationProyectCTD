@@ -7,6 +7,7 @@ import { useContext, useState } from 'react';
 import linkStyles from '../styles/link.module.css';
 import { UserContext } from '../context/UserContext';
 import { Link, useNavigate } from 'react-router-dom';
+import CartelWarning from '../components/CartelWarning';
 
 const emailFieldConfig = {
 	fieldType: 'input',
@@ -88,6 +89,7 @@ export default function Login() {
 
 	return (
 		<div className={styles.mainContainer}>
+			<CartelWarning />
 			<h1 className={styles.title}>Iniciar sesión</h1>
 			<form className={styles.formContainer}>
 				<FormField config={emailFieldConfig} error={emailError}></FormField>
