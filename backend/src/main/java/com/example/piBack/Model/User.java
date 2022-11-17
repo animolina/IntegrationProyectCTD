@@ -74,6 +74,9 @@ public class User implements UserDetails {
     public User() {
     }
 
+    public User(String email) {
+        this.email = email;
+    }
     //Constructor sin id
 
     public User(String name, String lastName, String email, String password, UserRoles userRoles, String city) {
