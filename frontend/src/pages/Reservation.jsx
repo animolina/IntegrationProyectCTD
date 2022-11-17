@@ -3,6 +3,7 @@ import styles from '../styles/reservation.module.css';
 import ProductDetailsPolicy from './../components/ProductDetailsPolicy';
 import DetailsCard from './../components/DetailsCard';
 import { useEffect } from 'react';
+import DatePicker from './../components/DatePicker';
 
 export default function Reservation() {
 	useEffect(() => {
@@ -17,7 +18,11 @@ export default function Reservation() {
 					<h2 className={styles.personalDataTitle}>Completá tus datos</h2>
 					Data container
 				</div>
-				<div className={styles.calendar}>Calendary</div>
+				<div className={styles.calendarContainer}>
+					<h2>Seleccioná tu fecha de reserva</h2>
+					<DatePicker inline='inline' calendarType='booking' />
+				</div>
+
 				<div className={styles.schedule}>Horario llegada</div>
 			</div>
 			<DetailsCard />
