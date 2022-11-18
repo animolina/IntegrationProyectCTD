@@ -31,7 +31,7 @@ build-backend-job:
   script:
     - echo "Compiling the Spring Boot API..."
     - cd backend
-    - mvn clean install
+    - mvn clean install -D skipTests
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == "development"
       changes:
