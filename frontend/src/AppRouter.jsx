@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import ProductDetails from './pages/ProductDetails';
 import Reservation from './pages/Reservation';
 import Test from './pages/Test';
+import SuccessfulReservation from './pages/SuccessfulReservation';
 
 function AppRouter() {
 	const [user, setUser] = useState(null);
@@ -32,6 +33,11 @@ function AppRouter() {
 						exact
 						path='product-details/:id/reservation'
 						element={<Reservation />}
+					></Route>
+					<Route
+						exact
+						path='success'
+						element={<SuccessfulReservation />}
 					></Route>
 					<Route exact path='test' element={<Test />}></Route>
 				</Routes>
