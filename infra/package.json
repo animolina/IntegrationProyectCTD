@@ -9,10 +9,10 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "start-session": "aws ssm start-session --target i-074779215afb613d4",
-    "deploy": "npx cdk deploy --require-approval='never'",
-    "deploy-frontend": "npx cdk deploy WebHostingStack --require-approval='never'",
-    "sync-assets": "aws s3 sync ../frontend/src/assets/imgs s3://assets-bucket"
+    "start-session": "aws ssm start-session --target i-0aa59eca2ae9daf37",
+    "deploy": "npx cdk deploy",
+    "deploy-frontend": "aws s3 sync ../frontend/dist s3://digital-booking",
+    "deploy-frontend-full": "cd ../frontend && npm run build && aws s3 sync ../frontend/dist s3://digital-booking"
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",

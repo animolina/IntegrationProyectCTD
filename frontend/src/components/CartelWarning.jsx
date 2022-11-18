@@ -5,7 +5,9 @@ export default function CartelWarning() {
 	return (
 		<div className={styles.cartelWarning}>
 			<img src={iconWarning} alt='Ícono de advertencia' />
-			<span>Para realizar una reserva necesitas estar logueado</span>
+			<span className={styles.textWarning}>
+				Para realizar una reserva necesitas estar logueado
+			</span>
 		</div>
 	);
 }

@@ -1,4 +1,4 @@
-import { App, CfnOutput, Stack, StackProps } from "aws-cdk-lib";
+import { App, CfnOutput, RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
 import {
   AmazonLinuxGeneration,
   AmazonLinuxImage,
@@ -14,6 +14,7 @@ import {
   Vpc,
 } from "aws-cdk-lib/aws-ec2";
 import { ManagedPolicy, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
+import { Bucket } from "aws-cdk-lib/aws-s3";
 
 interface ApiServerStackProps extends StackProps {
   vpc: Vpc;
@@ -78,6 +79,13 @@ export class ApiServerStack extends Stack {
       }),
       userData: userData,
       role: role,
+    });
+
+    new Bucket(this, "pi-backend-artifact", {
+      bucketName: "pi-backend-artifact",
+      publicReadAccess: true,
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
     });
 
     new CfnOutput(this, "Instance ID", {
