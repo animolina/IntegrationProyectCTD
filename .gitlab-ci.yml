@@ -17,8 +17,8 @@ build-frontend-job:
   stage: build
   script:
     - echo "Compiling the React app..."
-    - cd frontend
     - npm run build
+    - echo "React app built successfully!"
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == "development"
       changes:
@@ -48,7 +48,6 @@ unit-tests-frontend:
   stage: test
   image: node:latest
   script:
-    - cd frontend
     - echo "Running Vitest tests..."
     - npm run test
   rules:
