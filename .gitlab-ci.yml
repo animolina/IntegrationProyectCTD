@@ -1,6 +1,8 @@
-image: node:latest
+stages:
+  - build
+  - test
+  - deploy
 
-# Cache modules in between jobs
 cache:
   key: $CI_COMMIT_REF_SLUG
   paths:
@@ -10,12 +12,8 @@ before_script:
   - cd frontend
   - npm ci --cache .npm --prefer-offline
 
-stages:
-  - build
-  - test
-  - deploy
-
 build-frontend-job:
+  image: node:latest
   stage: build
   script:
     - echo "Compiling the React app..."
@@ -32,6 +30,8 @@ build-frontend-job:
 build-backend-job:
   stage: build
   image: maven:latest
+  before_script:
+   - []
   script:
     - echo "Compiling the Spring Boot API..."
     - cd backend
@@ -46,6 +46,7 @@ build-backend-job:
 
 unit-tests-frontend:
   stage: test
+  image: node:latest
   script:
     - cd frontend
     - echo "Running Vitest tests..."
@@ -57,6 +58,8 @@ unit-tests-frontend:
 
 unit-tests-backend:
   stage: test
+  before_script:
+   - []
   script:
     - cd backend
     - echo "Pending to add tests on the frontend project..."
@@ -67,6 +70,8 @@ unit-tests-backend:
 
 deploy-frontend-job:
   stage: deploy
+  before_script:
+   - []
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   script:
     - echo "Deploying Web App to S3..."
@@ -80,6 +85,8 @@ deploy-frontend-job:
 
 deploy-backend-job:
   stage: deploy
+  before_script:
+   - []
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   script:
     - echo "Uploading artifact to S3 proxy bucket"
