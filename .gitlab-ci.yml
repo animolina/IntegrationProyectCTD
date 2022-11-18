@@ -74,8 +74,7 @@ deploy-frontend-job:
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   script:
     - echo "Deploying Web App to S3..."
-    - cd infra
-    - npm run deploy-frontend
+    - aws s3 sync frontend/dist s3://digital-booking
     - echo "Web App successfully deployed!"
   rules:
     - if: $CI_COMMIT_BRANCH == "development"
