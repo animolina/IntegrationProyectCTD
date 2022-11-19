@@ -39,4 +39,7 @@
 		padding: 2rem;
 		top: 0;
 	}
+	.title {
+		padding: 0;
+	}
 }
