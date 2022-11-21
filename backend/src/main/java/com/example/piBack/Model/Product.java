@@ -28,6 +28,10 @@ public class Product {
     @JsonManagedReference
     private Set<Image> images;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<Reservation> reservations;
+
     @ManyToOne()
     @JoinColumn(name="ID_policy")
     private Policy policy;
@@ -49,7 +53,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String title, String description, String availability, Set<Image> images, Policy policy, Category category, City city, Set<Characteristic> characteristics) {
+    public Product(String title, String description, String availability, Set<Image> images, Policy policy, Category category, City city, Set<Characteristic> characteristics, Set<Reservation> reservations) {
         this.title = title;
         this.description = description;
         this.availability = availability;
@@ -58,5 +62,6 @@ public class Product {
         this.category = category;
         this.city = city;
         this.characteristics = characteristics;
+        this.reservations = reservations;
     }
 }
