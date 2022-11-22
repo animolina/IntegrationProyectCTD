@@ -4,11 +4,17 @@
 	justify-content: flex-start;
 	border: 0;
 	padding: 0;
-	width: 25.563rem;
+	min-width: 28rem;
 	/* margin-left: 2rem; */
 	background-color: var(--white-color);
 	border-radius: 8px;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.detailsContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 }
 
 .detailsCardTitle {
@@ -19,8 +25,10 @@
 
 .detailsCardImg {
 	/* 	border: 3px solid black; */
-	margin-bottom: 1rem;
-	background-color: rgb(164, 159, 152);
+	width: 100%;
+	min-width: 20rem;
+	height: auto;
+	object-fit: fill;
 }
 
 .container {
@@ -79,4 +87,19 @@
 
 .reservationButton>button {
 	width: 100%;
+}
+
+/* ------------------------------- responsive ------------------------------- */
+
+
+@media screen and (max-width: 1000px) {
+	.detailsContainer {
+		flex-direction: row;
+	}
+}
+
+@media screen and (max-width: 720px) {
+	.detailsContainer {
+		flex-direction: column;
+	}
 }

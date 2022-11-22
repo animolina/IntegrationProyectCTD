@@ -6,6 +6,9 @@ import { useEffect, useState } from 'react';
 import DatePicker from './../components/DatePicker';
 import FormField from '../components/FormField';
 import { validateEmail } from '../utils';
+import tick from '../assets/icons/tick.svg';
+import BasicSelect from './../components/BasicSelect';
+import data from '../mockedData/times.json';
 
 export default function Reservation() {
 	const [startDate, setStartDate] = useState(null);
@@ -112,35 +115,48 @@ export default function Reservation() {
 	return (
 		<div className={styles.reservationContainer}>
 			<ProductDetailsHeader linkPath={'..'} />
-			<div className={styles.leftContainer}>
-				{/* 	<h2 className={styles.personalDataTitle}>Completá tus datos</h2> */}
-				<div className={styles.personalData}>
-					<h2 className={styles.title}>Completá tus datos</h2>
-					<form className={styles.formContainer}>
-						<FormField config={nameFieldConfig} error={nameError} />
-						<FormField config={lastnameFieldConfig} error={lastNameError} />
-						<FormField config={emailFieldConfig} error={emailError} />
-						<FormField config={cityFieldConfig} error={cityError} />
-					</form>
+			<h2 className={styles.mainTitle}>Completá tus datos</h2>
+			<div className={styles.mainContainer}>
+				<div className={styles.leftContainer}>
+					{/* 	<h2 className={styles.personalDataTitle}>Completá tus datos</h2> */}
+					<div className={styles.personalData}>
+						<form className={styles.formContainer}>
+							<FormField config={nameFieldConfig} error={nameError} />
+							<FormField config={lastnameFieldConfig} error={lastNameError} />
+							<FormField config={emailFieldConfig} error={emailError} />
+							<FormField config={cityFieldConfig} error={cityError} />
+						</form>
+					</div>
+					<div className={styles.calendarContainer}>
+						<h2 className={styles.title}>Seleccioná tu fecha de reserva</h2>
+						<DatePicker
+							inline='inline'
+							calendarType='booking'
+							defineEnd={defineEnd}
+							defineStart={defineStart}
+						/>
+					</div>
+					<div className={styles.schedule}>
+						<h2 className={styles.title}>Horario llegada</h2>
+						<div className={styles.checkinContainer}>
+							<div className={styles.checkin}>
+								<img src={tick}></img>
+								<span>
+									Tu habitación va a estar lista para el check in entre las 10am
+									y 11 am{' '}
+								</span>
+							</div>
+							<BasicSelect data={data} />
+						</div>
+					</div>
 				</div>
-				<div className={styles.calendarContainer}>
-					<h2 className={styles.title}>Seleccioná tu fecha de reserva</h2>
-					<DatePicker
-						inline='inline'
-						calendarType='booking'
-						defineEnd={defineEnd}
-						defineStart={defineStart}
-					/>
-				</div>
-
-				<div className={styles.schedule}>Horario llegada</div>
+				<DetailsCard
+					startDate={startDate}
+					endDate={endDate}
+					submitLoginForm={submitLoginForm}
+					formValidation={formValidation}
+				/>
 			</div>
-			<DetailsCard
-				startDate={startDate}
-				endDate={endDate}
-				submitLoginForm={submitLoginForm}
-				formValidation={formValidation}
-			/>
 			<ProductDetailsPolicy />
 		</div>
 	);
