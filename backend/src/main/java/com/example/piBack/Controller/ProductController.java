@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +51,14 @@ public class ProductController {
 
         return ResponseEntity.ok(products);
     }
+
+    @GetMapping("/random")
+    public ResponseEntity<Collection<Product>> listProductRandom() {
+        Collection<Product> productsRandom = productService.listProduct();
+        Collections.shuffle((List<Product>) productsRandom);
+        return ResponseEntity.ok(productsRandom);
+    }
+
     //get product by id
     @GetMapping("/{id}")
     public ResponseEntity<Product> findProduct(@PathVariable Long id){
