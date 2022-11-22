@@ -15,6 +15,7 @@ export class WebHostingStack extends Stack {
     super(scope, id, props);
 
     const frontendBucket = new Bucket(this, "proyecto-integrador", {
+      bucketName:'digital-booking',
       publicReadAccess: true,
       websiteIndexDocument: 'index.html',
       websiteErrorDocument: 'index.html',
@@ -22,7 +23,7 @@ export class WebHostingStack extends Stack {
       // accessControl: BucketAccessControl.PRIVATE,
       // encryption: BucketEncryption.S3_MANAGED,
       removalPolicy: RemovalPolicy.DESTROY,
-      // autoDeleteObjects: true,
+      autoDeleteObjects: true,
     });
 
     const bucketDeployment = new BucketDeployment(

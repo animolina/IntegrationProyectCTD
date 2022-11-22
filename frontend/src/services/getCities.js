@@ -6,8 +6,7 @@ export const getCities = async () => {
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 		},
-		url: 'http://ec2-54-242-48-104.compute-1.amazonaws.com:8080/city',
-		// 'http://127.0.0.1:5500/grupo-01/frontend/src/mockedData/cities.json', old url for mocked data.
+		url: 'http://ec2-3-91-229-168.compute-1.amazonaws.com:8080/city',
 	};
 	return await ajax(optionsRequest);
 };

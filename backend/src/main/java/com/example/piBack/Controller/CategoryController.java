@@ -1,5 +1,6 @@
 package com.example.piBack.Controller;
 
+import com.example.piBack.Exceptions.EntityNotFoundException;
 import com.example.piBack.Model.Category;
 import com.example.piBack.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> findCategory(@PathVariable Long id){
+    public ResponseEntity<Category> findCategory(@PathVariable Long id) throws EntityNotFoundException {
         if(categoryService.findCategory(id).isPresent()) {
             return ResponseEntity.ok(categoryService.findCategory(id).get());
         }else{
@@ -42,7 +43,7 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Category> editCategory(@PathVariable("id") long id, @RequestBody Category category) {
+    public ResponseEntity<Category> editCategory(@PathVariable("id") long id, @RequestBody Category category) throws EntityNotFoundException {
         Optional<Category> category_ = categoryService.findCategory(id);
 
         if (category_.isPresent()) {
