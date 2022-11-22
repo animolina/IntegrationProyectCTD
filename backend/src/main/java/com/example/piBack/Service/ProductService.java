@@ -1,14 +1,17 @@
 package com.example.piBack.Service;
-
 import com.example.piBack.Model.Product;
 import com.example.piBack.Repository.ProductRepository;
+import com.example.piBack.Specification.ProductSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
-
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import static com.example.piBack.Specification.ProductSpecifications.*;
+import static org.springframework.data.jpa.domain.Specification.where;
 
 @Service
 public class ProductService {
@@ -25,13 +28,21 @@ public class ProductService {
         return products;
     }
 
-    public List<Product> findAllByCity(Long ID_city){
-        return productRepository.findAllByCity(ID_city);
+    public List<Product> findAllByCategoryCityDate(@Nullable String categoryTitle, @Nullable String cityState, @Nullable Date startDate, @Nullable Date endDate){
+        Specification<Product> specification = Specification.where(null);
+        if(categoryTitle != null){
+            specification = specification.and(productsByCategoryTitle(categoryTitle));
+        }
+        if(cityState != null){
+            specification = specification.and(productsByCityState(cityState));
+        }
+        if(startDate != null && endDate != null){
+            specification = specification.and(productsByDate(startDate, endDate));
+        }
+
+        return productRepository.findAll(specification);
     }
 
-    public List<Product> findAllByCategory(Long ID_category){
-        return productRepository.findAllByCategory(ID_category);
-    }
 
     public Product editProduct(Product product) {
         productRepository.save(product);
@@ -46,4 +57,5 @@ public class ProductService {
         Optional<Product> product = productRepository.findById(id);
         return product;
     }
+
 }
