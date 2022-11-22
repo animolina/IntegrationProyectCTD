@@ -1,13 +1,14 @@
 import CategoryCard from './CategoryCard';
 import styles from '../styles/catogoryListCard.module.css';
 import { useAppContext } from '../context/Store';
+import Loader from '../utils/Loader';
 
 export default function CategoryListCard() {
 	const store = useAppContext();
 	const categories = store.categories;
 
 	if (categories === null) {
-		return <div>Loading</div>;
+		return <Loader />;
 	}
 
 	return (

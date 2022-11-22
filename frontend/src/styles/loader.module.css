@@ -1,8 +1,16 @@
+.spinnerContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: auto;
+}
+
 .loadingSpinner {
 	width: 25px;
 	height: 25px;
-	border: 10px solid var(--main-color); /* Light grey */
-	border-top: 10px solid var(--white-color); /* Black */
+	border: 10px solid var(--main-color);
+	border-top: 10px solid var(--white-color);
 	border-radius: 50%;
 	animation: spinner 1s linear infinite;
 }
