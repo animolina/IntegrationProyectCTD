@@ -10,6 +10,8 @@ export default function DatePicker({
 	inline,
 	placeholder,
 	calendarType,
+	defineEnd,
+	defineStart,
 }) {
 	const [startDate, setStartDate] = useState(null);
 	const [endDate, setEndDate] = useState(null);
@@ -18,6 +20,8 @@ export default function DatePicker({
 		const [start, end] = dates;
 		setStartDate(start);
 		setEndDate(end);
+		defineStart(start ? start.toLocaleDateString() : null);
+		defineEnd(end ? end.toLocaleDateString() : null);
 	};
 
 	return (
