@@ -1,9 +1,7 @@
 package com.example.piBack.Model;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -24,12 +22,12 @@ public class Product {
     @Column
     private String availability;
 
+    @JsonManagedReference(value = "product-image")
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
     private Set<Image> images;
 
+    @JsonManagedReference(value = "product-reservation")
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
     private Set<Reservation> reservations;
 
     @ManyToOne()
