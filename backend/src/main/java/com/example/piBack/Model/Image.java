@@ -1,10 +1,7 @@
 package com.example.piBack.Model;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 
 @Getter
@@ -24,7 +21,7 @@ public class Image {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name="ID_product")
-    @JsonBackReference
+    @JsonBackReference(value = "product-image")
     private Product product;
 
     public Image() {
