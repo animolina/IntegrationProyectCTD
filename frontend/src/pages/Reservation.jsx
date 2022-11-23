@@ -154,7 +154,7 @@ export default function Reservation() {
 					startDate={startDate}
 					endDate={endDate}
 					submitLoginForm={submitLoginForm}
-					formValidation={formValidation}
+					formValidation={formValidation} // prop to check if the form is valid before submit.
 				/>
 			</div>
 			<ProductDetailsPolicy />
