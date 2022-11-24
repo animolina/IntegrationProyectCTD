@@ -28,7 +28,7 @@ public class ProductService {
         return products;
     }
 
-    public List<Product> findAllByCategoryCityDate(@Nullable String categoryTitle, @Nullable String cityState, @Nullable Date startDate, @Nullable Date endDate){
+    public List<Product> findAllByCategoryCityDate(@Nullable String categoryTitle, @Nullable String cityState, @Nullable String startDate, @Nullable String endDate){
         Specification<Product> specification = Specification.where(null);
         if(categoryTitle != null){
             specification = specification.and(productsByCategoryTitle(categoryTitle));

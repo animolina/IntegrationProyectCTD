@@ -26,7 +26,7 @@ public  class ProductSpecifications {
     }
 
     //Products by date range (checking if it has reservations)
-    public static Specification<Product> productsByDate (Date startDate, Date endDate){
+    public static Specification<Product> productsByDate (String startDate, String endDate){
         return (root, query, criteriaBuilder) -> {
                 SetJoin<Product, Reservation> reservationJoin = root.joinSet("reservations");
                 return criteriaBuilder.and(
