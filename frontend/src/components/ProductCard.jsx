@@ -2,7 +2,8 @@ import styles from '../styles/productCard.module.css';
 import locationIcon from '../../src/assets/icons/location-dot-solid.svg';
 
 import Button from './Button';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 export default function ProductCard({
 	title,
 	description,
@@ -11,6 +12,11 @@ export default function ProductCard({
 	category,
 	id,
 }) {
+	const navigate = useNavigate();
+	const handleClick = () => {
+		navigate(`/product-details/${id}`);
+	};
+
 	return (
 		<div className={styles.productCard}>
 			<img className={styles.productCardImg} src={urlImg} alt='Product Image' />
@@ -28,9 +34,12 @@ export default function ProductCard({
 					<a>MOSTRAR EN MAPA</a>
 				</div>
 				<p className={styles.productCardText}>{description}</p>
-				<Link to={`/product-details/${id}`}>
-					<Button type='basic' innerText='Ver más'></Button>
-				</Link>
+
+				<Button
+					handleClick={handleClick}
+					type='basic'
+					innerText='Ver más'
+				></Button>
 			</div>
 		</div>
 	);

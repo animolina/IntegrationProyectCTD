@@ -1,10 +1,21 @@
-export default function GoogleMap() {
-	// Palermo
-	// const locationLon = -58.477840164229804;
-	// const locationLat = -34.579490001715556;
+import { useParams } from 'react-router-dom';
 
-	const locationLat = 6.2523243609754084;
-	const locationLon = -75.56763469520455;
+export default function GoogleMap() {
+	const { id } = useParams();
+
+	const location = [
+		{ lat: -32.92846732270961, lon: -68.79535647605621 }, // Hermitage Hotel
+		{ lat: -34.54937848787841, lon: -58.48582904412557 }, // B&B Hostel
+		{ lat: 6.252603017066836, lon: -75.56794742305917 }, // Esperanza Departamentos
+		{ lat: -33.535078407312604, lon: -61.12151864792317 }, // Lo de Manuel
+		{ lat: 6.2523243609754084, lon: -75.56763469520455 }, // Diplomatic
+		{ lat: -34.610380729048494, lon: -58.41293546736347 }, // Gato Negro
+		{ lat: -34.666592338620475, lon: -58.46546384614958 }, // Aguila Mora
+		{ lat: -33.534863775118204, lon: -61.12117532518601 }, // Huinid Obelisco
+	];
+
+	const locationLat = location[id - 1].lat;
+	const locationLon = location[id - 1].lon;
 
 	return (
 		<iframe
@@ -15,19 +26,5 @@ export default function GoogleMap() {
 			loading='lazy'
 			referrerPolicy='no-referrer-when-downgrade'
 		/>
-
-		/* 	<iframe
-			scrolling='no'
-			marginHeight='0'
-			marginWidth='0'
-			src='https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=cosquin%20cosquin+(My%20Business%20Name)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed'
-			width='90%'
-			height='300'
-			frameBorder='0'
-		>
-			<a href='https://www.maps.ie/distance-area-calculator.html'>
-				measure acres/hectares on map
-			</a>
-		</iframe> */
 	);
 }
