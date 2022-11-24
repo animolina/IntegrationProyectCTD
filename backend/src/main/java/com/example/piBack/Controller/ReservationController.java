@@ -1,10 +1,16 @@
 package com.example.piBack.Controller;
 
+import com.example.piBack.Model.Client;
 import com.example.piBack.Model.Reservation;
+import com.example.piBack.Model.User;
+import com.example.piBack.Service.ClientService;
 import com.example.piBack.Service.ReservationService;
+import com.example.piBack.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -14,11 +20,21 @@ import java.util.Optional;
 @RequestMapping("reservation")
 public class ReservationController {
 
-    @Autowired
     private ReservationService reservationService;
+    private UserService userService;
+    private ClientService clientService;
+    @Autowired
+    public ReservationController(ReservationService reservationService, UserService userService, ClientService clientService) {
+        this.reservationService = reservationService;
+        this.userService = userService;
+        this.clientService = clientService;
+    }
 
     @PostMapping
     public ResponseEntity<Object> addReservation(@RequestBody Reservation reservation) {
+        User user = userService.getUserFromSecurityContextHolder();
+        Client client = clientService.getOrCreateClientByUser(user);
+        reservation.setClient(client);
         try {
             Reservation newReservation = reservationService.addReservation(reservation);
             return new ResponseEntity<>("Reservation ID: "+newReservation.getId()+" created", HttpStatus.OK);

@@ -59,15 +59,20 @@
     border-radius: 50% !important;
 }
 
+.datePickerCalendar .react-datepicker__day--outside-month {
+    background-color: var(--white-color) !important;
+}
+
 .datePickerCalendar .react-datepicker__day--keyboard-selected,
-.datePickerCalendar .react-datepicker__day--in-selecting-range,
+.datePickerCalendar .react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range),
 .datePickerCalendar .react-datepicker__day--in-range,
 .datePickerCalendar .react-datepicker__day--selected:hover,
 .datePickerCalendar .react-datepicker__day--in-range:hover {
-    background-color: var(--main-color) !important;
+    background-color: var(--main-color);
     color: var(--white-color);
 
 }
+
 
 .datePickerCalendar .react-datepicker__navigation {
     display: none !important;

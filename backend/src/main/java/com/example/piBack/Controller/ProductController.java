@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,11 +34,32 @@ public class ProductController {
             content = @Content)
     })
 
+    //get all products
     @GetMapping
     public ResponseEntity<Collection<Product>> listProduct() {
         return ResponseEntity.ok(productService.listProduct());
     }
 
+    //get all products by city, category or date
+    @GetMapping ("/filter")
+    public ResponseEntity<Collection<Product>> listProductsbyCategoryCityDate(
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false)String category,
+            @RequestParam(required = false) Date startDate,
+            @RequestParam(required = false)Date endDate){
+        Collection<Product> products = productService.findAllByCategoryCityDate(category, city, startDate, endDate);
+
+        return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/random")
+    public ResponseEntity<Collection<Product>> listProductRandom() {
+        Collection<Product> productsRandom = productService.listProduct();
+        Collections.shuffle((List<Product>) productsRandom);
+        return ResponseEntity.ok(productsRandom);
+    }
+
+    //get product by id
     @GetMapping("/{id}")
     public ResponseEntity<Product> findProduct(@PathVariable Long id){
         if(productService.findProduct(id).isPresent()) {
@@ -45,18 +68,8 @@ public class ProductController {
             return new ResponseEntity("Product with id "+id+" not found", HttpStatus.NOT_FOUND);
         }
     }
-
-    @GetMapping("/cityID/{ID_city}")
-    public ResponseEntity<List<Product>> findAllByCity(@PathVariable Long ID_city) {
-        return ResponseEntity.ok(productService.findAllByCity(ID_city));
-    }
-
-    @GetMapping("/categoryID/{ID_category}")
-    public ResponseEntity<List<Product>> findAllByCategory(@PathVariable Long ID_category) {
-        return ResponseEntity.ok(productService.findAllByCategory(ID_category));
-    }
-
-    @PostMapping
+    //add a new product
+   @PostMapping
     public ResponseEntity<Object> addProduct(@RequestBody Product product) {
         try {
             Product newProduct = productService.addProduct(product);
@@ -65,6 +78,8 @@ public class ProductController {
             return new ResponseEntity<>("Server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    //update a product by id
     @PutMapping("/{id}")
     public ResponseEntity<Product> editProduct(@PathVariable("id") long id, @RequestBody Product product) {
         Optional<Product> product_ = productService.findProduct(id);
@@ -76,6 +91,7 @@ public class ProductController {
         }
     }
 
+    //delete a product by id
     @DeleteMapping("/{id}")
     public ResponseEntity deleteProduct (@PathVariable Long id) {
         try {

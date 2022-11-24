@@ -1,9 +1,7 @@
 package com.example.piBack.Model;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,20 +10,25 @@ import java.util.Set;
 @Entity
 @Table(name="client")
 public class Client {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonManagedReference(value = "client-reservation")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Reservation> reservations;
 
-    @OneToOne()
-    @JoinColumn(name="ID_user")
+    @OneToOne
     private User user;
-
     public Client() {
     }
 
-    public Client(Long id, User user) {
-        this.id = id;
+    //Constructor from User.
+    public Client(User user) {
         this.user = user;
+    }
+
+    public Client(User user, Set<Reservation> reservations) {
+        this.user = user;
+        this.reservations = reservations;
     }
 }
