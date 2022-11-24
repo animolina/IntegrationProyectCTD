@@ -33,7 +33,7 @@ export default function ProductDetails() {
 			<ProductDetailsDescription />
 			<ProductDetailsFeature />
 			<BookingBlock />
-			<ProductDetailsMap id={id} />
+			<ProductDetailsMap />
 			<ProductDetailsPolicy />
 		</div>
 	);
