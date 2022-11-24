@@ -71,7 +71,6 @@ export default function SearchBlock() {
 							store.setSelectedCity(selectedCity);
 							store.setSelectedStartDate(startDate);
 							store.setSelectedEndDate(endDate);
-							console.log('click buscar');
 						}}
 					></Button>
 				</form>

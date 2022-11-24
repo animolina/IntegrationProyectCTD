@@ -21,7 +21,6 @@ export default function CategoryListCard() {
 					urlImg={category.imageURL}
 					onClick={() => {
 						store.setSelectedCategory(category.title);
-						console.log('click');
 					}}
 				/>
 			))}
