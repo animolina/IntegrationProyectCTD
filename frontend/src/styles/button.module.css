@@ -40,3 +40,9 @@
 	background-color: var(--main-color);
 	transition: 0.5s;
 }
+.basicButton:hover {
+	color: var(--white-color);
+	background-color: var(--gray-color);
+	transition: 0.5s;
+	outline: 1px solid white;
+}
