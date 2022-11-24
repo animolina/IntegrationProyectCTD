@@ -8,15 +8,14 @@
 	margin: 5rem 0 3rem;
 	align-items: flex-start;
 	background-color: var(--bg-color);
-
 }
 
 .mainContainer {
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	width: 100%;
-	gap: 5rem;
-	margin: 1rem;
+	gap: 2rem;
+	padding: 0 2.5rem 0 2rem;
 }
 
 .leftContainer {
@@ -31,7 +30,6 @@
 	grid-template-columns: 1fr;
 	align-items: center;
 	width: 100%;
-
 }
 
 .title {
@@ -42,10 +40,9 @@
 
 .mainTitle {
 	color: var(--text-color);
-	padding: 0 0 1rem 0rem;
+	padding: 0 0 1rem 0.5rem;
 	height: 1.75rem;
 	margin-left: 1.5rem;
-
 }
 
 .personalData {
@@ -81,7 +78,6 @@
 	justify-content: center;
 	gap: 1rem;
 	width: 100%;
-
 }
 
 .checkin {
@@ -100,7 +96,6 @@
 }
 
 /* ------------------------------- responsive ------------------------------- */
-
 
 @media screen and (max-width: 1000px) {
 	.mainContainer {

@@ -8,9 +8,9 @@ export default function ProductDetailsFeature() {
 	const store = useAppContext();
 	const product = store.product;
 
-	if (product === null) {
+	/* if (product === null) {
 		return <div>Loading</div>;
-	}
+	} */
 
 	return (
 		<>

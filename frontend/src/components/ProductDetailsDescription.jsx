@@ -1,12 +1,13 @@
 import styles from '../styles/productDetailsDescription.module.css';
 import { useAppContext } from '../context/Store';
+import Loader from '../utils/Loader';
 
 export default function ProductDetailsDescription() {
 	const store = useAppContext();
 	const product = store.product;
 
 	if (product === null) {
-		return <div>Loading</div>;
+		return <Loader />;
 	}
 	return (
 		<div className={styles.productDetailsDescription}>

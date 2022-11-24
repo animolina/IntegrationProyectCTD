@@ -15,11 +15,8 @@
 	align-items: center;
 }
 
-.locationText > p,
-span {
-	padding: 0;
-	margin: 0;
-	/* padding-left: 0.5rem; */
+.locationIcon {
+	padding-right: 0.5rem;
 }
 
 .scoreContaniner {

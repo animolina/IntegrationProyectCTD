@@ -1,0 +1,20 @@
+.star-rating > button {
+	padding: 0.2rem;
+}
+
+button {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	/* cursor: pointer; */
+}
+.on {
+	color: var(--main-color);
+}
+.off {
+	color: #ccc;
+}
+
+.star {
+	padding: 0;
+}

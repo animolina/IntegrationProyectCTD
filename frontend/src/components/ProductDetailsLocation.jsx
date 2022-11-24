@@ -1,19 +1,21 @@
 import styles from '../styles/productDetailsLocation.module.css';
 import locationIcon from '../assets/icons/location-dot-solid.svg';
 import { useAppContext } from '../context/Store';
+import StarRating from '../utils/StarRating';
+import Loader from '../utils/Loader';
 
 export default function ProductDetailsLocation() {
 	const store = useAppContext();
 	const product = store.product;
 
 	if (product === null) {
-		return <div>Loading</div>;
+		return <Loader />;
 	}
 
 	return (
 		<div className={styles.productDetailsLocation}>
 			<div className={styles.locationContainer}>
-				<img src={locationIcon} alt='' />
+				<img className={styles.locationIcon} src={locationIcon} alt='' />
 				<div className={styles.locationText}>
 					<p>
 						{product.city.city}, {product.city.state}, {product.city.country}
@@ -24,7 +26,8 @@ export default function ProductDetailsLocation() {
 			<div className={styles.scoreContaniner}>
 				<div>
 					<p className={styles.scoreOpinion}>Muy bueno</p>
-					<span className={styles.scoreStars}>★ ★ ★ ★ ★ </span>
+					{/* <span className={styles.scoreStars}>★ ★ ★ ★ ★ </span> */}
+					<StarRating starScore={5} />
 				</div>
 
 				<div className={styles.scoreNumber}>5</div>

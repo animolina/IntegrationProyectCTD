@@ -14,7 +14,6 @@
 	height: auto;
 	object-fit: fill;
 	border-radius: 8px;
-
 }
 
 .productCardBody {
@@ -67,7 +66,6 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
-
 }
 
 .productCardLocation img {
@@ -86,7 +84,6 @@
 	font-size: 14px;
 	font-weight: 700;
 	color: var(--text-color);
-
 }
 
 /* ------------------------------- responsive ------------------------------- */
@@ -94,6 +91,9 @@
 @media screen and (max-width: 769px) {
 	.productCardLocation a {
 		display: none;
+	}
+	.productCard {
+		width: 43rem;
 	}
 }
 
@@ -118,6 +118,5 @@
 
 	.productCardImg {
 		max-width: 26rem;
-
 	}
 }

@@ -13,7 +13,7 @@ export default function GalleryProduct() {
 	const extraImages = product?.images.slice(5);
 
 	if (product === null) {
-		return <div>Loading</div>;
+		return <div></div>;
 	}
 
 	/* -------------------------------- thumbnail ------------------------------- */

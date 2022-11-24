@@ -42,20 +42,16 @@
 }
 
 .seeMore {
-	width: 5rem;
 	position: absolute;
 	right: 1rem;
 	bottom: 1rem;
+	padding: 0.3rem;
 	color: var(--white-color);
 	font: var(--font-heading3);
 	text-decoration: underline;
 	pointer-events: none;
 	background: rgba(0, 0, 0, 0.3);
 }
-
-/* .seeMore:hover {
-	color: var(--main-color);
-} */
 
 @media screen and (max-width: 769px) {
 	.imgItem {
