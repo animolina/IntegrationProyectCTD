@@ -8,7 +8,16 @@ import { useState } from 'react';
 import Input from './Input';
 
 export default function SearchBlock() {
-	const [, setSelectedCity] = useState();
+	const [selectedCity, setSelectedCity] = useState();
+	const [startDate, setStartDate] = useState(null);
+	const [endDate, setEndDate] = useState(null);
+
+	const defineStart = startDate => {
+		setStartDate(startDate);
+	};
+	const defineEnd = endDate => {
+		setEndDate(endDate);
+	};
 	const store = useAppContext();
 	const cities = store.cities; // to get array of cities from APIs endpoint.
 	const citiesData = cities.map(city => ({
@@ -52,8 +61,18 @@ export default function SearchBlock() {
 					<DatePicker
 						customInput={<Input />}
 						placeholder='Check-in - Check-out'
+						defineStart={defineStart}
+						defineEnd={defineEnd}
 					/>
-					<Button type='basic' innerText='Buscar'></Button>
+					<Button
+						type='basic'
+						innerText='Buscar'
+						onClick={() => {
+							store.setSelectedCity(selectedCity);
+							store.setSelectedStartDate(startDate);
+							store.setSelectedEndDate(endDate);
+						}}
+					></Button>
 				</form>
 			</div>
 		</div>

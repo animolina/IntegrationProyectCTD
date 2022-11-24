@@ -19,6 +19,7 @@ export default function CategoryListCard() {
 					title={category.title}
 					description={category.description}
 					urlImg={category.imageURL}
+					onClick={() => store.setSelectedCategory(category.title)}
 				/>
 			))}
 		</div>
