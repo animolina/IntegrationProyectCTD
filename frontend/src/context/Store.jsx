@@ -95,6 +95,10 @@ export default function Store({ children }) {
 				features,
 				policy,
 				setIdProduct,
+				setSelectedCategory,
+				setSelectedEndDate,
+				setSelectedStartDate,
+				setSelectedCity,
 			}}
 		>
 			{children}

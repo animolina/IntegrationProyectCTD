@@ -67,10 +67,11 @@ export default function SearchBlock() {
 					<Button
 						type='basic'
 						innerText='Buscar'
-						onClick={() => {
+						handleClick={() => {
 							store.setSelectedCity(selectedCity);
 							store.setSelectedStartDate(startDate);
 							store.setSelectedEndDate(endDate);
+							console.log('click buscar');
 						}}
 					></Button>
 				</form>
