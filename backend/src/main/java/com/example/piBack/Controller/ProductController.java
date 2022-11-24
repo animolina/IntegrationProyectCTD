@@ -45,8 +45,8 @@ public class ProductController {
     public ResponseEntity<Collection<Product>> listProductsbyCategoryCityDate(
             @RequestParam(required = false) String city,
             @RequestParam(required = false)String category,
-            @RequestParam(required = false) Date startDate,
-            @RequestParam(required = false)Date endDate){
+            @RequestParam(required = false) String startDate,
+            @RequestParam(required = false)String endDate){
         Collection<Product> products = productService.findAllByCategoryCityDate(category, city, startDate, endDate);
 
         return ResponseEntity.ok(products);
