@@ -2,7 +2,7 @@ import { describe, it, afterEach } from "vitest";
 import { render, cleanup } from "@testing-library/react";
 import CartelWarning from "../src/components/CartelWarning";
 
-describe("ProductDetailsFeature", () => {
+describe("CartelWarning", () => {
     afterEach(cleanup);
     const component = render(<CartelWarning />);
 
