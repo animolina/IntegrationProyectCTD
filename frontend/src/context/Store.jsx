@@ -9,6 +9,10 @@ import { getFeatures } from '../services/getFeatures';
 import { getPolicy } from '../services/getPolicy';
 
 const AppContext = createContext({
+	selectedCategory: undefined,
+	selectedCity: undefined,
+	selectedStartDate: undefined,
+	selectedEndDate: undefined,
 	categories: [],
 	products: [],
 	cities: [],
@@ -16,9 +20,17 @@ const AppContext = createContext({
 	features: [],
 	policy: {},
 	setIdProduct: id => {},
+	setSelectedCategory: selectedCategory => {},
+	setSelectedCity: selectedCity => {},
+	setSelectedStartDate: selectedStartDate => {},
+	setSelectedEndDate: selectedEndDate => {},
 });
 
 export default function Store({ children }) {
+	const [selectedCity, setSelectedCity] = useState();
+	const [selectedCategory, setSelectedCategory] = useState();
+	const [selectedStartDate, setSelectedStartDate] = useState();
+	const [selectedEndDate, setSelectedEndDate] = useState();
 	const [categories, setCategories] = useState(null);
 	const [products, setProducts] = useState([]);
 	const [cities, setCities] = useState([]);
@@ -32,18 +44,28 @@ export default function Store({ children }) {
 			const dataCategories = await getCategories();
 			setCategories(dataCategories);
 		};
-		const loadProducts = async () => {
-			const dataProducts = await getProducts();
-			setProducts(dataProducts);
-		};
+
 		const loadCities = async () => {
 			const dataCities = await getCities();
 			setCities(dataCities);
 		};
 		loadCategories();
-		loadProducts();
 		loadCities();
 	}, []);
+
+	useEffect(() => {
+		const loadProducts = async () => {
+			const dataProducts = await getProducts({
+				category: selectedCategory,
+				city: selectedCity,
+				startDate: selectedStartDate,
+				endDate: selectedEndDate,
+			});
+			setProducts(dataProducts);
+		};
+		loadProducts();
+	}, [selectedCategory, selectedStartDate, selectedEndDate, selectedCity]);
+
 	/* useEffect(() => {
 		(async () => {
 			const dataFeatures = await getFeatures();
@@ -73,6 +95,10 @@ export default function Store({ children }) {
 				features,
 				policy,
 				setIdProduct,
+				setSelectedCategory,
+				setSelectedEndDate,
+				setSelectedStartDate,
+				setSelectedCity,
 			}}
 		>
 			{children}
