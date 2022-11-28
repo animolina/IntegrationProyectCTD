@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -45,8 +46,8 @@ public class ProductController {
     public ResponseEntity<Collection<Product>> listProductsbyCategoryCityDate(
             @RequestParam(required = false) String city,
             @RequestParam(required = false)String category,
-            @RequestParam(required = false) String startDate,
-            @RequestParam(required = false)String endDate){
+            @RequestParam(required = false) LocalDate startDate,
+            @RequestParam(required = false)LocalDate endDate){
         Collection<Product> products = productService.findAllByCategoryCityDate(category, city, startDate, endDate);
 
         return ResponseEntity.ok(products);

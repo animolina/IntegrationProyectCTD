@@ -5,7 +5,7 @@ import com.example.piBack.Model.Product;
 import com.example.piBack.Model.Reservation;
 import org.springframework.data.jpa.domain.Specification;
 import javax.persistence.criteria.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 public  class ProductSpecifications {
 
@@ -26,7 +26,7 @@ public  class ProductSpecifications {
     }
 
     //Products by date range (checking if it has reservations)
-    public static Specification<Product> productsByDate (String startDate, String endDate){
+    public static Specification<Product> productsByDate (LocalDate startDate, LocalDate endDate){
         return (root, query, criteriaBuilder) -> {
                 SetJoin<Product, Reservation> reservationJoin = root.joinSet("reservations");
                 return criteriaBuilder.and(
