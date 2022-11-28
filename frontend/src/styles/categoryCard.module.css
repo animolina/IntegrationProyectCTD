@@ -44,3 +44,10 @@
 	height: 1.203rem;
 	margin-bottom: 0.424;
 }
+
+.categoryCard:hover {
+	cursor: pointer;
+	filter: brightness(110%);
+	-webkit-filter: brightness(110%);
+	-moz-filter: brightness(110%);
+}
