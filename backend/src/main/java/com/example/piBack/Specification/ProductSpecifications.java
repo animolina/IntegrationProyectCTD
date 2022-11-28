@@ -30,8 +30,8 @@ public  class ProductSpecifications {
         return (root, query, criteriaBuilder) -> {
                 SetJoin<Product, Reservation> reservationJoin = root.joinSet("reservations");
                 return criteriaBuilder.and(
-                        criteriaBuilder.equal(reservationJoin.get("startDate"), startDate),
-                        criteriaBuilder.equal(reservationJoin.get("endDate"), endDate));
+                        criteriaBuilder.notEqual(reservationJoin.get("startDate"), startDate),
+                        criteriaBuilder.notEqual(reservationJoin.get("endDate"), endDate));
             };
         }
     }
