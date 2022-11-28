@@ -12,8 +12,7 @@ export default function DatePicker({
 	calendarType,
 	defineEnd,
 	defineStart,
-}) 
-{
+}) {
 	const [startDate, setStartDate] = useState(null);
 	const [endDate, setEndDate] = useState(null);
 
