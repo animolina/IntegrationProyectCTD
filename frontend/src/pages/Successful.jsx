@@ -12,7 +12,7 @@ export default function Successful({ type }) {
 				<img
 					src={iconSuccess}
 					className={styles.iconSuccess}
-					alt='Ícono de éxito'
+					alt='Ícono de chequeado'
 				/>
 				<span className={styles.textGratitude}>¡Muchas gracias!</span>
 				<span className={styles.textConfirm}>

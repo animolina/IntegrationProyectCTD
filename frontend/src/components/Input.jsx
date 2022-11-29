@@ -21,7 +21,7 @@ const Input = (props, ref) => {
 				onClick={showPassword}
 				className={styles.hideIcon}
 				src={hideIcon}
-				alt='hide icon'
+				alt='Ícono de ojo cerrado'
 			/>
 		</div>
 	) : (

@@ -20,7 +20,7 @@ export default function SearchBlock() {
 		// function for city suggestions.
 		return (
 			<div className={styles.citySuggestion}>
-				<img src={locationIcon}></img>
+				<img alt='Ícono localización' src={locationIcon}></img>
 				<div className={styles.citySuggestionTextContainer}>
 					<span className={styles.primaryText}>{citySuggestion.name}</span>
 					<span className={styles.secondaryText}>

@@ -20,6 +20,7 @@ export default function GalleryProductItem({ productImg, hiden, seeMore }) {
 						src={productImg}
 						ref={ref}
 						onClick={open}
+						alt='Producto'
 					/>
 					{seeMore && <span className={styles.seeMore}>Ver más</span>}
 				</div>

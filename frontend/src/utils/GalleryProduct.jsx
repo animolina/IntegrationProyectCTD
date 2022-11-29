@@ -117,7 +117,12 @@ export default function GalleryProduct() {
 						alt='Photo of bear by Thomas Lefebvre'
 					>
 						{({ ref, open }) => (
-							<img src={product?.images[0]?.url} ref={ref} onClick={open} />
+							<img
+								src={product?.images[0]?.url}
+								ref={ref}
+								onClick={open}
+								alt='Producto'
+							/>
 						)}
 					</Item>
 				</div>

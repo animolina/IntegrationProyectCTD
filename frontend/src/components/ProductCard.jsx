@@ -19,7 +19,7 @@ export default function ProductCard({
 
 	return (
 		<div className={styles.productCard}>
-			<img className={styles.productCardImg} src={urlImg} alt='Product Image' />
+			<img className={styles.productCardImg} src={urlImg} alt='Producto' />
 			<div className={styles.productCardBody}>
 				<span className={styles.productCardCategory}>
 					{category?.toUpperCase()}{' '}
@@ -27,7 +27,7 @@ export default function ProductCard({
 				</span>
 				<h5 className={styles.productCardTitle}>{title}</h5>
 				<div className={styles.productCardLocation}>
-					<img src={locationIcon} />
+					<img src={locationIcon} alt='Ícono localización' />
 					<span className={styles.productCardLocationText}>
 						{location}
 					</span>{' '}

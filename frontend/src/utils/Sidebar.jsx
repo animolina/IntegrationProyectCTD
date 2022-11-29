@@ -16,7 +16,9 @@ export default function Sidebar(props) {
 	return (
 		<Menu
 			{...props}
-			customCrossIcon={<img style={{ width: '5px' }} src={crossIcon} />}
+			customCrossIcon={
+				<img style={{ width: '5px' }} src={crossIcon} alt='Cruz cerrar' />
+			}
 			isOpen={isOpen}
 			onStateChange={handleStateChange}
 			width={'100%'}

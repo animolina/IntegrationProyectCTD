@@ -140,7 +140,7 @@ export default function Reservation() {
 						<h2 className={styles.title}>Horario llegada</h2>
 						<div className={styles.checkinContainer}>
 							<div className={styles.checkin}>
-								<img src={tick}></img>
+								<img alt='Ícono chequeado' src={tick}></img>
 								<span>
 									Tu habitación va a estar lista para el check in entre las 10am
 									y 11 am{' '}
