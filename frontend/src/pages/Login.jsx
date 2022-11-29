@@ -8,6 +8,9 @@ import linkStyles from '../styles/link.module.css';
 import { UserContext } from '../context/UserContext';
 import { Link, useNavigate } from 'react-router-dom';
 import CartelWarning from '../components/CartelWarning';
+import { AuthService } from '../services/authService';
+import { CacheService } from '../services/cacheService';
+import { UserService } from '../services/userService';
 
 const emailFieldConfig = {
 	fieldType: 'input',
@@ -33,7 +36,7 @@ export default function Login() {
 
 	let isFormValid = false;
 
-	const submitLoginForm = () => {
+	const submitLoginForm = async () => {
 		const email = document.querySelector('#email');
 		const password = document.querySelector('#password');
 
@@ -50,6 +53,16 @@ export default function Login() {
 		} else {
 			setEmailError(null);
 			isFormValid = true;
+		}
+
+		const result = await AuthService.signIn(email.value, password.value);
+
+		if (result) {
+			CacheService.setJwt(result.jwt);
+
+			const response = await UserService.listUsers();
+			const test = response.find(r => r.email === email.value);
+			console.log('USER FOUND', test);
 		}
 
 		const user = users.find(u => u.email === email.value);
