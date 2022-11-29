@@ -2,7 +2,12 @@ package com.example.piBack.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @Getter
 @Setter
 @Entity
@@ -14,11 +19,11 @@ public class Reservation {
     private Long id;
 
     @Column
-    private String startTime;
+    private LocalTime startTime;
     @Column
-    private String startDate;
+    private LocalDate startDate;
     @Column
-    private String endDate;
+    private LocalDate endDate;
 
     @JsonBackReference(value = "product-reservation")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
@@ -33,7 +38,7 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(String startTime, String startDate, String endDate, Product product, Client client) {
+    public Reservation(LocalTime startTime, LocalDate startDate, LocalDate endDate, Product product, Client client) {
         this.startTime = startTime;
         this.startDate = startDate;
         this.endDate = endDate;

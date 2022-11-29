@@ -7,18 +7,23 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class ReservationService {
 
-    @Autowired
     ReservationRepository reservationRepository;
+
+    @Autowired
+    public ReservationService(ReservationRepository reservationRepository) {
+        this.reservationRepository = reservationRepository;
+    }
 
     public Reservation addReservation(Reservation reservation) {
         reservationRepository.save(reservation);
         return reservation;
     }
 
-    public Collection<Reservation> listReservation(){
+    public Collection<Reservation> listReservation() {
         List<Reservation> reservations = reservationRepository.findAll();
         return reservations;
     }
@@ -36,5 +41,10 @@ public class ReservationService {
     public Optional<Reservation> findReservation(Long id) {
         Optional<Reservation> reservation = reservationRepository.findById(id);
         return reservation;
+    }
+
+    public Collection<Reservation> findReservationsByProductId (Long productId){
+        Collection<Reservation> reservations = reservationRepository.findReservationsByProductId(productId);
+        return reservations;
     }
 }
