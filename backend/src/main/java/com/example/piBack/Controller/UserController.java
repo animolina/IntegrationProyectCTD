@@ -23,10 +23,6 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
-    @Autowired
-
-
     @Operation(summary="This is to fetch all the users stored in DB")
     @ApiResponses(value= {
             @ApiResponse(responseCode = "200",
