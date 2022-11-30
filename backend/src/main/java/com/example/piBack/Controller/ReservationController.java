@@ -55,15 +55,15 @@ public class ReservationController {
         }
     }
     //get reservations by product id
-    @GetMapping("/productId")
-    public ResponseEntity<Collection<Reservation>> listReservationByProductId(@RequestParam(required = false) Long productId) {
+    @GetMapping("/productId/{productId}")
+    public ResponseEntity<Collection<Reservation>> listReservationByProductId(@PathVariable Long productId) {
         Collection<Reservation> reservations = reservationService.findReservationByProductId(productId);
         return ResponseEntity.ok(reservations);
     };
 
     //get reservations by client id
-    @GetMapping("/clientId")
-    public ResponseEntity<Collection<Reservation>> listReservationByClientId(@RequestParam(required = false) Long clientId) {
+    @GetMapping("/clientId/{clientId}")
+    public ResponseEntity<Collection<Reservation>> listReservationByClientId(@PathVariable Long clientId) {
         Collection<Reservation> reservations = reservationService.findReservationByClientId(clientId);
         return ResponseEntity.ok(reservations);
     };
