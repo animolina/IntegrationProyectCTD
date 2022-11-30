@@ -1,4 +1,5 @@
 import ReactDatePicker, { registerLocale } from 'react-datepicker';
+import { useAppContext } from '../context/Store';
 import { useState } from 'react';
 import '../styles/datePicker.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -23,6 +24,15 @@ export default function DatePicker({
 		defineStart(start);
 		defineEnd(end);
 	};
+	/* ------------------------------- Configurations to display reservations by product ------------------------------- */
+	const store = useAppContext();
+	const reservations = store.reservations;
+	console.log(reservations);
+
+	const disabledDates = reservations.map(reservation => ({
+		start: new Date(reservation.startDate),
+		end: new Date(reservation.endDate),
+	}));
 
 	return (
 		<div className={calendarType === 'booking' ? 'booking' : ' '}>
@@ -44,6 +54,7 @@ export default function DatePicker({
 				calendarType={calendarType}
 				previousMonthButtonLabel=''
 				nextMonthButtonLabel=''
+				excludeDateIntervals={calendarType === 'booking' ? disabledDates : ''}
 			/>
 		</div>
 	);

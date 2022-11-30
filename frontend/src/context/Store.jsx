@@ -7,7 +7,7 @@ import { getCities } from '../services/getCities';
 import { getProductById } from '../services/getProductById';
 import { getFeatures } from '../services/getFeatures';
 import { getPolicy } from '../services/getPolicy';
-
+import { getReservationByProductId } from '../services/getReservationByProductId';
 const AppContext = createContext({
 	selectedCategory: undefined,
 	selectedCity: undefined,
@@ -19,6 +19,7 @@ const AppContext = createContext({
 	product: {},
 	features: [],
 	policy: {},
+	reservations: [],
 	setIdProduct: id => {},
 	setSelectedCategory: selectedCategory => {},
 	setSelectedCity: selectedCity => {},
@@ -37,7 +38,8 @@ export default function Store({ children }) {
 	const [product, setProduct] = useState(null);
 	const [features, setFeatures] = useState([]);
 	const [policy, setPolicy] = useState(null);
-	const [idProduct, setIdProduct] = useState(1);
+	const [idProduct, setIdProduct] = useState();
+	const [reservations, setReservations] = useState([]);
 
 	useEffect(() => {
 		const loadCategories = async () => {
@@ -85,6 +87,13 @@ export default function Store({ children }) {
 		})();
 	}, [idProduct]);
 
+	useEffect(() => {
+		(async () => {
+			const dataReservation = await getReservationByProductId(idProduct);
+			setReservations(dataReservation);
+		})();
+	}, [idProduct]);
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -94,6 +103,7 @@ export default function Store({ children }) {
 				product,
 				features,
 				policy,
+				reservations,
 				setIdProduct,
 				setSelectedCategory,
 				setSelectedEndDate,
