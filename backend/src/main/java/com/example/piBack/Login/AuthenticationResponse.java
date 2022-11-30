@@ -15,4 +15,8 @@ public class AuthenticationResponse {
     public String getJwt() {
         return jwt;
     }
+
+    public String getUser() {
+        return user;
+    }
 }
