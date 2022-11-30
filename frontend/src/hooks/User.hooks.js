@@ -1,12 +1,14 @@
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
+import { CacheItems, CacheService } from '../services/cacheService';
 
 export const useUser = () => {
 	const { user, setUser } = useContext(UserContext);
-	const storedUser = sessionStorage.getItem('name')
+	const storedUserName = CacheService.getItem(CacheItems.UserName);
+	const storedUser = storedUserName
 		? {
-				name: sessionStorage.getItem('name'),
-				email: sessionStorage.getItem('email'),
+				name: storedUserName,
+				email: CacheService.getItem(CacheItems.UserEmail),
 		  }
 		: null;
 

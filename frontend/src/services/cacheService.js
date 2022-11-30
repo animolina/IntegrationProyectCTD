@@ -11,11 +11,13 @@ export class CacheService {
 		window.sessionStorage.setItem(CacheItems.Jwt, value);
 	}
 
-	static getJwt(cacheItem) {
+	static getJwt() {
 		return window.sessionStorage.getItem(CacheItems.Jwt);
 	}
 }
 
 export const CacheItems = {
 	Jwt: 'jwt',
+	UserName: 'user-name',
+	UserEmail: 'user-email'
 };

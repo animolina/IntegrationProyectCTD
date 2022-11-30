@@ -1,16 +1,14 @@
 import Button from '../components/Button';
 import styles from '../styles/auth.module.css';
 import { validateEmail } from '../utils';
-import users from '../mockedData/auth-users.json';
 import FormField from '../components/FormField';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import linkStyles from '../styles/link.module.css';
 import { UserContext } from '../context/UserContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import CartelWarning from '../components/CartelWarning';
 import { AuthService } from '../services/authService';
-import { CacheService } from '../services/cacheService';
-import { UserService } from '../services/userService';
+import { CacheItems, CacheService } from '../services/cacheService';
 
 const emailFieldConfig = {
 	fieldType: 'input',
@@ -29,10 +27,20 @@ const passwordFieldConfig = {
 export default function Login() {
 	const [emailError, setEmailError] = useState();
 	const [passwordError, setPasswordError] = useState();
+	const [showWarningSign, setShowWarningSign] = useState();
+	const [showWarningSignText, setShowWarningSignText] = useState();
+	const { state } = useLocation();
 
 	const { setUser } = useContext(UserContext);
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (state) {
+			setShowWarningSign(state.showWarning);
+			setShowWarningSignText(state.warningText);
+		}
+	});
 
 	let isFormValid = false;
 
@@ -57,23 +65,24 @@ export default function Login() {
 
 		const result = await AuthService.signIn(email.value, password.value);
 
-		if (result) {
+		if (result && result.jwt && result.user) {
 			CacheService.setJwt(result.jwt);
-
-			const response = await UserService.listUsers();
-			const test = response.find(r => r.email === email.value);
-			console.log('USER FOUND', test);
-		}
-
-		const user = users.find(u => u.email === email.value);
-
-		if (user && user.password === password.value) {
+			const user = result.user;
 			setUser(user);
-			sessionStorage.setItem('name', user.name); // save session storage user name.
-			sessionStorage.setItem('email', user.email); // save session storage user email.
+			CacheService.setItem(
+				CacheItems.UserName,
+				`${user.name} ${user.lastName}`
+			);
+			CacheService.setItem(CacheItems.UserEmail, user.email);
 			navigate('/');
-		} else {
-			alert('Por favor vuelva a intentarlo, sus credenciales son inválidas');
+		} else if (result.status === 403) {
+			setShowWarningSign(true);
+			setShowWarningSignText('Credenciales erroneas');
+
+			setTimeout(() => {
+				setShowWarningSign(false);
+				setShowWarningSignText(null);
+			}, 2000);
 		}
 	};
 
@@ -102,7 +111,7 @@ export default function Login() {
 
 	return (
 		<div className={styles.mainContainer}>
-			<CartelWarning />
+			{showWarningSign && <CartelWarning text={showWarningSignText} />}
 			<h1 className={styles.title}>Iniciar sesión</h1>
 			<form className={styles.formContainer}>
 				<FormField config={emailFieldConfig} error={emailError}></FormField>

@@ -10,7 +10,14 @@ export default function BookingBlock() {
 	const { user } = useUser();
 
 	const handleClick = () => {
-		user ? navigate(`/product-details/${id}/reservation`) : navigate(`/login`);
+		user
+			? navigate(`/product-details/${id}/reservation`)
+			: navigate(`/login`, {
+					state: {
+						showWarning: true,
+						warningText: 'Para realizar una reserva necesitas estar logueado',
+					},
+			  });
 	};
 
 	return (
