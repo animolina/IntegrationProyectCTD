@@ -26,6 +26,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email).orElseThrow((()-> new UsernameNotFoundException("El email del usuario no ha sido encontrado")));
     }
 
+    public Optional<User>  findUserByEmail (String email){
+        return userRepository.findByEmail(email);
+    }
+
     //methods for endpoints
 
     public User getUserFromSecurityContextHolder() {
