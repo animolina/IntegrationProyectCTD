@@ -56,13 +56,18 @@ public class ReservationController {
     }
     //get reservations by product id
     @GetMapping("/productId/{productId}")
-    public ResponseEntity<Collection<Reservation>>  findReservationsByProductId(@PathVariable Long productId) {
-        if(reservationService.findReservationsByProductId(productId) != null){
-            return ResponseEntity.ok(reservationService.findReservationsByProductId(productId));
-        }else {
-            return new ResponseEntity("The product you are trying to get reservations from does not exist", HttpStatus.NOT_FOUND);
-        }
-}
+    public ResponseEntity<Collection<Reservation>> listReservationByProductId(@PathVariable Long productId) {
+        Collection<Reservation> reservations = reservationService.findReservationByProductId(productId);
+        return ResponseEntity.ok(reservations);
+    };
+
+    //get reservations by client id
+    @GetMapping("/clientId/{clientId}")
+    public ResponseEntity<Collection<Reservation>> listReservationByClientId(@PathVariable Long clientId) {
+        Collection<Reservation> reservations = reservationService.findReservationByClientId(clientId);
+        return ResponseEntity.ok(reservations);
+    };
+
     //update reservation by id
     @PutMapping("/{id}")
     public ResponseEntity<Reservation> editReservation(@PathVariable("id") long id, @RequestBody Reservation reservation) {
