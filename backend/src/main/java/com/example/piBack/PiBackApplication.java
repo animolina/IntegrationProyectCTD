@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -20,8 +21,11 @@ public class PiBackApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry){
-				registry.addMapping("/**").allowedOrigins("*");
-
+				registry.addMapping("/**")
+						.allowedOrigins(CorsConfiguration.ALL)
+						.allowedMethods(CorsConfiguration.ALL)
+						.allowedHeaders(CorsConfiguration.ALL)
+						.exposedHeaders(CorsConfiguration.ALL);
 			}
 
 		};
