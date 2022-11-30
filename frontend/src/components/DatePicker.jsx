@@ -1,6 +1,6 @@
 import ReactDatePicker, { registerLocale } from 'react-datepicker';
-import { useAppContext } from '../context/Store';
 import { useState } from 'react';
+import { useAppContext } from '../context/Store';
 import '../styles/datePicker.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import es from 'date-fns/locale/es';
@@ -25,14 +25,14 @@ export default function DatePicker({
 		defineEnd(end);
 	};
 	/* ------------------------------- Configurations to display reservations by product ------------------------------- */
+
 	const store = useAppContext();
 	const reservations = store.reservations;
-	console.log(reservations);
-
+	
 	const disabledDates = reservations.map(reservation => ({
 		start: new Date(reservation.startDate),
 		end: new Date(reservation.endDate),
-	}));
+	})); 
 
 	return (
 		<div className={calendarType === 'booking' ? 'booking' : ' '}>

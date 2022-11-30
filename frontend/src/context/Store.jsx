@@ -13,6 +13,7 @@ const AppContext = createContext({
 	selectedCity: undefined,
 	selectedStartDate: undefined,
 	selectedEndDate: undefined,
+	selectedProduct: undefined,
 	categories: [],
 	products: [],
 	cities: [],
@@ -25,6 +26,7 @@ const AppContext = createContext({
 	setSelectedCity: selectedCity => {},
 	setSelectedStartDate: selectedStartDate => {},
 	setSelectedEndDate: selectedEndDate => {},
+	setSelectedProduct: selectedProduct => {},
 });
 
 export default function Store({ children }) {
@@ -32,13 +34,14 @@ export default function Store({ children }) {
 	const [selectedCategory, setSelectedCategory] = useState();
 	const [selectedStartDate, setSelectedStartDate] = useState();
 	const [selectedEndDate, setSelectedEndDate] = useState();
+	const [selectedProduct, setSelectedProduct] = useState();
 	const [categories, setCategories] = useState(null);
 	const [products, setProducts] = useState([]);
 	const [cities, setCities] = useState([]);
 	const [product, setProduct] = useState(null);
 	const [features, setFeatures] = useState([]);
 	const [policy, setPolicy] = useState(null);
-	const [idProduct, setIdProduct] = useState();
+	const [idProduct, setIdProduct] = useState(1);
 	const [reservations, setReservations] = useState([]);
 
 	useEffect(() => {
@@ -88,11 +91,14 @@ export default function Store({ children }) {
 	}, [idProduct]);
 
 	useEffect(() => {
-		(async () => {
-			const dataReservation = await getReservationByProductId(idProduct);
-			setReservations(dataReservation);
-		})();
-	}, [idProduct]);
+		const loadReservations = async () => {
+			const dataReservations = await getReservationByProductId({
+				productId: selectedProduct,
+			});
+			setReservations(dataReservations);
+		};
+		loadReservations();
+	}, [selectedProduct]);
 
 	return (
 		<AppContext.Provider
@@ -109,6 +115,7 @@ export default function Store({ children }) {
 				setSelectedEndDate,
 				setSelectedStartDate,
 				setSelectedCity,
+				setSelectedProduct,
 			}}
 		>
 			{children}
