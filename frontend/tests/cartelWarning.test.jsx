@@ -3,13 +3,11 @@ import { render, cleanup } from "@testing-library/react";
 import CartelWarning from "../src/components/CartelWarning";
 
 describe("CartelWarning", () => {
-    afterEach(cleanup);
-    const component = render(<CartelWarning />);
+  afterEach(cleanup);
+  const requiredText = "Para realizar una reserva necesitas estar logueado";
+  const component = render(<CartelWarning text={requiredText} />);
 
-    it("should render required text in CartelWarning", () => {
-        const requiredText =
-            "Para realizar una reserva necesitas estar logueado";
-
-        component.getByText(requiredText);
-    });
+  it("should render required text in CartelWarning", () => {
+    component.getByText(requiredText);
+  });
 });
