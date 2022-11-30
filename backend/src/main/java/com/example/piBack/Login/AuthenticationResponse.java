@@ -16,7 +16,7 @@ public class AuthenticationResponse {
         return jwt;
     }
 
-    public String getUser() {
+    public User getUser() {
         return user;
     }
 }
