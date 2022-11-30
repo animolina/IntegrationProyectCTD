@@ -32,7 +32,8 @@ public class AuthenticationController {
                 throw new Exception("Incorrect", e);
             }
             final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getUsername());
-            final String jwt = jwtUtil.generateToken((User) userDetails);
+            final User user = (User)userDetails;
+            final String jwt = jwtUtil.generateToken(user);
 
             return ResponseEntity.ok(new AuthenticationResponse((jwt), userDetails));
         }
