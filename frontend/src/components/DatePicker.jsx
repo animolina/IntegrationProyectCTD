@@ -26,13 +26,13 @@ export default function DatePicker({
 	};
 	/* ------------------------------- Configurations to display reservations by product ------------------------------- */
 
-	const store = useAppContext();
+	/* const store = useAppContext();
 	const reservations = store.reservations;
-	
+
 	const disabledDates = reservations.map(reservation => ({
 		start: new Date(reservation.startDate),
 		end: new Date(reservation.endDate),
-	})); 
+	})); */
 
 	return (
 		<div className={calendarType === 'booking' ? 'booking' : ' '}>
@@ -54,7 +54,7 @@ export default function DatePicker({
 				calendarType={calendarType}
 				previousMonthButtonLabel=''
 				nextMonthButtonLabel=''
-				excludeDateIntervals={calendarType === 'booking' ? disabledDates : ''}
+				// excludeDateIntervals={calendarType === 'booking' ? disabledDates : ''}
 			/>
 		</div>
 	);

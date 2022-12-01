@@ -6,7 +6,7 @@ export const getCities = async () => {
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 		},
-		url: 'http://ec2-3-91-229-168.compute-1.amazonaws.com:8080/city',
+		url: `${import.meta.env.VITE_SERVER_URL}/city`,
 	};
 	return await ajax(optionsRequest);
 };

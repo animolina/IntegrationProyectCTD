@@ -19,14 +19,14 @@ export default function DetailsCard({ startDate, endDate, submitLoginForm }) {
 				/>
 				<div className={styles.detailsCardBody}>
 					<div className={styles.container}>
-						<p className={styles.detailsCategory}>{product?.category.title}</p>
+						<p className={styles.detailsCategory}>{product?.category?.title}</p>
 						<h2 className={styles.detailsTitle}>{product?.title}</h2>
 						<span className={styles.detailsStars}>★ ★ ★ ★ ★ </span>
 						<div className={styles.locationContainer}>
 							<img src={locationIcon} alt='Ícono de localización' />
 							<p className={styles.locationText}>
-								{product.city.city}, {product?.city.state},{' '}
-								{product?.city.country}
+								{product?.city?.city}, {product?.city?.state},{' '}
+								{product?.city?.country}
 							</p>
 						</div>
 

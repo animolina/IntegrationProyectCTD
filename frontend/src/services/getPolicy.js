@@ -6,7 +6,7 @@ export const getPolicy = async () => {
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 		},
-		url: 'http://ec2-3-91-229-168.compute-1.amazonaws.com:8080/policy/3',
+		url: `${import.meta.env.VITE_SERVER_URL}/policy/3`,
 	};
 	return await ajax(optionsRequest);
 };
