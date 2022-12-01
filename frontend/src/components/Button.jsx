@@ -1,8 +1,9 @@
 import styles from '../styles/button.module.css';
 
-export default function Button({ type, innerText, handleClick }) {
+export default function Button({ type, innerText, handleClick}) {
 	return (
 		<button
+			role={'button'}
 			type='button'
 			onClick={handleClick}
 			className={type === 'outline' ? styles.outlineButton : styles.basicButton}

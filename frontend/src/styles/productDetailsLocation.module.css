@@ -1,0 +1,64 @@
+.productDetailsLocation {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100vw;
+	background-color: var(--bg-color);
+	height: 3.438rem;
+	padding: 0.5rem 2rem;
+	font: var(--font-text1);
+}
+
+.locationContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.locationIcon {
+	padding-right: 0.5rem;
+}
+
+.scoreContaniner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	padding-right: 0.5rem;
+}
+
+.scoreOpinion {
+	margin: 0;
+	text-align: center;
+	color: var(--text-color);
+	font: var(--font-heading4);
+}
+.scoreNumber {
+	font: var(--font-heading4);
+	border-radius: 10px;
+	background-color: var(--details-color);
+	color: var(--white-color);
+	padding: 0.5rem;
+	width: 2.125rem;
+	text-align: center;
+}
+
+.scoreStars {
+	color: var(--main-color);
+}
+
+/* ------------------------------- responsive ------------------------------- */
+
+@media screen and (max-width: 768px) {
+	.locationText > p {
+		font-size: 0.8rem;
+	}
+}
+@media screen and (max-width: 415px) {
+	.locationText > span {
+		display: none;
+	}
+	.scoreStars {
+		display: none;
+	}
+}

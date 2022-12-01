@@ -1,5 +1,12 @@
-import { RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
-import { Bucket } from "aws-cdk-lib/aws-s3";
+import { CfnOutput, RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
+import { Distribution, OriginAccessIdentity } from "aws-cdk-lib/aws-cloudfront";
+import { S3Origin } from "aws-cdk-lib/aws-cloudfront-origins";
+import {
+  BlockPublicAccess,
+  Bucket,
+  BucketAccessControl,
+  BucketEncryption,
+} from "aws-cdk-lib/aws-s3";
 import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
 
@@ -8,8 +15,13 @@ export class WebHostingStack extends Stack {
     super(scope, id, props);
 
     const frontendBucket = new Bucket(this, "proyecto-integrador", {
-      websiteIndexDocument: "index.html",
+      bucketName:'digital-booking',
       publicReadAccess: true,
+      websiteIndexDocument: 'index.html',
+      websiteErrorDocument: 'index.html',
+      // blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
+      // accessControl: BucketAccessControl.PRIVATE,
+      // encryption: BucketEncryption.S3_MANAGED,
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
     });
@@ -23,5 +35,28 @@ export class WebHostingStack extends Stack {
       }
     );
     bucketDeployment.node.addDependency(frontendBucket);
+
+    // const originAccessIdentity = new OriginAccessIdentity(
+    //   this,
+    //   "OriginAccessIdentity"
+    // );
+    // frontendBucket.grantRead(originAccessIdentity);
+
+    // const distribution = new Distribution(this, "pi-distribution", {
+    //   defaultRootObject: "index.html",
+    //   errorResponses: [
+    //     { responsePagePath: "/index.html", httpStatus: 404 },
+    //     { responsePagePath: "/index.html", httpStatus: 403 },
+    //   ],
+    //   defaultBehavior: {
+    //     origin: new S3Origin(frontendBucket, { originAccessIdentity }),
+    //   },
+    // });
+
+    new CfnOutput(this, "DistributionDomainName", {
+      value: frontendBucket.bucketWebsiteUrl,
+      description: "React App URL",
+      exportName: "webAppUrl",
+    });
   }
 }

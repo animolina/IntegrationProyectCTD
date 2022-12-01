@@ -1,16 +1,15 @@
-import { useContext } from 'react';
 import isotipo from '../assets/icons/isotipo.svg';
 import styles from '../styles/header.module.css';
 import Button from './Button';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from '../utils/Sidebar';
-import { UserContext } from '../context/UserContext';
+import { useUser } from '../hooks/User.hooks';
 
 const loginRoute = '/login';
 const signUpRoute = '/sign-up';
 
 export default function Header() {
-	const { user, setUser } = useContext(UserContext);
+	const { user, setUser } = useUser();
 	const navigate = useNavigate();
 	const location = useLocation();
 
@@ -21,6 +20,9 @@ export default function Header() {
 
 	const logOut = () => {
 		setUser(null);
+		sessionStorage.clear(); // delete session storage information.
+		/* window.location.reload(); // reloads page after logout. */
+		navigate('/');
 	};
 
 	const signUpButton = (
@@ -43,7 +45,11 @@ export default function Header() {
 		<header className={styles.header}>
 			<div>
 				<Link to='/' className={styles.headerLeftContainer} href='#'>
-					<img className={styles.headerIsotipo} src={isotipo} alt='isotipo' />
+					<img
+						className={styles.headerIsotipo}
+						src={isotipo}
+						alt='Isotipo de Digital Booking'
+					/>
 					<span className={styles.headerSlogan}>Sentite como en tu hogar</span>
 				</Link>
 			</div>
@@ -51,7 +57,7 @@ export default function Header() {
 			{user ? (
 				<div className={styles.logoutWelcome}>
 					<label className={styles.logoutWelcomeInitials}>
-						{getUserInitials(user.name)}
+						{getUserInitials(`${user.name} ${user.lastName}`)}
 					</label>
 					<p className={styles.logoutWelcomeText}>
 						Hola,{' '}

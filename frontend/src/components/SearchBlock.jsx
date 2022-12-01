@@ -1,4 +1,4 @@
-import cities from '../mockedData/cities.json';
+import { useAppContext } from '../context/Store';
 import styles from '../styles/searchBlock.module.css';
 import TypeAheadDropDown from './TypeAheadDropDown';
 import DatePicker from './DatePicker';
@@ -8,13 +8,28 @@ import { useState } from 'react';
 import Input from './Input';
 
 export default function SearchBlock() {
-	// eslint-disable-next-line no-unused-vars
 	const [selectedCity, setSelectedCity] = useState();
+	const [startDate, setStartDate] = useState(null);
+	const [endDate, setEndDate] = useState(null);
+
+	const defineStart = startDate => {
+		setStartDate(startDate);
+	};
+	const defineEnd = endDate => {
+		setEndDate(endDate);
+	};
+	const store = useAppContext();
+	const cities = store.cities; // to get array of cities from APIs endpoint.
+	const citiesData = cities.map(city => ({
+		name: city.state,
+		secondaryText: city.country,
+	}));
+
 	const renderCitySuggestion = citySuggestion => {
 		// function for city suggestions.
 		return (
 			<div className={styles.citySuggestion}>
-				<img src={locationIcon}></img>
+				<img alt='Ícono localización' src={locationIcon}></img>
 				<div className={styles.citySuggestionTextContainer}>
 					<span className={styles.primaryText}>{citySuggestion.name}</span>
 					<span className={styles.secondaryText}>
@@ -38,16 +53,26 @@ export default function SearchBlock() {
 				</span>
 				<form id='searchBlockForm' className={styles.formContainer}>
 					<TypeAheadDropDown
-						data={cities.map(city => ({
-							name: city.name,
-							secondaryText: city.country,
-						}))}
+						data={citiesData}
 						renderSuggestion={renderCitySuggestion}
 						placeholder='¿A dónde vamos?'
 						onSelectSuggestion={onSelectSuggestion}
 					/>
-					<DatePicker customInput={<Input />} />
-					<Button type='basic' innerText='Buscar'></Button>
+					<DatePicker
+						customInput={<Input />}
+						placeholder='Check-in - Check-out'
+						defineStart={defineStart}
+						defineEnd={defineEnd}
+					/>
+					<Button
+						type='basic'
+						innerText='Buscar'
+						handleClick={() => {
+							store.setSelectedCity(selectedCity);
+							store.setSelectedStartDate(startDate);
+							store.setSelectedEndDate(endDate);
+						}}
+					></Button>
 				</form>
 			</div>
 		</div>

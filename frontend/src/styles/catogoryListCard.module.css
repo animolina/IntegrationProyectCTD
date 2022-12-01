@@ -5,13 +5,14 @@
 	justify-content: space-around;
 	width: 100%;
 	gap: 1rem;
+	cursor: pointer;
 }
 
 @media screen and (max-width: 769px) {
 	.mainContainer {
 		flex-direction: row;
 		justify-content: start;
-		padding: 0;
+		padding: 1rem;
 	}
 }
 

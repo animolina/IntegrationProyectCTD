@@ -1,9 +1,12 @@
 package com.example.piBack.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,14 +23,18 @@ public class Category {
     @Column
     private String description;
     @Column
-    private String urlImage;
+    private String imageURL;
+
+    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Product> products = new HashSet<>();
 
     public Category() {
     }
 
-    public Category(String title, String description, String urlImage) {
+    public Category(String title, String description) {
         this.title = title;
         this.description = description;
-        this.urlImage = urlImage;
+
     }
 }

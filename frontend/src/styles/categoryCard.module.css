@@ -1,6 +1,5 @@
 .categoryCard {
 	flex: 1 0;
-	max-width: 21rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -43,4 +42,11 @@
 	opacity: 0.6;
 	height: 1.203rem;
 	margin-bottom: 0.424;
+}
+
+.categoryCard:hover {
+	cursor: pointer;
+	filter: brightness(110%);
+	-webkit-filter: brightness(110%);
+	-moz-filter: brightness(110%);
 }

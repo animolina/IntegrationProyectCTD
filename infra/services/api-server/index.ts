@@ -1,4 +1,4 @@
-import { App, Stack, StackProps } from "aws-cdk-lib";
+import { App, CfnOutput, RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
 import {
   AmazonLinuxGeneration,
   AmazonLinuxImage,
@@ -10,17 +10,20 @@ import {
   Port,
   SecurityGroup,
   SubnetType,
+  UserData,
   Vpc,
 } from "aws-cdk-lib/aws-ec2";
+import { ManagedPolicy, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
+import { Bucket } from "aws-cdk-lib/aws-s3";
 
-interface APIServerStackProps extends StackProps {
+interface ApiServerStackProps extends StackProps {
   vpc: Vpc;
 }
 
-export class APIServerStack extends Stack {
+export class ApiServerStack extends Stack {
   public readonly apiServerInstance: Instance;
 
-  constructor(scope: App, id: string, props: APIServerStackProps) {
+  constructor(scope: App, id: string, props: ApiServerStackProps) {
     super(scope, id, props);
 
     const { vpc } = props;
@@ -32,7 +35,33 @@ export class APIServerStack extends Stack {
     apiServerSG.addIngressRule(
       Peer.anyIpv4(),
       Port.tcp(80),
-      "allow HTTP traffic from anywhere"
+      "Allow HTTP traffic from anywhere"
+    );
+    apiServerSG.addIngressRule(
+      Peer.anyIpv4(),
+      Port.tcp(443),
+      "Allow HTTPS traffic from anywhere"
+    );
+    apiServerSG.addIngressRule(
+      Peer.anyIpv4(),
+      Port.tcp(8080),
+      "Allow HTTP traffic to the Spring API from anywhere"
+    );
+
+    const userData = UserData.forLinux();
+
+    const SSM_AGENT_RPM =
+      "https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm";
+    userData.addCommands(
+      `sudo yum install -y ${SSM_AGENT_RPM}`,
+      "restart amazon-ssm-agent"
+    );
+
+    const role = new Role(this, "api-server-role", {
+      assumedBy: new ServicePrincipal("ec2.amazonaws.com"),
+    });
+    role.addManagedPolicy(
+      ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMManagedInstanceCore")
     );
 
     this.apiServerInstance = new Instance(this, "ec2-instance", {
@@ -48,15 +77,25 @@ export class APIServerStack extends Stack {
       machineImage: new AmazonLinuxImage({
         generation: AmazonLinuxGeneration.AMAZON_LINUX_2,
       }),
-      keyName: "apiserver-key-pair",
+      userData: userData,
+      role: role,
     });
 
-    this.apiServerInstance.addUserData(
-      "sudo su",
-      "yum install -y httpd",
-      "systemctl start httpd",
-      "systemctl enable httpd",
-      'echo "<h1>It works :)</h1>" > /var/www/html/index.html'
-    );
+    new Bucket(this, "pi-backend-artifact", {
+      bucketName: "pi-backend-artifact",
+      publicReadAccess: true,
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+    });
+
+    new CfnOutput(this, "Instance ID", {
+      value: this.apiServerInstance.instanceId,
+    });
+    new CfnOutput(this, "Instance Public ID", {
+      value: this.apiServerInstance.instancePublicIp,
+    });
+    new CfnOutput(this, "Instance Hostname", {
+      value: this.apiServerInstance.instancePublicDnsName,
+    });
   }
 }

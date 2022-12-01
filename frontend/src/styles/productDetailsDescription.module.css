@@ -1,0 +1,24 @@
+/* TODO barra inferior */
+.productDetailsDescription {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 0.5rem 2rem;
+	width: 100vw;
+	gap: 0.5rem;
+	color: var(--text-color);
+	line-height: 1.5rem;
+}
+
+.descriptionTitle {
+	font: var(--font-heading1);
+	margin: 0;
+}
+
+.descriptionText {
+	font: var(--font-text2);
+	padding-right: 2rem;
+	margin-top: 0;
+	width: 100%;
+}

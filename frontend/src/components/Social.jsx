@@ -11,12 +11,12 @@ export default function Social({ type }) {
 			className={type === 'footer' ? styles.footerSocial : styles.burgerSocial}
 		>
 			<a
-				className='menu-item'
+				className='socialFacebook'
 				href='https://www.facebook.com/'
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				<img src={iconFacebook} alt='Icon Facebook' />
+				<img src={iconFacebook} alt='Ícono Facebook' />
 			</a>
 			<a
 				className='socialLinkedin'
@@ -24,7 +24,7 @@ export default function Social({ type }) {
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				<img src={iconLinkedin} alt='Icon LinkedIn'></img>
+				<img src={iconLinkedin} alt='Ícono LinkedIn'></img>
 			</a>
 			<a
 				className='socialTwitter'
@@ -32,7 +32,7 @@ export default function Social({ type }) {
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				<img src={iconTwitter} alt='Icon Twitter'></img>
+				<img src={iconTwitter} alt='Ícono Twitter'></img>
 			</a>
 
 			<a
@@ -41,7 +41,7 @@ export default function Social({ type }) {
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				<img src={iconInstagram} alt='Icon Instagram'></img>
+				<img src={iconInstagram} alt='Ícono Instagram'></img>
 			</a>
 		</div>
 	);

@@ -3,14 +3,15 @@
 	flex-direction: row;
 	background-color: var(--white-color);
 	height: 17.688rem;
-	width: 38.5rem;
+	width: 48%;
 	border-radius: 8px;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .productCardImg {
 	max-width: 20rem;
-	height: 17.688rem;
+	width: 100%;
+	height: auto;
 	object-fit: fill;
 	border-radius: 8px;
 }
@@ -24,7 +25,6 @@
 }
 
 .productCardBody button {
-	margin: 0.5rem;
 	width: 100%;
 }
 
@@ -44,8 +44,7 @@
 	font-weight: 700;
 	font-size: 14px;
 	line-height: 16px;
-	color: var(--text-color);
-	opacity: 0.6;
+	color: grey;
 	margin-bottom: 0.424;
 	text-overflow: ellipsis ' [..]';
 	overflow: hidden;
@@ -55,6 +54,7 @@
 	font-size: 14px;
 	font-weight: 700;
 	color: grey;
+	padding: 0;
 }
 
 .productCardCategoryStars {
@@ -66,7 +66,6 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
-	text-align: center;
 }
 
 .productCardLocation img {
@@ -77,13 +76,14 @@
 .productCardLocation a {
 	text-decoration: none;
 	color: var(--main-color);
+	margin-left: 0.5rem;
+	font-size: 14px;
 }
 
 .productCardLocationText {
 	font-size: 14px;
 	font-weight: 700;
 	color: var(--text-color);
-	margin: 0.5rem;
 }
 
 /* ------------------------------- responsive ------------------------------- */
@@ -91,6 +91,9 @@
 @media screen and (max-width: 769px) {
 	.productCardLocation a {
 		display: none;
+	}
+	.productCard {
+		width: 43rem;
 	}
 }
 
@@ -109,10 +112,11 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		width: 100%;
 		height: 100%;
 	}
 
 	.productCardImg {
-		max-width: 40rem;
+		max-width: 26rem;
 	}
 }

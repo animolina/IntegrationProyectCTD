@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../styles/typeAhead.module.css';
 
 export default function TypeAheadDropDown({
@@ -7,10 +7,9 @@ export default function TypeAheadDropDown({
 	placeholder,
 	onSelectSuggestion,
 }) {
-	const [suggestions, setSuggestions] = useState(data.sort()); // array of suggestions to populate the autocomplete menu.
+	const [suggestions, setSuggestions] = useState([]); // array of suggestions to populate the autocomplete menu.
 	const [suggestionsActive, setSuggestionsActive] = useState(false); // used to toggle the visibility of the autocomplete suggestions.
 	const [value, setValue] = useState(''); // autocomplete suggestion that the user has selected.
-	// console.log(suggestions);
 
 	const handleChange = e => {
 		// monitor for changes to the input field
@@ -26,9 +25,14 @@ export default function TypeAheadDropDown({
 		}
 	};
 
+	useEffect(() => {
+		setSuggestions(data.sort());
+	}, [data]);
+
 	const handleClick = suggestion => {
 		// to be able to click an autocomplete suggestion and have that suggestion populate the input field.
 		setSuggestions([]);
+
 		setValue(
 			suggestion.secondaryText
 				? `${suggestion.name}, ${suggestion.secondaryText}`

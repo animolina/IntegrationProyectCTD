@@ -1,8 +1,16 @@
 import CategoryCard from './CategoryCard';
 import styles from '../styles/catogoryListCard.module.css';
-import categories from '../mockedData/categories.json';
+import { useAppContext } from '../context/Store';
+import Loader from '../utils/Loader';
 
 export default function CategoryListCard() {
+	const store = useAppContext();
+	const categories = store.categories;
+
+	if (categories === null) {
+		return <Loader />;
+	}
+
 	return (
 		<div className={styles.mainContainer}>
 			{categories.map(category => (
@@ -10,7 +18,10 @@ export default function CategoryListCard() {
 					key={category.id}
 					title={category.title}
 					description={category.description}
-					urlImg={category.urlImg}
+					urlImg={category.imageURL}
+					onClick={() => {
+						store.setSelectedCategory(category.title);
+					}}
 				/>
 			))}
 		</div>

@@ -1,0 +1,102 @@
+stages:
+  - build
+  - test
+  - deploy
+
+cache:
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - .npm/
+
+before_script:
+  - cd frontend
+  - npm ci --cache .npm --prefer-offline
+
+build-frontend-job:
+  image: node:latest
+  stage: build
+  script:
+    - echo "Compiling the React app..."
+    - npm run build
+    - echo "React app built successfully!"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == "development"
+      changes:
+        - frontend/**/*
+  artifacts:
+    paths:
+      - frontend/dist
+
+build-backend-job:
+  stage: build
+  image: maven:latest
+  before_script:
+   - []
+  script:
+    - echo "Compiling the Spring Boot API..."
+    - cd backend
+    - mvn clean install -D skipTests
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == "development"
+      changes:
+        - backend/**/*
+  artifacts:
+    paths:
+      - backend/target/pi-api.jar
+
+unit-tests-frontend:
+  stage: test
+  image: node:latest
+  script:
+    - echo "Running Vitest tests..."
+    - npm run test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == "development"
+      changes:
+        - frontend/**/*
+
+unit-tests-backend:
+  stage: test
+  before_script:
+   - []
+  script:
+    - cd backend
+    - echo "Pending to add tests on the frontend project..."
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == "development"
+      changes:
+        - backend/**/*
+
+deploy-frontend-job:
+  stage: deploy
+  before_script:
+   - []
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  script:
+    - echo "Deploying Web App to S3..."
+    - aws s3 sync frontend/dist s3://digital-booking
+    - echo "Web App successfully deployed!"
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development"
+      changes:
+        - frontend/**/*
+
+deploy-backend-job:
+  stage: deploy
+  before_script:
+   - []
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  script:
+    - echo "Uploading artifact to S3 proxy bucket"
+    - aws s3 cp backend/target/pi-api.jar s3://pi-backend-artifact
+    - echo "Installing AWS SSM Manager"
+    - curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+    - dpkg -i session-manager-plugin.deb
+    - echo "Connecting to the instance and running deploy script"
+    - apt-get install expect -y
+    - unbuffer aws ssm start-session --target $EC2_INSTANCE_ID --document-name AWS-StartInteractiveCommand --parameters '{"command":["cd ~/pi-api && ./deploy-api.sh"]}'
+    - echo "API successfully deployed."
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development"
+      changes:
+        - backend/**/*

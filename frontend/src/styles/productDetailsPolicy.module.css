@@ -1,0 +1,48 @@
+.policyTitle {
+	padding: 1.5rem;
+	width: 100vw;
+
+	padding: 0.5rem 2rem;
+	border-bottom: 1px solid var(--main-color);
+	color: var(--text-color);
+}
+
+.productDetailsPolicy {
+	width: 100vw;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	gap: 2rem;
+	padding-left: 2rem;
+	margin-bottom: 2rem;
+	align-items: flex-start;
+}
+
+.policyItem {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 20rem;
+	list-style: none;
+	white-space: wrap;
+	overflow: hidden;
+}
+
+.policyItem > ul {
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	gap: 2rem 0;
+}
+.policyItem > ul > li {
+	font: var(--font-text2);
+	list-style: none;
+	color: #4f4f50;
+}
+
+.policyItemTitle {
+	font: var(--font-heading2);
+	color: var(--details-color);
+}
