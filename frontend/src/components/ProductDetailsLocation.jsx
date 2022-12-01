@@ -15,7 +15,11 @@ export default function ProductDetailsLocation() {
 	return (
 		<div className={styles.productDetailsLocation}>
 			<div className={styles.locationContainer}>
-				<img className={styles.locationIcon} src={locationIcon} alt='' />
+				<img
+					className={styles.locationIcon}
+					src={locationIcon}
+					alt='Ícono localización'
+				/>
 				<div className={styles.locationText}>
 					<p>
 						{product.city.city}, {product.city.state}, {product.city.country}

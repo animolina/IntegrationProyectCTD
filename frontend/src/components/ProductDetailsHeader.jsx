@@ -19,7 +19,11 @@ export default function ProductDetailsHeader({ linkPath }) {
 				<h2 className={styles.productDetailsTitle}>{product.title}</h2>
 			</div>
 			<Link to={linkPath || '/'} relative='path'>
-				<img className={styles.backArrow} src={backArrow} alt='Back Arrow' />
+				<img
+					className={styles.backArrow}
+					src={backArrow}
+					alt='Flecha para volver'
+				/>
 			</Link>
 		</header>
 	);

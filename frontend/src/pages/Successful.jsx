@@ -3,7 +3,7 @@ import iconSuccess from '../assets/icons/iconSuccess.svg';
 import Button from '../components/Button';
 import { useNavigate } from 'react-router-dom';
 
-export default function SuccessfulReservation() {
+export default function Successful({ type }) {
 	const navigate = useNavigate();
 
 	return (
@@ -12,11 +12,15 @@ export default function SuccessfulReservation() {
 				<img
 					src={iconSuccess}
 					className={styles.iconSuccess}
-					alt='Ícono de éxito'
+					alt='Ícono de chequeado'
 				/>
 				<span className={styles.textGratitude}>¡Muchas gracias!</span>
 				<span className={styles.textConfirm}>
-					Su reserva se ha realizado con éxito
+					Tu{' '}
+					{type === 'property'
+						? 'propiedad se ha creado '
+						: 'reserva se ha realizado '}
+					con éxito
 				</span>
 
 				<Button

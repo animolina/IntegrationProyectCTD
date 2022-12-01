@@ -45,7 +45,7 @@ export default function ProductDetailsFeatureItem({ type }) {
 
 	return (
 		<li className={styles.featureItem}>
-			<img src={itemFeature[type]} alt='' /> {text}
+			<img src={itemFeature[type]} alt='Ícono característica' /> {text}
 		</li>
 	);
 }

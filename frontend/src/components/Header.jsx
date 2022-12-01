@@ -45,7 +45,11 @@ export default function Header() {
 		<header className={styles.header}>
 			<div>
 				<Link to='/' className={styles.headerLeftContainer} href='#'>
-					<img className={styles.headerIsotipo} src={isotipo} alt='isotipo' />
+					<img
+						className={styles.headerIsotipo}
+						src={isotipo}
+						alt='Isotipo de Digital Booking'
+					/>
 					<span className={styles.headerSlogan}>Sentite como en tu hogar</span>
 				</Link>
 			</div>
