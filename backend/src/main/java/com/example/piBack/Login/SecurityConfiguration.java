@@ -3,6 +3,7 @@ import com.example.piBack.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -34,9 +35,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http.cors().and().csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers("/product/user/**", "/category/**","/characteristic/**", "/city/**", "/client/**", "/image/**", "/user/**", "/policy/**").permitAll()
+                .antMatchers("/category/**","/characteristic/**", "/city/**", "/client/**", "/image/**", "/user/**", "/policy/**").permitAll()
                 .antMatchers("/reservation/**").authenticated()
-                .antMatchers("/product/admin/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/product/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/product/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/product/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/product/**").hasAuthority("ADMIN")
                 .antMatchers( "/login")
                 .permitAll()
                 .anyRequest()
