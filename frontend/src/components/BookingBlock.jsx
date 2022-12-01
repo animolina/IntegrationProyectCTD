@@ -14,8 +14,10 @@ export default function BookingBlock() {
 			? navigate(`/product-details/${id}/reservation`)
 			: navigate(`/login`, {
 					state: {
-						showWarning: true,
-						warningText: 'Para realizar una reserva necesitas estar logueado',
+						alert: {
+							text: 'Para realizar una reserva necesitas estar logueado',
+							type: 'warning',
+						},
 					},
 			  });
 	};
