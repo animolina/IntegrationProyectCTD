@@ -27,9 +27,7 @@ const passwordFieldConfig = {
 export default function Login() {
 	const [emailError, setEmailError] = useState();
 	const [passwordError, setPasswordError] = useState();
-	const [showAlert, setShowAlert] = useState();
-	const [alertText, setAlertText] = useState();
-	const [alertType, setAlertType] = useState();
+	const [alert, setAlert] = useState();
 	const { state } = useLocation();
 
 	const { setUser } = useContext(UserContext);
@@ -38,9 +36,10 @@ export default function Login() {
 
 	useEffect(() => {
 		if (state) {
-			setShowAlert(state.showAlert);
-			setAlertText(state.alertText);
-			setAlertType(state.alertType);
+			const alert = state.alert;
+			if (alert) {
+				setAlert({ text: alert.text, type: alert.type });
+			}
 		}
 	});
 
@@ -78,14 +77,10 @@ export default function Login() {
 			CacheService.setItem(CacheItems.UserEmail, user.email);
 			navigate('/');
 		} else if (result.status === 403) {
-			setShowAlert(true);
-			setAlertText('Credenciales erroneas');
-			setAlertType('error');
+			setAlert({ text: 'Credenciales erroneas', type: 'error' });
 
 			setTimeout(() => {
-				setShowAlert(false);
-				setAlertText(null);
-				setAlertType(null);
+				setAlert(null);
 			}, 5000);
 		}
 	};
@@ -115,7 +110,7 @@ export default function Login() {
 
 	return (
 		<div className={styles.mainContainer}>
-			{showAlert && <Alert text={alertText} type={alertType} />}
+			{alert && <Alert text={alert.text} type={alert.type} />}
 			<h1 className={styles.title}>Iniciar sesión</h1>
 			<form className={styles.formContainer}>
 				<FormField config={emailFieldConfig} error={emailError}></FormField>
