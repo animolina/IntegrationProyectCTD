@@ -16,7 +16,7 @@ export default function Successful({ type }) {
 				/>
 				<span className={styles.textGratitude}>¡Muchas gracias!</span>
 				<span className={styles.textConfirm}>
-					Su{' '}
+					Tu{' '}
 					{type === 'property'
 						? 'propiedad se ha creado '
 						: 'reserva se ha realizado '}

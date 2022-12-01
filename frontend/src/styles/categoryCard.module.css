@@ -1,6 +1,5 @@
 .categoryCard {
 	flex: 1 0;
-	max-width: 21rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;

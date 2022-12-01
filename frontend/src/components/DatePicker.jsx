@@ -13,15 +13,15 @@ export default function DatePicker({
 	defineEnd,
 	defineStart,
 }) {
-	const [startDate, setStartDate] = useState(null);
-	const [endDate, setEndDate] = useState(null);
+	const [startDate, setStartDate] = useState();
+	const [endDate, setEndDate] = useState();
 
 	const onChange = dates => {
 		const [start, end] = dates;
 		setStartDate(start);
 		setEndDate(end);
-		defineStart(start ? start.toLocaleDateString() : null);
-		defineEnd(end ? end.toLocaleDateString() : null);
+		defineStart(start);
+		defineEnd(end);
 	};
 
 	return (

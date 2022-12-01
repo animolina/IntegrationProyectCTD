@@ -32,9 +32,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable();
-        http.csrf().disable()
+        http.cors().and().csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers("/product/**", "/category/**","/characteristic/**", "/city/**", "/client/**", "/image/**", "/policy/**").permitAll()
+                .antMatchers("/product/**", "/category/**","/characteristic/**", "/city/**", "/client/**", "/image/**", "/user/**", "/policy/**").permitAll()
                 .antMatchers("/reservation/**").authenticated()
                 .antMatchers( "/login")
                 .permitAll()
@@ -45,7 +45,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

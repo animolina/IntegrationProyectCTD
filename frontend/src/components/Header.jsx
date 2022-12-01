@@ -57,7 +57,7 @@ export default function Header() {
 			{user ? (
 				<div className={styles.logoutWelcome}>
 					<label className={styles.logoutWelcomeInitials}>
-						{getUserInitials(user.name)}
+						{getUserInitials(`${user.name} ${user.lastName}`)}
 					</label>
 					<p className={styles.logoutWelcomeText}>
 						Hola,{' '}

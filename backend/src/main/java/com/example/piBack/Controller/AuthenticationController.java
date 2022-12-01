@@ -10,10 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthenticationController {
@@ -35,9 +32,10 @@ public class AuthenticationController {
                 throw new Exception("Incorrect", e);
             }
             final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getUsername());
-            final String jwt = jwtUtil.generateToken((User) userDetails);
+            final User user = (User)userDetails;
+            final String jwt = jwtUtil.generateToken(user);
 
-            return ResponseEntity.ok(new AuthenticationResponse((jwt)));
+            return ResponseEntity.ok(new AuthenticationResponse(jwt, user));
         }
 
 

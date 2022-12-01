@@ -32,11 +32,11 @@ export default function DetailsCard({ startDate, endDate, submitLoginForm }) {
 
 						<div className={styles.timeCheck}>
 							<span>Check in</span>
-							<span>{startDate}</span>
+							<span>{startDate ? startDate.toLocaleDateString() : ' '}</span>
 						</div>
 						<div className={styles.timeCheck}>
 							<span>Check out</span>
-							<span>{endDate}</span>
+							<span>{endDate ? endDate.toLocaleDateString() : ' '}</span>
 						</div>
 
 						<Link to={'/success'} className={styles.reservationButton}>
