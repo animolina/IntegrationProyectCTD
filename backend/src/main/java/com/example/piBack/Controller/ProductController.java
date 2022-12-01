@@ -37,13 +37,13 @@ public class ProductController {
     })
 
     //get all products
-    @GetMapping
+    @GetMapping("/user")
     public ResponseEntity<Collection<Product>> listProduct() {
         return ResponseEntity.ok(productService.listProduct());
     }
 
     //get all products by city, category or date
-    @GetMapping ("/filter")
+    @GetMapping ("/user/filter")
     public ResponseEntity<Collection<Product>> listProductsbyCategoryCityDate(
             @RequestParam(required = false) String city,
             @RequestParam(required = false)String category,
@@ -54,7 +54,7 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping("/random")
+    @GetMapping("/user/random")
     public ResponseEntity<Collection<Product>> listProductRandom() {
         Collection<Product> productsRandom = productService.listProduct();
         Collections.shuffle((List<Product>) productsRandom);
@@ -62,7 +62,7 @@ public class ProductController {
     }
 
     //get product by id
-    @GetMapping("/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<Product> findProduct(@PathVariable Long id){
         if(productService.findProduct(id).isPresent()) {
             return ResponseEntity.ok(productService.findProduct(id).get());
@@ -71,7 +71,7 @@ public class ProductController {
         }
     }
     //add a new product
-   @PostMapping
+   @PostMapping("/admin")
     public ResponseEntity<Object> addProduct(@RequestBody Product product) {
         try {
             Product newProduct = productService.addProduct(product);
@@ -82,7 +82,7 @@ public class ProductController {
     }
 
     //update a product by id
-    @PutMapping("/{id}")
+    @PutMapping("/admin/{id}")
     public ResponseEntity<Product> editProduct(@PathVariable("id") long id, @RequestBody Product product) {
         Optional<Product> product_ = productService.findProduct(id);
 
@@ -94,7 +94,7 @@ public class ProductController {
     }
 
     //delete a product by id
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/{id}")
     public ResponseEntity deleteProduct (@PathVariable Long id) {
         try {
             productService.deleteProduct(id);

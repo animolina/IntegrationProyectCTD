@@ -34,8 +34,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http.cors().and().csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers("/product/**", "/category/**","/characteristic/**", "/city/**", "/client/**", "/image/**", "/user/**", "/policy/**").permitAll()
+                .antMatchers("/product/user/**", "/category/**","/characteristic/**", "/city/**", "/client/**", "/image/**", "/user/**", "/policy/**").permitAll()
                 .antMatchers("/reservation/**").authenticated()
+                .antMatchers("/product/admin/**").hasAuthority("ADMIN")
                 .antMatchers( "/login")
                 .permitAll()
                 .anyRequest()
