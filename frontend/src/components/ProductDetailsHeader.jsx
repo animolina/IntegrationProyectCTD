@@ -14,9 +14,9 @@ export default function ProductDetailsHeader({ linkPath }) {
 		<header className={styles.productDetailsHeader}>
 			<div className={styles.container}>
 				<p className={styles.productDetailsCategory}>
-					{product.category.title}
+					{product?.category?.title}
 				</p>
-				<h2 className={styles.productDetailsTitle}>{product.title}</h2>
+				<h2 className={styles.productDetailsTitle}>{product?.title}</h2>
 			</div>
 			<Link to={linkPath || '/'} relative='path'>
 				<img

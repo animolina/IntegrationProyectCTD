@@ -6,7 +6,7 @@ export const getFeatures = async () => {
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 		},
-		url: 'http://ec2-3-91-229-168.compute-1.amazonaws.com:8080/characteristic/',
+		url: `${import.meta.env.VITE_SERVER_URL}/characteristic/`,
 	};
 	return await ajax(optionsRequest);
 };

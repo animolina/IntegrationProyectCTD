@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { CacheService } from './cacheService';
 
-const API_BASE_URL = 'http://ec2-3-91-229-168.compute-1.amazonaws.com:8080';
-
 export const AxiosClient = axios.create({
-	baseURL: API_BASE_URL,
+	baseURL: import.meta.env.VITE_SERVER_URL,
 	timeout: 1000,
 });
 

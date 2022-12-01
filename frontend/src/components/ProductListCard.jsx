@@ -29,8 +29,8 @@ export default function ProductListCard() {
 							title={product?.title}
 							description={product?.description}
 							urlImg={product?.images[0]?.url}
-							location={product?.city.state}
-							category={product?.category.title}
+							location={product?.city?.state}
+							category={product?.category?.title}
 						/>
 					))}
 				</div> // slice is used to limit the quantity of product recomendations being displayed on home page.(8 products)
@@ -45,8 +45,8 @@ export default function ProductListCard() {
 								title={product?.title}
 								description={product?.description}
 								urlImg={product?.images[0]?.url}
-								location={product?.city.state}
-								category={product?.category.title}
+								location={product?.city?.state}
+								category={product?.category?.title}
 							/>
 						))}
 				</div>

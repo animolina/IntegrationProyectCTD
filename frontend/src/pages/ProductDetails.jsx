@@ -21,6 +21,7 @@ export default function ProductDetails() {
 
 	useEffect(() => {
 		store.setIdProduct(id);
+		store.setSelectedProductId(id);
 		window.scrollTo(0, 0);
 	}, []);
 

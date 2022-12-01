@@ -44,7 +44,7 @@ export default function Login() {
 				document.querySelector('#email').value = state.userEmail;
 			}
 		}
-	});
+	}, [state]);
 
 	let isFormValid = false;
 

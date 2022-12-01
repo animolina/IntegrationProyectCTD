@@ -7,23 +7,26 @@ import { getCities } from '../services/getCities';
 import { getProductById } from '../services/getProductById';
 import { getFeatures } from '../services/getFeatures';
 import { getPolicy } from '../services/getPolicy';
-
+import { getReservationByProductId } from '../services/getReservationByProductId';
 const AppContext = createContext({
 	selectedCategory: undefined,
 	selectedCity: undefined,
 	selectedStartDate: undefined,
 	selectedEndDate: undefined,
+	selectedProductId: undefined,
 	categories: [],
 	products: [],
 	cities: [],
 	product: {},
 	features: [],
 	policy: {},
+	reservations: [],
 	setIdProduct: id => {},
 	setSelectedCategory: selectedCategory => {},
 	setSelectedCity: selectedCity => {},
 	setSelectedStartDate: selectedStartDate => {},
 	setSelectedEndDate: selectedEndDate => {},
+	setSelectedProductId: selectedProductId => {},
 });
 
 export default function Store({ children }) {
@@ -31,6 +34,7 @@ export default function Store({ children }) {
 	const [selectedCategory, setSelectedCategory] = useState();
 	const [selectedStartDate, setSelectedStartDate] = useState();
 	const [selectedEndDate, setSelectedEndDate] = useState();
+	const [selectedProductId, setSelectedProductId] = useState();
 	const [categories, setCategories] = useState(null);
 	const [products, setProducts] = useState([]);
 	const [cities, setCities] = useState([]);
@@ -38,6 +42,7 @@ export default function Store({ children }) {
 	const [features, setFeatures] = useState([]);
 	const [policy, setPolicy] = useState(null);
 	const [idProduct, setIdProduct] = useState(1);
+	const [reservations, setReservations] = useState([]);
 
 	useEffect(() => {
 		const loadCategories = async () => {
@@ -85,6 +90,18 @@ export default function Store({ children }) {
 		})();
 	}, [idProduct]);
 
+	useEffect(() => {
+		const loadReservations = async () => {
+			const dataReservations = await getReservationByProductId({
+				productId: selectedProductId,
+			});
+			setReservations(dataReservations);
+		};
+		if (selectedProductId !== undefined) {
+			loadReservations();
+		}
+	}, [selectedProductId]);
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -94,11 +111,13 @@ export default function Store({ children }) {
 				product,
 				features,
 				policy,
+				reservations,
 				setIdProduct,
 				setSelectedCategory,
 				setSelectedEndDate,
 				setSelectedStartDate,
 				setSelectedCity,
+				setSelectedProductId,
 			}}
 		>
 			{children}

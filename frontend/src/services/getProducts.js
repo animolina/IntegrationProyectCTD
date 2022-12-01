@@ -6,7 +6,7 @@ export const getProducts = async params => {
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 		},
-		url: `http://ec2-3-91-229-168.compute-1.amazonaws.com:8080/product/filter/`,
+		url: `${import.meta.env.VITE_SERVER_URL}/product/filter/`,
 		params,
 	};
 	return await ajax(optionsRequest);
