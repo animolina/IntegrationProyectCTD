@@ -40,6 +40,9 @@ export default function Login() {
 			if (alert) {
 				setAlert({ text: alert.text, type: alert.type });
 			}
+			if (state.userEmail) {
+				document.querySelector('#email').value = state.userEmail;
+			}
 		}
 	});
 
@@ -81,7 +84,7 @@ export default function Login() {
 
 			setTimeout(() => {
 				setAlert(null);
-			}, 5000);
+			}, 2000);
 		}
 	};
 
