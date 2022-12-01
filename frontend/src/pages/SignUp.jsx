@@ -5,6 +5,7 @@ import linkStyles from '../styles/link.module.css';
 import { validateEmail } from '../utils';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthService } from '../services/authService';
 
 const nameFieldConfig = {
 	fieldType: 'input',
@@ -52,7 +53,7 @@ export default function SignUp() {
 
 	let isFormValid = false;
 
-	const submitSignUpForm = () => {
+	const submitSignUpForm = async () => {
 		const name = document.querySelector('#name');
 		const lastName = document.querySelector('#lastName');
 		const email = document.querySelector('#email');
@@ -95,7 +96,20 @@ export default function SignUp() {
 		}
 
 		if (isFormValid) {
-			navigate('/login');
+			const requestObject = {
+				name: name.value,
+				lastName: lastName.value,
+				email: email.value,
+				city: "",
+				password: password.value,
+				userRoles: 'USER',
+			};
+
+			const result = await AuthService.signUp(requestObject);
+
+			if (result) {
+				navigate('/login');
+			}
 		}
 	};
 

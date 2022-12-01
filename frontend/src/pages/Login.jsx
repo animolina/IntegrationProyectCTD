@@ -6,7 +6,7 @@ import { useContext, useState, useEffect } from 'react';
 import linkStyles from '../styles/link.module.css';
 import { UserContext } from '../context/UserContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import CartelWarning from '../components/CartelWarning';
+import Alert from '../components/Alert';
 import { AuthService } from '../services/authService';
 import { CacheItems, CacheService } from '../services/cacheService';
 
@@ -27,8 +27,9 @@ const passwordFieldConfig = {
 export default function Login() {
 	const [emailError, setEmailError] = useState();
 	const [passwordError, setPasswordError] = useState();
-	const [showWarningSign, setShowWarningSign] = useState();
-	const [showWarningSignText, setShowWarningSignText] = useState();
+	const [showAlert, setShowAlert] = useState();
+	const [alertText, setAlertText] = useState();
+	const [alertType, setAlertType] = useState();
 	const { state } = useLocation();
 
 	const { setUser } = useContext(UserContext);
@@ -37,8 +38,9 @@ export default function Login() {
 
 	useEffect(() => {
 		if (state) {
-			setShowWarningSign(state.showWarning);
-			setShowWarningSignText(state.warningText);
+			setShowAlert(state.showAlert);
+			setAlertText(state.alertText);
+			setAlertType(state.alertType);
 		}
 	});
 
@@ -76,13 +78,15 @@ export default function Login() {
 			CacheService.setItem(CacheItems.UserEmail, user.email);
 			navigate('/');
 		} else if (result.status === 403) {
-			setShowWarningSign(true);
-			setShowWarningSignText('Credenciales erroneas');
+			setShowAlert(true);
+			setAlertText('Credenciales erroneas');
+			setAlertType('error');
 
 			setTimeout(() => {
-				setShowWarningSign(false);
-				setShowWarningSignText(null);
-			}, 2000);
+				setShowAlert(false);
+				setAlertText(null);
+				setAlertType(null);
+			}, 5000);
 		}
 	};
 
@@ -111,7 +115,7 @@ export default function Login() {
 
 	return (
 		<div className={styles.mainContainer}>
-			{showWarningSign && <CartelWarning text={showWarningSignText} />}
+			{showAlert && <Alert text={alertText} type={alertType} />}
 			<h1 className={styles.title}>Iniciar sesión</h1>
 			<form className={styles.formContainer}>
 				<FormField config={emailFieldConfig} error={emailError}></FormField>
