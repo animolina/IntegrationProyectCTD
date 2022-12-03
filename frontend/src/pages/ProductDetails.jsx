@@ -28,7 +28,6 @@ export default function ProductDetails() {
 	}, []);
 
 	useEffect(() => {
-		console.log(reservations);
 		if (reservations && reservations.length > 0) {
 			setDisabledDates(
 				reservations.map(reservation => ({
