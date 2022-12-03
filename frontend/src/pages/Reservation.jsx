@@ -63,7 +63,7 @@ export default function Reservation() {
 	const rawCities = [...store.cities];
 	rawCities.unshift({
 		id: null,
-		city: 'Selecciona una ciudad',
+		city: 'Seleccionar una ciudad',
 		state: null,
 		country: null,
 	});
