@@ -6,11 +6,8 @@ import ProductDetailsDescription from './../components/ProductDetailsDescription
 import ProductDetailsFeature from '../components/ProductDetailsFeature.jsx';
 import ProductDetailsPolicy from './../components/ProductDetailsPolicy';
 import BookingBlock from './../components/BookingBlock';
-
 import ShareProduct from '../utils/ShareProduct';
-
 import { useNavigate, useParams } from 'react-router-dom';
-
 import { useAppContext } from '../context/Store';
 import { useEffect, useState } from 'react';
 import ProductDetailsMap from './../components/ProductDetailsMap';
@@ -22,14 +19,15 @@ export default function ProductDetails() {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const { user } = useUser();
-
 	const reservations = store.reservations;
 
 	useEffect(() => {
 		store.setIdProduct(id);
 		store.setSelectedProductId(id);
 		window.scrollTo(0, 0);
+	}, []);
 
+	useEffect(() => {
 		if (reservations && reservations.length > 0) {
 			setDisabledDates(
 				reservations.map(reservation => ({
@@ -47,7 +45,7 @@ export default function ProductDetails() {
 				},
 			});
 		}
-	}, []);
+	}, [reservations]);
 
 	return (
 		<div className={styles.productDetailsContainer}>

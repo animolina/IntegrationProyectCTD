@@ -42,23 +42,30 @@ export default function Reservation() {
 	const [availableStartTime, setAvailableStartTime] = useState();
 	const [availableEndTime, setAvailableEndTime] = useState();
 	const [startTime, setStartTime] = useState();
+	const [reservedDates, setReservedDates] = useState();
 	const [alert, setAlert] = useState();
 	const { id } = useParams();
-
 	const navigate = useNavigate();
-
 	const { user } = useUser();
 	const store = useAppContext();
-
 	const reservations = store.reservations;
-	const reservedDates =
-		reservations && reservations.length > 0
-			? reservations.map(reservation => ({
+
+	useEffect(() => {
+		store.setIdProduct(id);
+		store.setSelectedProductId(id);
+		window.scrollTo(0, 0);
+	}, []);
+
+	useEffect(() => {
+		if (reservations && reservations.length > 0) {
+			setReservedDates(
+				reservations.map(reservation => ({
 					start: new Date(reservation.startDate),
 					end: new Date(reservation.endDate),
-					startTime: reservation.startTime,
-			  }))
-			: [];
+				}))
+			);
+		}
+	}, [reservations]);
 
 	const rawCities = [...store.cities];
 	rawCities.unshift({
@@ -191,6 +198,7 @@ export default function Reservation() {
 							calendarType='booking'
 							defineEnd={defineEnd}
 							defineStart={defineStart}
+							disabledDates={reservedDates}
 						/>
 					</div>
 					<div className={styles.schedule}>
