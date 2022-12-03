@@ -2,12 +2,11 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
 import { getCategories } from '../services/getCategories';
-import { getProducts } from '../services/getProducts';
 import { getCities } from '../services/getCities';
-import { getProductById } from '../services/getProductById';
 import { getFeatures } from '../services/getFeatures';
 import { getPolicy } from '../services/getPolicy';
-import { getReservationByProductId } from '../services/getReservationByProductId';
+import { ProductsService } from '../services/productsService';
+import { ReservationsService } from '../services/reservationsService';
 const AppContext = createContext({
 	selectedCategory: undefined,
 	selectedCity: undefined,
@@ -60,12 +59,12 @@ export default function Store({ children }) {
 
 	useEffect(() => {
 		const loadProducts = async () => {
-			const dataProducts = await getProducts({
-				category: selectedCategory,
-				city: selectedCity,
-				startDate: selectedStartDate,
-				endDate: selectedEndDate,
-			});
+			const dataProducts = await ProductsService.getProducts(
+				selectedCategory,
+				selectedCity,
+				selectedStartDate,
+				selectedEndDate
+			);
 			setProducts(dataProducts);
 		};
 		loadProducts();
@@ -85,17 +84,21 @@ export default function Store({ children }) {
 	}, []); */
 	useEffect(() => {
 		(async () => {
-			const dataProduct = await getProductById(idProduct);
+			const dataProduct = await ProductsService.getProductById(idProduct);
 			setProduct(dataProduct);
 		})();
 	}, [idProduct]);
 
 	useEffect(() => {
 		const loadReservations = async () => {
-			const dataReservations = await getReservationByProductId({
-				productId: selectedProductId,
-			});
-			setReservations(dataReservations);
+			const result = await ReservationsService.getReservationsByProductId(
+				selectedProductId
+			);
+			setReservations(
+				result.status === 403
+					? { error: 'Inicia sesión para continuar' }
+					: result
+			);
 		};
 		if (selectedProductId !== undefined) {
 			loadReservations();

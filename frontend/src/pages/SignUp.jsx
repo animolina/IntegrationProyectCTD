@@ -103,11 +103,11 @@ export default function SignUp() {
 
 		if (isFormValid) {
 			const requestObject = {
-				name: name.value,
-				lastName: lastName.value,
-				email: email.value,
+				name: name.value.trim(),
+				lastName: lastName.value.trim(),
+				email: email.value.trim(),
 				city: '',
-				password: password.value,
+				password: password.value.trim(),
 				userRoles: 'USER',
 			};
 

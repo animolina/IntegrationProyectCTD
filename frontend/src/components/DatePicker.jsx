@@ -1,6 +1,5 @@
 import ReactDatePicker, { registerLocale } from 'react-datepicker';
 import { useState } from 'react';
-import { useAppContext } from '../context/Store';
 import '../styles/datePicker.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import es from 'date-fns/locale/es';
@@ -13,6 +12,7 @@ export default function DatePicker({
 	calendarType,
 	defineEnd,
 	defineStart,
+	disabledDates,
 }) {
 	const [startDate, setStartDate] = useState();
 	const [endDate, setEndDate] = useState();
@@ -21,18 +21,14 @@ export default function DatePicker({
 		const [start, end] = dates;
 		setStartDate(start);
 		setEndDate(end);
-		defineStart(start);
-		defineEnd(end);
+		if (defineStart) {
+			defineStart(start);
+		}
+		if (defineEnd) {
+			defineEnd(end);
+		}
 	};
 	/* ------------------------------- Configurations to display blocked reservation dates ------------------------------- */
-
-	const store = useAppContext();
-	const reservations = store.reservations;
-
-	const disabledDates = reservations.map(reservation => ({
-		start: new Date(reservation.startDate),
-		end: new Date(reservation.endDate),
-	}));
 
 	return (
 		<div className={calendarType === 'booking' ? 'booking' : ' '}>

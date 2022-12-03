@@ -4,7 +4,7 @@ import styles from '../styles/bookingBlock.module.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useUser } from '../hooks/User.hooks';
 
-export default function BookingBlock() {
+export default function BookingBlock({disabledDates}) {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const { user } = useUser();
@@ -18,6 +18,7 @@ export default function BookingBlock() {
 							text: 'Para realizar una reserva necesitas estar logueado',
 							type: 'warning',
 						},
+						forwardingRoute: `/product-details/${id}/reservation`,
 					},
 			  });
 	};
@@ -26,7 +27,7 @@ export default function BookingBlock() {
 		<div className={styles.mainContainer}>
 			<h2 className={styles.title}>Fechas disponibles</h2>
 			<div className={styles.secondaryContainer}>
-				<DatePicker inline='inline' calendarType='booking' />
+				<DatePicker disabledDates={disabledDates} inline='inline' calendarType='booking' />
 				<div className={styles.bookingCard}>
 					<h3>Agregá tus fechas de viaje para obtener precios exactos</h3>
 
