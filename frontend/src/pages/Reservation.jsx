@@ -5,110 +5,165 @@ import DetailsCard from './../components/DetailsCard';
 import { useEffect, useState } from 'react';
 import DatePicker from './../components/DatePicker';
 import FormField from '../components/FormField';
-import { validateEmail } from '../utils';
 import tick from '../assets/icons/tick.svg';
 import BasicSelect from './../components/BasicSelect';
-import data from '../mockedData/times.json';
+import availableTimes from '../mockedData/times.json';
+import { useUser } from '../hooks/User.hooks';
+import { useAppContext } from '../context/Store';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ReservationsService } from '../services/reservationsService';
+
+const nameFieldConfig = {
+	fieldType: 'input',
+	id: 'name',
+	label: 'Nombre',
+	type: 'text',
+	disabled: true,
+};
+const lastnameFieldConfig = {
+	fieldType: 'input',
+	id: 'lastname',
+	label: 'Apellido',
+	type: 'text',
+	disabled: true,
+};
+const emailFieldConfig = {
+	fieldType: 'input',
+	id: 'email',
+	label: 'Correo electrónico',
+	type: 'email',
+	disabled: true,
+};
 
 export default function Reservation() {
 	const [startDate, setStartDate] = useState(null);
 	const [endDate, setEndDate] = useState(null);
+	const [city, setCity] = useState(null);
+	const [availableStartTime, setAvailableStartTime] = useState();
+	const [availableEndTime, setAvailableEndTime] = useState();
+	const [startTime, setStartTime] = useState();
+	const [alert, setAlert] = useState();
+	const { id } = useParams();
+
+	const navigate = useNavigate();
+
+	const { user } = useUser();
+	const store = useAppContext();
+
+	const reservations = store.reservations;
+	const reservedDates =
+		reservations && reservations.length > 0
+			? reservations.map(reservation => ({
+					start: new Date(reservation.startDate),
+					end: new Date(reservation.endDate),
+					startTime: reservation.startTime,
+			  }))
+			: [];
+
+	const rawCities = [...store.cities];
+	rawCities.unshift({
+		id: null,
+		city: 'Seleccionar una ciudad',
+		state: null,
+		country: null,
+	});
+	const cities = rawCities.map(c => {
+		return { id: c.id, content: c.city };
+	});
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+		if (user) {
+			document.querySelector('#name').value = user.name;
+			document.querySelector('#lastname').value = user.lastName;
+			document.querySelector('#email').value = user.email;
+		}
+	}, []);
+
+	useEffect(() => {
+		setAvailableStartTime(availableTimes.find(at => at.id === 0).content);
+		setAvailableEndTime(availableTimes.find(at => at.id === 23).content);
+
+		if (reservedDates && reservedDates.length > 0) {
+			const initialtime = startDate ?? new Date();
+
+			reservedDates.forEach(reservedDate => {
+				if (reservedDate.end.toDateString() === initialtime.toDateString()) {
+					setAvailableStartTime(
+						availableTimes.find(at => at.id === 13).content
+					);
+				}
+			});
+		}
+	}, [startDate, endDate]);
+
+	const setReservationStartTime = event => {
+		const value = +event.target?.value;
+		if (value) {
+			setStartTime(availableTimes.find(at => at.id === value));
+		}
+	};
+
+	const setUserCity = event => {
+		const value = +event.target?.value;
+		if (value) {
+			setCity(cities.find(at => at.id === value));
+		}
+
+		if (isNaN(value)) {
+			setCity(null);
+		}
+	};
 
 	const defineStart = startDate => {
 		setStartDate(startDate);
 	};
+
 	const defineEnd = endDate => {
 		setEndDate(endDate);
 	};
 
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
-	/* ------------------------------- Form field configurations  ------------------------------- */
-	const nameFieldConfig = {
-		fieldType: 'input',
-		id: 'name',
-		label: 'Nombre',
-		type: 'text',
-	};
-	const lastnameFieldConfig = {
-		fieldType: 'input',
-		id: 'lastname',
-		label: 'Apellido',
-		type: 'text',
-	};
-	const emailFieldConfig = {
-		fieldType: 'input',
-		id: 'email',
-		label: 'Correo electrónico',
-		type: 'email',
-	};
-	const cityFieldConfig = {
-		fieldType: 'input',
-		id: 'city',
-		label: 'Ciudad',
-		type: 'text',
+	const setErrorAlert = text => {
+		setAlert({ type: 'error', text });
+		document.getElementById('datePickerContainer').scrollIntoView();
 	};
 
-	/* ------------------------------- Form validations ------------------------------- */
-
-	const [emailError, setEmailError] = useState();
-	const [nameError, setNameError] = useState();
-	const [lastNameError, setLastNameError] = useState();
-	const [cityError, setCityError] = useState();
-	const [formValidation, setFormValidation] = useState(false);
-	/* let isFormValid = false; */
-
-	const setFieldError = (fieldName, error) => {
-		switch (fieldName) {
-			case 'email':
-				setEmailError(error);
-				break;
-			case 'name':
-				setNameError(error);
-				break;
-			case 'lastname':
-				setLastNameError(error);
-				break;
-			case 'city':
-				setCityError(error);
-				break;
-			default:
-				break;
-		}
-	};
-
-	const validateEmptyField = (fieldName, field) => {
-		if (!field.value || !field.value.trim()) {
-			setFieldError(fieldName, 'Este campo es requerido');
-			setFormValidation(false);
-		} else {
-			setFieldError(fieldName, null);
-			setFormValidation(true);
-		}
-	};
-
-	const submitLoginForm = () => {
-		const name = document.querySelector('#name');
-		const lastname = document.querySelector('#lastname');
-		const email = document.querySelector('#email');
-		const city = document.querySelector('#city');
-
-		validateEmptyField('name', name);
-		validateEmptyField('lastname', lastname);
-		validateEmptyField('email', email);
-		validateEmptyField('city', city);
-
-		/* if (!formValidation) {
+	const createReservation = async () => {
+		if (!city || !city.id) {
+			setErrorAlert('Seleccioná una ciudad');
 			return;
-		} */
+		}
 
-		if (!validateEmail(email.value)) {
-			setEmailError('Ingresa un email válido');
-			setFormValidation(false);
-		} else {
-			setEmailError(null);
-			setFormValidation(true);
+		if (!startDate || !endDate) {
+			setErrorAlert('Seleccioná un rango de fechas');
+			return;
+		}
+
+		if (!startTime) {
+			setErrorAlert('Seleccioná una hora de llegada');
+			return;
+		}
+
+		const reqStartTime = `${startTime.content.split(' ')[0]}:00`;
+		const reqStartDate = startDate.toISOString().split('T')[0];
+		const reqEndDate = endDate.toISOString().split('T')[0];
+
+		const result = await ReservationsService.createReservation(
+			reqStartTime,
+			reqStartDate,
+			reqEndDate,
+			+id
+		);
+
+		if (result && result.includes('created')) {
+			navigate('/success');
+		} else if (result.status === 403) {
+			navigate('/login', {
+				state: {
+					alert: { type: 'warning', text: 'Inicia sesión para continuar' },
+					forwardingRoute: `/product-details/${id}/reservation`,
+				},
+			});
 		}
 	};
 
@@ -118,16 +173,18 @@ export default function Reservation() {
 			<h2 className={styles.mainTitle}>Completá tus datos</h2>
 			<div className={styles.mainContainer}>
 				<div className={styles.leftContainer}>
-					{/* 	<h2 className={styles.personalDataTitle}>Completá tus datos</h2> */}
 					<div className={styles.personalData}>
 						<form className={styles.formContainer}>
-							<FormField config={nameFieldConfig} error={nameError} />
-							<FormField config={lastnameFieldConfig} error={lastNameError} />
-							<FormField config={emailFieldConfig} error={emailError} />
-							<FormField config={cityFieldConfig} error={cityError} />
+							<FormField config={nameFieldConfig} />
+							<FormField config={lastnameFieldConfig} />
+							<FormField config={emailFieldConfig} />
+							<div className={styles.citySelect}>
+								<BasicSelect data={cities} handleSelect={setUserCity} />
+								<span className={styles.hint}>Obligatorio</span>
+							</div>
 						</form>
 					</div>
-					<div className={styles.calendarContainer}>
+					<div id='datePickerContainer' className={styles.calendarContainer}>
 						<h2 className={styles.title}>Seleccioná tu fecha de reserva</h2>
 						<DatePicker
 							inline='inline'
@@ -142,19 +199,22 @@ export default function Reservation() {
 							<div className={styles.checkin}>
 								<img alt='Ícono chequeado' src={tick}></img>
 								<span>
-									Tu habitación va a estar lista para el check in entre las 10am
-									y 11 am{' '}
+									Tu habitación va a estar lista para el Check-in entre las{' '}
+									{availableStartTime} y {availableEndTime}{' '}
 								</span>
 							</div>
-							<BasicSelect data={data} />
+							<BasicSelect
+								data={availableTimes}
+								handleSelect={setReservationStartTime}
+							/>
 						</div>
 					</div>
 				</div>
 				<DetailsCard
 					startDate={startDate}
 					endDate={endDate}
-					submitLoginForm={submitLoginForm}
-					formValidation={formValidation} // prop to check if the form is valid before submit.
+					submitLoginForm={createReservation}
+					alert={alert}
 				/>
 			</div>
 			<ProductDetailsPolicy />

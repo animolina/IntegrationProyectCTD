@@ -28,6 +28,7 @@ export default function Login() {
 	const [emailError, setEmailError] = useState();
 	const [passwordError, setPasswordError] = useState();
 	const [alert, setAlert] = useState();
+	const [nextRoute, setNextRoute] = useState();
 	const { state } = useLocation();
 
 	const { setUser } = useContext(UserContext);
@@ -42,6 +43,10 @@ export default function Login() {
 			}
 			if (state.userEmail) {
 				document.querySelector('#email').value = state.userEmail;
+			}
+
+			if (state.forwardingRoute) {
+				setNextRoute(state.forwardingRoute);
 			}
 		}
 	}, [state]);
@@ -73,12 +78,10 @@ export default function Login() {
 			CacheService.setJwt(result.jwt);
 			const user = result.user;
 			setUser(user);
-			CacheService.setItem(
-				CacheItems.UserName,
-				`${user.name} ${user.lastName}`
-			);
+			CacheService.setItem(CacheItems.UserName, user.name);
+			CacheService.setItem(CacheItems.UserLastName, user.lastName);
 			CacheService.setItem(CacheItems.UserEmail, user.email);
-			navigate('/');
+			navigate(nextRoute ?? '/');
 		} else if (result.status === 403) {
 			setAlert({ text: 'Credenciales erroneas', type: 'error' });
 

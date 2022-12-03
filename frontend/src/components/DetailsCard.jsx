@@ -2,11 +2,24 @@ import styles from '../styles/detailsCard.module.css';
 import locationIcon from '../assets/icons/location-dot-solid.svg';
 import Button from './Button';
 import { useAppContext } from '../context/Store';
-import { Link } from 'react-router-dom';
+import Alert from '../components/Alert';
+import { useEffect, useState } from 'react';
 
-export default function DetailsCard({ startDate, endDate, submitLoginForm }) {
+export default function DetailsCard({
+	startDate,
+	endDate,
+	submitLoginForm,
+	alert,
+}) {
+	const [submitAlert, setSubmitAlert] = useState();
 	const store = useAppContext();
 	const product = store.product;
+
+	useEffect(() => {
+		if (alert) {
+			setSubmitAlert(alert);
+		}
+	}, [alert]);
 
 	return (
 		<div className={styles.detailsCard}>
@@ -39,13 +52,18 @@ export default function DetailsCard({ startDate, endDate, submitLoginForm }) {
 							<span>{endDate ? endDate.toLocaleDateString() : ' '}</span>
 						</div>
 
-						<Link to={'/success'} className={styles.reservationButton}>
+						<div className={styles.reservationButton}>
 							<Button
 								Button
 								innerText={'Confirmar reserva'}
 								handleClick={submitLoginForm}
 							/>
-						</Link>
+							{submitAlert && (
+								<div className={styles.reservationAlert}>
+									<Alert type={alert.type} text={alert.text} />
+								</div>
+							)}
+						</div>
 					</div>
 				</div>
 			</div>

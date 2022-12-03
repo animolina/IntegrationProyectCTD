@@ -34,6 +34,7 @@ const Input = (props, ref) => {
 			onClick={props.onClick}
 			value={props.value}
 			onChange={props.onChange}
+			disabled={props.disabled || false}
 		/>
 	);
 };
