@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import ProductDetailsHeader from './../components/ProductDetailsHeader';
 import styles from '../styles/myReservations.module.css';
 import { useAppContext } from '../context/Store';
@@ -6,6 +7,7 @@ import ProductListCard from '../components/ProductListCard';
 import { useParams, useNavigate } from 'react-router-dom';
 import CartelWarning from '../components/CartelWarning';
 import Button from '../components/Button';
+import Unsuccessful from './Unsuccessful';
 
 export default function MyReservations() {
 	const store = useAppContext();
@@ -21,11 +23,14 @@ export default function MyReservations() {
 		<div className={styles.container}>
 			<ProductDetailsHeader title={'Mis reservas'} />
 
+			<Unsuccessful text={'Aún no has efectuado ninguna reserva'} />
+
 			{/* <div className={styles.cartelContainer}>
 				<CartelWarning text={'Aún no has efectuado ninguna reserva'} />
 				<Button innerText={'Volver'} handleClick={() => navigate('/')} />
 			</div> */}
-			<div className={styles.productsContainer}>
+
+			{/* <div className={styles.productsContainer}>
 				{products.map(product => (
 					<ProductCard
 						key={product?.id}
@@ -37,7 +42,7 @@ export default function MyReservations() {
 						category={product?.category.title}
 					/>
 				))}
-			</div>
+			</div> */}
 		</div>
 	);
 }

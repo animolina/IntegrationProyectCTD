@@ -6,11 +6,12 @@
 	width: 100vw;
 	margin-top: 5rem;
 	/* margin-bottom: 5rem; */
-	align-items: flex-start;
-	background-color: blueviolet;
+
+	/* align-items: flex-start; */
+	/* background-color: blueviolet; */
 }
 
-.cartelContainer {
+/* .cartelContainer {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -18,13 +19,13 @@
 	background: #000;
 	width: 100vw;
 	height: 60vh;
-}
+} */
 .productsContainer {
 	/* padding: 2rem;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem; */
-	background-color: coral;
+	/* background-color: coral; */
 
 	display: flex;
 	flex-wrap: wrap;
