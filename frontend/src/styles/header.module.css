@@ -99,6 +99,14 @@
 	margin-right: 2rem;
 }
 
+.myReservations {
+	padding: 1rem;
+	margin: 1rem;
+	border-right: 2px solid var(--main-color);
+	font: var(--font-botton2);
+	color: var(--details-color);
+}
+
 /* ------------------------------- responsive ------------------------------- */
 
 @media screen and (max-width: 769px) {

@@ -7,6 +7,7 @@ import { getCities } from '../services/getCities';
 import { getProductById } from '../services/getProductById';
 import { getFeatures } from '../services/getFeatures';
 import { getPolicy } from '../services/getPolicy';
+import { getMyReservations } from './../services/getMyReservations';
 
 const AppContext = createContext({
 	selectedCategory: undefined,
@@ -19,6 +20,7 @@ const AppContext = createContext({
 	product: {},
 	features: [],
 	policy: {},
+	myReservations: {},
 	setIdProduct: id => {},
 	setSelectedCategory: selectedCategory => {},
 	setSelectedCity: selectedCity => {},
@@ -38,6 +40,7 @@ export default function Store({ children }) {
 	const [features, setFeatures] = useState([]);
 	const [policy, setPolicy] = useState(null);
 	const [idProduct, setIdProduct] = useState(1);
+	const [myReservations, setMyReservations] = useState(null);
 
 	useEffect(() => {
 		const loadCategories = async () => {
@@ -66,24 +69,21 @@ export default function Store({ children }) {
 		loadProducts();
 	}, [selectedCategory, selectedStartDate, selectedEndDate, selectedCity]);
 
-	/* useEffect(() => {
-		(async () => {
-			const dataFeatures = await getFeatures();
-			setFeatures(dataFeatures);
-		})();
-	}, []);
-	useEffect(() => {
-		(async () => {
-			const dataPolicy = await getPolicy();
-			setPolicy(dataPolicy);
-		})();
-	}, []); */
 	useEffect(() => {
 		(async () => {
 			const dataProduct = await getProductById(idProduct);
 			setProduct(dataProduct);
 		})();
 	}, [idProduct]);
+
+	useEffect(() => {
+		(async () => {
+			const myReservations = await getMyReservations({ clientId: 2 });
+			console.log(myReservations);
+
+			setMyReservations(myReservations);
+		})();
+	}, []);
 
 	return (
 		<AppContext.Provider
@@ -94,6 +94,8 @@ export default function Store({ children }) {
 				product,
 				features,
 				policy,
+				myReservations,
+				setMyReservations,
 				setIdProduct,
 				setSelectedCategory,
 				setSelectedEndDate,
