@@ -10,7 +10,7 @@ import Button from '../components/Button';
 export default function MyReservations() {
 	const store = useAppContext();
 	const myReservations = store.myReservations;
-	const product = store.product;
+	const products = store.products;
 
 	const userId = useParams();
 	const navigate = useNavigate();
@@ -21,22 +21,23 @@ export default function MyReservations() {
 		<div className={styles.container}>
 			<ProductDetailsHeader title={'Mis reservas'} />
 
-			<div className={styles.cartelContainer}>
+			{/* <div className={styles.cartelContainer}>
 				<CartelWarning text={'Aún no has efectuado ninguna reserva'} />
 				<Button innerText={'Volver'} handleClick={() => navigate('/')} />
+			</div> */}
+			<div className={styles.productsContainer}>
+				{products.map(product => (
+					<ProductCard
+						key={product?.id}
+						id={product?.id}
+						title={product?.title}
+						description={product?.description}
+						urlImg={product?.images[0]?.url}
+						location={product?.city.state}
+						category={product?.category.title}
+					/>
+				))}
 			</div>
-
-			{/* {myReservations.map(product => (
-				<ProductCard
-					key={product?.id}
-					id={product?.id}
-					title={product?.title}
-					description={product?.description}
-					urlImg={product?.images[0]?.url}
-					location={product?.city.state}
-					category={product?.category.title}
-				/>
-			))} */}
 		</div>
 	);
 }
