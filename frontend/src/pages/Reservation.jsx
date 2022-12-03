@@ -109,6 +109,10 @@ export default function Reservation() {
 		if (value) {
 			setCity(cities.find(at => at.id === value));
 		}
+
+		if (isNaN(value)) {
+			setCity(null);
+		}
 	};
 
 	const defineStart = startDate => {
@@ -119,20 +123,24 @@ export default function Reservation() {
 		setEndDate(endDate);
 	};
 
+	const setErrorAlert = text => {
+		setAlert({ type: 'error', text });
+		document.getElementById('datePickerContainer').scrollIntoView();
+	};
+
 	const createReservation = async () => {
 		if (!city || !city.id) {
-			setAlert({ type: 'error', text: 'Seleccioná una ciudad' });
+			setErrorAlert('Seleccioná una ciudad');
 			return;
 		}
 
 		if (!startDate || !endDate) {
-			setAlert({ type: 'error', text: 'Seleccioná un rango de fechas' });
+			setErrorAlert('Seleccioná un rango de fechas');
 			return;
 		}
 
 		if (!startTime) {
-			setAlert({ type: 'error', text: 'Seleccioná una hora de llegada' });
-			document.getElementById('datePickerContainer').scrollIntoView();
+			setErrorAlert('Seleccioná una hora de llegada');
 			return;
 		}
 
