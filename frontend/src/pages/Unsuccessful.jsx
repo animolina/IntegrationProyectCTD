@@ -1,5 +1,5 @@
 import styles from '../styles/unsuccessfulReservation.module.css';
-import iconWarning from '../assets/icons/iconWarning.svg';
+import iconUnsuccess from '../assets/icons/iconUnsuccess.svg';
 import Button from '../components/Button';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ export default function Unsuccessful({ text }) {
 		<div className={styles.successfulReservation}>
 			<div className={styles.modal}>
 				<img
-					src={iconWarning}
+					src={iconUnsuccess}
 					className={styles.iconSuccess}
 					alt='Ícono de advertencia'
 				/>
