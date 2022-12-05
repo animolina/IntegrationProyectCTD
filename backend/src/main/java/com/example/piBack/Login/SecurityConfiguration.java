@@ -1,4 +1,5 @@
 package com.example.piBack.Login;
+
 import com.example.piBack.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private JwtRequestFilter jwtRequestFilter;
+
     @Autowired
     public SecurityConfiguration(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder, JwtRequestFilter jwtRequestFilter) {
         this.userService = userService;
@@ -35,14 +37,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http.cors().and().csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers("/category/**","/characteristic/**", "/city/**", "/client/**", "/image/**", "/user/**", "/policy/**").permitAll()
+                .antMatchers("/category/**", "/characteristic/**", "/city/**", "/client/**", "/image/**", "/user/**", "/policy/**").permitAll()
                 .antMatchers("/reservation/**").authenticated()
-                .antMatchers("/product/booked/").authenticated()
                 .antMatchers(HttpMethod.GET, "/product/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/product/**").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/product/**").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/product/**").hasAuthority("ADMIN")
-                .antMatchers( "/login")
+                .antMatchers("/login")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -62,8 +63,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(bCryptPasswordEncoder);
         provider.setUserDetailsService(userService);
