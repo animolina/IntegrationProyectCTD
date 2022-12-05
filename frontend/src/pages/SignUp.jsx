@@ -5,6 +5,8 @@ import linkStyles from '../styles/link.module.css';
 import { validateEmail } from '../utils';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthService } from '../services/authService';
+import Alert from '../components/Alert';
 
 const nameFieldConfig = {
 	fieldType: 'input',
@@ -47,12 +49,15 @@ export default function SignUp() {
 	const [emailError, setEmailError] = useState();
 	const [passwordError, setPasswordError] = useState();
 	const [passwordConfirmError, setPasswordConfirmError] = useState();
+	const [alert, setAlert] = useState();
 
 	const navigate = useNavigate();
 
 	let isFormValid = false;
 
-	const submitSignUpForm = () => {
+	const submitSignUpForm = async () => {
+		setAlert(null);
+
 		const name = document.querySelector('#name');
 		const lastName = document.querySelector('#lastName');
 		const email = document.querySelector('#email');
@@ -72,6 +77,7 @@ export default function SignUp() {
 		if (!validateEmail(email.value)) {
 			setEmailError('Ingresa un correo electrónico válido');
 			isFormValid = false;
+			return;
 		} else if (!emailError) {
 			setEmailError(null);
 			isFormValid = true;
@@ -89,13 +95,38 @@ export default function SignUp() {
 		if (passwordConfirm.value !== password.value) {
 			setPasswordConfirmError('Las contraseñas deben coincidir');
 			isFormValid = false;
+			return;
 		} else if (!passwordConfirmError) {
 			setPasswordConfirmError(null);
 			isFormValid = true;
 		}
 
 		if (isFormValid) {
-			navigate('/login');
+			const requestObject = {
+				name: name.value.trim(),
+				lastName: lastName.value.trim(),
+				email: email.value.trim(),
+				city: '',
+				password: password.value.trim(),
+				userRoles: 'USER',
+			};
+
+			const result = await AuthService.signUp(requestObject);
+
+			if (result && result.id) {
+				navigate('/login', {
+					state: {
+						alert: { text: 'Creación de cuenta exitosa!', type: 'success' },
+						userEmail: email.value,
+					},
+				});
+			} else if (result.status === 400) {
+				let alertText = '';
+				if (result.data.includes('already registered')) {
+					alertText = 'Usuario ya registrado';
+				}
+				setAlert({ text: alertText, type: 'error' });
+			}
 		}
 	};
 
@@ -133,6 +164,7 @@ export default function SignUp() {
 
 	return (
 		<div className={styles.mainContainer}>
+			{alert && <Alert text={alert.text} type={alert.type} />}
 			<h1 className={styles.title}>Crear Cuenta</h1>
 			<form className={styles.formContainer}>
 				{/* Name and LastName */}

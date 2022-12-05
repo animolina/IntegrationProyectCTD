@@ -22,7 +22,8 @@ export default function ProductDetailsLocation() {
 				/>
 				<div className={styles.locationText}>
 					<p>
-						{product.city.city}, {product.city.state}, {product.city.country}
+						{product?.city?.city}, {product?.city?.state},{' '}
+						{product?.city?.country}
 					</p>
 					{/* 	<span>A 940 m del centro</span> */}
 				</div>

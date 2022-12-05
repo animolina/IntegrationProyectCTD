@@ -12,10 +12,6 @@ import Unsuccessful from './Unsuccessful';
 export default function MyReservations() {
 	const store = useAppContext();
 	const myReservations = store.myReservations;
-	const products = store.products;
-
-	const userId = useParams();
-	const navigate = useNavigate();
 
 	/* console.log(userId); */
 
@@ -24,11 +20,6 @@ export default function MyReservations() {
 			<ProductDetailsHeader title={'Mis reservas'} />
 
 			<Unsuccessful text={'Aún no has efectuado ninguna reserva'} />
-
-			{/* <div className={styles.cartelContainer}>
-				<CartelWarning text={'Aún no has efectuado ninguna reserva'} />
-				<Button innerText={'Volver'} handleClick={() => navigate('/')} />
-			</div> */}
 
 			{/* <div className={styles.productsContainer}>
 				{products.map(product => (

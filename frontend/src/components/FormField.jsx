@@ -14,6 +14,7 @@ export default function FormField({ config, error }) {
 					type={config.type}
 					id={config.id}
 					placeholder={config.placeholder}
+					disabled={config.disabled || false}
 				/>
 				{error && <span className={styles.errorMessage}>{error}</span>}
 			</div>

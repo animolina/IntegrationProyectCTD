@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { CacheService } from './cacheService';
 
-const API_BASE_URL = 'http://ec2-3-91-229-168.compute-1.amazonaws.com:8080';
-
 export const AxiosClient = axios.create({
-	baseURL: API_BASE_URL,
+	baseURL: import.meta.env.VITE_SERVER_URL,
 	timeout: 1000,
 });
 
@@ -21,8 +19,8 @@ const handleAxiosError = error => {
 };
 
 export class ApiService {
-	static async get(path, isPrivate = false) {
-		return await AxiosClient.get(path, this.getConfig(isPrivate))
+	static async get(path, params = null, isPrivate = false) {
+		return await AxiosClient.get(path, this.getConfig(isPrivate, params))
 			.then(response => response.data)
 			.catch(handleAxiosError);
 	}
@@ -33,9 +31,16 @@ export class ApiService {
 			.catch(handleAxiosError);
 	}
 
-	static getConfig(isPrivate) {
+	static async put(path, body, isPrivate = false) {
+		return await AxiosClient.put(path, body, this.getConfig(isPrivate))
+			.then(response => response.data)
+			.catch(handleAxiosError);
+	}
+
+	static getConfig(isPrivate, params = null) {
 		const config = {
 			headers: { Authorization: '', 'Access-Control-Allow-Origin': '*' },
+			params,
 		};
 		if (isPrivate) {
 			const token = CacheService.getJwt();

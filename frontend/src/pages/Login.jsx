@@ -6,7 +6,7 @@ import { useContext, useState, useEffect } from 'react';
 import linkStyles from '../styles/link.module.css';
 import { UserContext } from '../context/UserContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import CartelWarning from '../components/CartelWarning';
+import Alert from '../components/Alert';
 import { AuthService } from '../services/authService';
 import { CacheItems, CacheService } from '../services/cacheService';
 
@@ -27,8 +27,8 @@ const passwordFieldConfig = {
 export default function Login() {
 	const [emailError, setEmailError] = useState();
 	const [passwordError, setPasswordError] = useState();
-	const [showWarningSign, setShowWarningSign] = useState();
-	const [showWarningSignText, setShowWarningSignText] = useState();
+	const [alert, setAlert] = useState();
+	const [nextRoute, setNextRoute] = useState();
 	const { state } = useLocation();
 
 	const { setUser } = useContext(UserContext);
@@ -37,10 +37,19 @@ export default function Login() {
 
 	useEffect(() => {
 		if (state) {
-			setShowWarningSign(state.showWarning);
-			setShowWarningSignText(state.warningText);
+			const alert = state.alert;
+			if (alert) {
+				setAlert({ text: alert.text, type: alert.type });
+			}
+			if (state.userEmail) {
+				document.querySelector('#email').value = state.userEmail;
+			}
+
+			if (state.forwardingRoute) {
+				setNextRoute(state.forwardingRoute);
+			}
 		}
-	});
+	}, [state]);
 
 	let isFormValid = false;
 
@@ -69,19 +78,15 @@ export default function Login() {
 			CacheService.setJwt(result.jwt);
 			const user = result.user;
 			setUser(user);
-			CacheService.setItem(
-				CacheItems.UserName,
-				`${user.name} ${user.lastName}`
-			);
+			CacheService.setItem(CacheItems.UserName, user.name);
+			CacheService.setItem(CacheItems.UserLastName, user.lastName);
 			CacheService.setItem(CacheItems.UserEmail, user.email);
-			navigate('/');
+			navigate(nextRoute ?? '/');
 		} else if (result.status === 403) {
-			setShowWarningSign(true);
-			setShowWarningSignText('Credenciales erroneas');
+			setAlert({ text: 'Credenciales erroneas', type: 'error' });
 
 			setTimeout(() => {
-				setShowWarningSign(false);
-				setShowWarningSignText(null);
+				setAlert(null);
 			}, 2000);
 		}
 	};
@@ -111,7 +116,7 @@ export default function Login() {
 
 	return (
 		<div className={styles.mainContainer}>
-			{showWarningSign && <CartelWarning text={showWarningSignText} />}
+			{alert && <Alert text={alert.text} type={alert.type} />}
 			<h1 className={styles.title}>Iniciar sesión</h1>
 			<form className={styles.formContainer}>
 				<FormField config={emailFieldConfig} error={emailError}></FormField>
