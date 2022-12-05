@@ -90,22 +90,4 @@ public class ReservationService {
         return reservationsDTO;
     }
 
-    //for (Odontologo odontologo : odontologos) {
-    //                odontologosDTO.add(mapper.convertValue(odontologo, OdontologoDTO.class));
-    //            }
-
-    ////4. Obtener un listado de todos los odontólogos registrados en la DB.
-    //    public List<OdontologoDTO> buscarTodosOdontologos() throws EntityNotFoundException {
-    //        //Uso list en vez de Set, porque de esta forma puedo mostrarlos en la pagina, ordenados por id mediante Sort.by
-    //        List<Odontologo> odontologos = odontologoRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
-    //        List<OdontologoDTO> odontologosDTO = new ArrayList<OdontologoDTO>();
-    //        if(odontologos.isEmpty()) {
-    //            throw new EntityNotFoundException("No se encuentran odontólogos en la base de datos");
-    //        } else {
-    //            for (Odontologo odontologo : odontologos) {
-    //                odontologosDTO.add(mapper.convertValue(odontologo, OdontologoDTO.class));
-    //            }
-    //        }
-    //        return odontologosDTO;
-    //    }
 }
