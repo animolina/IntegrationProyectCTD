@@ -11,6 +11,9 @@ export default function ProductCard({
 	location,
 	category,
 	id,
+	startDate,
+	endDate,
+	noRating,
 }) {
 	const navigate = useNavigate();
 	const handleClick = () => {
@@ -21,9 +24,17 @@ export default function ProductCard({
 		<div className={styles.productCard}>
 			<img className={styles.productCardImg} src={urlImg} alt='Producto' />
 			<div className={styles.productCardBody}>
+				{startDate && (
+					<span className={styles.dateContainer}>
+						<span>Check in: {startDate}</span>
+						<span>Check out: {endDate}</span>
+					</span>
+				)}
 				<span className={styles.productCardCategory}>
 					{category?.toUpperCase()}{' '}
-					<span className={styles.productCardCategoryStars}>★ ★ ★ ★ ★ </span>
+					{noRating || (
+						<span className={styles.productCardCategoryStars}>★ ★ ★ ★ ★ </span>
+					)}
 				</span>
 				<h5 className={styles.productCardTitle}>{title}</h5>
 				<div className={styles.productCardLocation}>
