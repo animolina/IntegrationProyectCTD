@@ -1,21 +1,16 @@
 /* eslint-disable no-unused-vars */
 import ProductDetailsHeader from './../components/ProductDetailsHeader';
 import styles from '../styles/myReservations.module.css';
-import { useAppContext } from '../context/Store';
 import ProductCard from './../components/ProductCard';
 import Unsuccessful from './Unsuccessful';
-import { useEffect, useState } from 'react';
-import { getMyReservations } from '../services/getMyReservations';
+import { useState, useEffect } from 'react';
+import { ReservationsService } from '../services/reservationsService';
 
 export default function MyReservations() {
-	/* const store = useAppContext(); */
-	/* const myReservations = store.myReservations; */
-
 	const [myReservations, setMyReservations] = useState([]);
-
 	useEffect(() => {
 		(async () => {
-			const dataReservations = await getMyReservations();
+			const dataReservations = await ReservationsService.getMyReservations();
 			setMyReservations(dataReservations);
 		})();
 	}, []);
@@ -23,10 +18,11 @@ export default function MyReservations() {
 	return (
 		<div className={styles.container}>
 			<ProductDetailsHeader title={'Mis reservas'} />
-			{myReservations.length ? (
+			{myReservations?.length ? (
 				<div className={styles.productsContainer}>
 					{myReservations.map(product => (
 						<ProductCard
+							type={'reservation'}
 							key={product?.id}
 							id={product?.product?.id}
 							title={product?.product?.title}
@@ -35,7 +31,7 @@ export default function MyReservations() {
 							location={product?.product?.city.state}
 							category={product?.product?.category.title}
 							startDate={product?.startDate}
-							endDate={product?.startDate}
+							endDate={product?.endDate}
 							noRating={true}
 						/>
 					))}
