@@ -12,6 +12,8 @@ import Test from './pages/Test';
 import Successful from './pages/Successful';
 import MyReservations from './pages/MyReservations';
 import ReservationDetails from './pages/ReservationDetails';
+import NotFound404 from './pages/NotFound404';
+
 function AppRouter() {
 	const [user, setUser] = useState(null);
 
@@ -52,6 +54,7 @@ function AppRouter() {
 						element={<MyReservations />}
 					></Route>
 					<Route exact path='test' element={<Test />}></Route>
+					<Route path='*' element={<NotFound404 />}></Route>
 				</Routes>
 				<Footer />
 			</BrowserRouter>
