@@ -3,7 +3,6 @@ import { CacheService } from './cacheService';
 
 export const getMyReservations = async params => {
 	const token = CacheService.getJwt();
-	/* console.log('🧉 ~ getMyReservations ~ token', token); */
 
 	if (!token) {
 		return [];
@@ -16,10 +15,7 @@ export const getMyReservations = async params => {
 		},
 		url: `http://ec2-3-91-229-168.compute-1.amazonaws.com:8080/reservation/booked`,
 		params,
-		/* 	url: `http://ec2-3-91-229-168.compute-1.amazonaws.com:8080/reservation/${params}`, */
-		/* 	url: `http://ec2-3-91-229-168.compute-1.amazonaws.com:8080/reservation/clientId/${params}`, */
 	};
 
-	console.log(optionsRequest);
 	return await ajax(optionsRequest);
 };

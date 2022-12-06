@@ -56,7 +56,10 @@ export default function Header() {
 
 			{user ? (
 				<div className={styles.logoutWelcome}>
-					<Link to={'/2/reservations'} className={styles.myReservations}>
+					<Link
+						to={`/${user.id}/reservations`}
+						className={styles.myReservations}
+					>
 						Mis reservas
 					</Link>
 					<label className={styles.logoutWelcomeInitials}>
