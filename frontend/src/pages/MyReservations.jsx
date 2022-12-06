@@ -3,18 +3,22 @@ import ProductDetailsHeader from './../components/ProductDetailsHeader';
 import styles from '../styles/myReservations.module.css';
 import { useAppContext } from '../context/Store';
 import ProductCard from './../components/ProductCard';
-import reservations from '../mockedData/reservations.json';
-
-import Button from '../components/Button';
 import Unsuccessful from './Unsuccessful';
+import { useEffect, useState } from 'react';
+import { getMyReservations } from '../services/getMyReservations';
 
 export default function MyReservations() {
-	const store = useAppContext();
+	/* const store = useAppContext(); */
+	/* const myReservations = store.myReservations; */
 
-	/* const myReservations = store.reservations; */
-	const myReservations = reservations;
+	const [myReservations, setMyReservations] = useState([]);
 
-	console.log(myReservations);
+	useEffect(() => {
+		(async () => {
+			const dataReservations = await getMyReservations();
+			setMyReservations(dataReservations);
+		})();
+	}, []);
 
 	return (
 		<div className={styles.container}>

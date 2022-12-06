@@ -14,7 +14,7 @@ export const getMyReservations = async params => {
 			'Access-Control-Allow-Origin': '*',
 			Authorization: `Bearer ${token}`,
 		},
-		url: `http://ec2-3-91-229-168.compute-1.amazonaws.com:8080/reservation/clientId`,
+		url: `http://ec2-3-91-229-168.compute-1.amazonaws.com:8080/reservation/booked`,
 		params,
 		/* 	url: `http://ec2-3-91-229-168.compute-1.amazonaws.com:8080/reservation/${params}`, */
 		/* 	url: `http://ec2-3-91-229-168.compute-1.amazonaws.com:8080/reservation/clientId/${params}`, */
