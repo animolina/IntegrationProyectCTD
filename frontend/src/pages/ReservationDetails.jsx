@@ -30,7 +30,7 @@ export default function ProductDetails() {
 			navigate('/login', {
 				state: {
 					alert: { type: 'warning', text: reservations.error },
-					forwardingRoute: `/product-details/${id}`,
+					forwardingRoute: `/reservation-details/${id}`,
 				},
 			});
 		}

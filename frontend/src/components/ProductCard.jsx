@@ -58,8 +58,12 @@ export default function ProductCard({
 				></Button>
 				{startDate && (
 					<span className={styles.dateContainer}>
-						<span>Check in: {formatDate(startDate)}</span>
-						<span>Check out: {formatDate(endDate)}</span>
+						<span>
+							<span className={styles.spanDate}>Desde: </span>
+							{formatDate(startDate)}{' '}
+							<span className={styles.spanDate}>Hasta: </span>
+							{formatDate(endDate)}{' '}
+						</span>
 					</span>
 				)}
 			</div>

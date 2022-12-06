@@ -68,7 +68,7 @@
 }
 
 .dateContainer {
-	font: var(--font-heading4);
+	font-size: 14px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -77,6 +77,10 @@
 	color: var(--text-color);
 	opacity: 0.7;
 	/* background-color: cornflowerblue; */
+}
+
+.dateContainer .spanDate {
+	font-weight: bold;
 }
 
 .productCardLocation {
@@ -103,6 +107,8 @@
 	font-weight: 700;
 	color: var(--text-color);
 }
+
+
 
 /* ------------------------------- responsive ------------------------------- */
 
