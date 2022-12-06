@@ -4,6 +4,7 @@ import Button from './Button';
 import { useAppContext } from '../context/Store';
 import Alert from '../components/Alert';
 import { useEffect, useState } from 'react';
+import StarRating from '../utils/StarRating';
 
 export default function DetailsCard({
 	startDate,
@@ -34,7 +35,8 @@ export default function DetailsCard({
 					<div className={styles.container}>
 						<p className={styles.detailsCategory}>{product?.category?.title}</p>
 						<h2 className={styles.detailsTitle}>{product?.title}</h2>
-						<span className={styles.detailsStars}>★ ★ ★ ★ ★ </span>
+						<StarRating starScore={4} />
+						{/* <span className={styles.detailsStars}>★ ★ ★ ★ ★ </span> */}
 						<div className={styles.locationContainer}>
 							<img src={locationIcon} alt='Ícono de localización' />
 							<p className={styles.locationText}>

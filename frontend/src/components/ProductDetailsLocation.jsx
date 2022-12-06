@@ -32,7 +32,7 @@ export default function ProductDetailsLocation() {
 				<div>
 					<p className={styles.scoreOpinion}>Muy bueno</p>
 					{/* <span className={styles.scoreStars}>★ ★ ★ ★ ★ </span> */}
-					<StarRating starScore={5} />
+					<StarRating starScore={4} />
 				</div>
 
 				<div className={styles.scoreNumber}>5</div>
