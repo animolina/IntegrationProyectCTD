@@ -1,6 +1,5 @@
 import styles from '../styles/productCard.module.css';
 import locationIcon from '../../src/assets/icons/location-dot-solid.svg';
-
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,22 +13,28 @@ export default function ProductCard({
 	startDate,
 	endDate,
 	noRating,
+	type,
 }) {
 	const navigate = useNavigate();
 	const handleClick = () => {
-		navigate(`/product-details/${id}`);
+		type === 'reservation'
+			? navigate(`/reservation-details/${id}`)
+			: navigate(`/product-details/${id}`);
+	};
+
+	const formatDate = input => {
+		const datePart = input.match(/\d+/g);
+		const year = datePart[0].substring(2); // get only two digits
+		const month = datePart[1];
+		const day = datePart[2];
+
+		return day + '/' + month + '/' + year;
 	};
 
 	return (
 		<div className={styles.productCard}>
 			<img className={styles.productCardImg} src={urlImg} alt='Producto' />
 			<div className={styles.productCardBody}>
-				{startDate && (
-					<span className={styles.dateContainer}>
-						<span>Check in: {startDate}</span>
-						<span>Check out: {endDate}</span>
-					</span>
-				)}
 				<span className={styles.productCardCategory}>
 					{category?.toUpperCase()}{' '}
 					{noRating || (
@@ -51,6 +56,12 @@ export default function ProductCard({
 					type='basic'
 					innerText='Ver más'
 				></Button>
+				{startDate && (
+					<span className={styles.dateContainer}>
+						<span>Check in: {formatDate(startDate)}</span>
+						<span>Check out: {formatDate(endDate)}</span>
+					</span>
+				)}
 			</div>
 		</div>
 	);
