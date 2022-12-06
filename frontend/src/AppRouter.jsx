@@ -11,6 +11,7 @@ import Reservation from './pages/Reservation';
 import Test from './pages/Test';
 import Successful from './pages/Successful';
 import MyReservations from './pages/MyReservations';
+import ReservationDetails from './pages/ReservationDetails';
 import NotFound404 from './pages/NotFound404';
 
 function AppRouter() {
@@ -30,6 +31,11 @@ function AppRouter() {
 						exact
 						path='product-details/:id'
 						element={<ProductDetails />}
+					></Route>
+					<Route
+						exact
+						path='reservation-details/:id'
+						element={<ReservationDetails />}
 					></Route>
 					<Route
 						exact
