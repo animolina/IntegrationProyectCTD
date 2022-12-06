@@ -1,0 +1,152 @@
+[
+	{
+		"id": 1,
+		"startTime": "10:00:00",
+		"startDate": "2022-10-11",
+		"endDate": "2022-10-14",
+		"product": {
+			"id": 8,
+			"title": "Huinid Obelisco",
+			"description": "Ea sint aliquam omnis id. Officia corporis or tempor veniam fugit architecto veritatis.",
+			"availability": "yes",
+			"images": [
+				{
+					"id": 74,
+					"title": "Huinid Obelisco gallery 3",
+					"url": "https://d28crswe7tp8oj.cloudfront.net/HuinidObeliscoGallery3.jpg"
+				},
+				{
+					"id": 73,
+					"title": "Huinid Obelisco gallery 5",
+					"url": "https://d28crswe7tp8oj.cloudfront.net/HuinidObeliscoGallery5.jpg"
+				},
+				{
+					"id": 72,
+					"title": "Huinid Obelisco gallery 4",
+					"url": "https://d28crswe7tp8oj.cloudfront.net/HuinidObeliscoGallery4.jpg"
+				},
+				{
+					"id": 75,
+					"title": "Huinid Obelisco gallery 2",
+					"url": "https://d28crswe7tp8oj.cloudfront.net/HuinidObeliscoGallery2.jpg"
+				},
+				{
+					"id": 76,
+					"title": "Huinid Obelisco gallery 1",
+					"url": "https://d28crswe7tp8oj.cloudfront.net/HuinidObeliscoGallery1.jpg"
+				}
+			],
+			"policy": {
+				"id": 1,
+				"checkout": "08/11/2022",
+				"partyAllowed": true,
+				"smokeAllowed": true,
+				"socialDistance": "1 m",
+				"smokeDetector": true,
+				"securityDeposit": "4000 ARS ",
+				"cancellation": "1 dia de anticipación"
+			},
+			"category": {
+				"id": 1,
+				"title": "Apartamento",
+				"description": "1240 apartamentos",
+				"imageURL": "https://d28crswe7tp8oj.cloudfront.net/categoryDepartamentos.png"
+			},
+			"city": {
+				"id": 4,
+				"city": "Alcorta",
+				"state": "Santa Fe",
+				"country": "Argentina"
+			},
+			"characteristics": [
+				{
+					"id": 4,
+					"description": "Cocina"
+				},
+				{
+					"id": 7,
+					"description": "Estacionamiento gratuito"
+				},
+				{
+					"id": 1,
+					"description": "Apto para mascotas"
+				}
+			]
+		}
+	},
+	{
+		"id": 2,
+		"startTime": "12:00:00",
+		"startDate": "2022-08-12",
+		"endDate": "2022-08-16",
+		"product": {
+			"id": 8,
+			"title": "Huinid Obelisco",
+			"description": "Ea sint aliquam omnis id. Officia corporis or tempor veniam fugit architecto veritatis.",
+			"availability": "yes",
+			"images": [
+				{
+					"id": 76,
+					"title": "Huinid Obelisco gallery 1",
+					"url": "https://d28crswe7tp8oj.cloudfront.net/HuinidObeliscoGallery1.jpg"
+				},
+				{
+					"id": 72,
+					"title": "Huinid Obelisco gallery 4",
+					"url": "https://d28crswe7tp8oj.cloudfront.net/HuinidObeliscoGallery4.jpg"
+				},
+				{
+					"id": 74,
+					"title": "Huinid Obelisco gallery 3",
+					"url": "https://d28crswe7tp8oj.cloudfront.net/HuinidObeliscoGallery3.jpg"
+				},
+				{
+					"id": 73,
+					"title": "Huinid Obelisco gallery 5",
+					"url": "https://d28crswe7tp8oj.cloudfront.net/HuinidObeliscoGallery5.jpg"
+				},
+				{
+					"id": 75,
+					"title": "Huinid Obelisco gallery 2",
+					"url": "https://d28crswe7tp8oj.cloudfront.net/HuinidObeliscoGallery2.jpg"
+				}
+			],
+			"policy": {
+				"id": 1,
+				"checkout": "08/11/2022",
+				"partyAllowed": true,
+				"smokeAllowed": true,
+				"socialDistance": "1 m",
+				"smokeDetector": true,
+				"securityDeposit": "4000 ARS ",
+				"cancellation": "1 dia de anticipación"
+			},
+			"category": {
+				"id": 1,
+				"title": "Apartamento",
+				"description": "1240 apartamentos",
+				"imageURL": "https://d28crswe7tp8oj.cloudfront.net/categoryDepartamentos.png"
+			},
+			"city": {
+				"id": 4,
+				"city": "Alcorta",
+				"state": "Santa Fe",
+				"country": "Argentina"
+			},
+			"characteristics": [
+				{
+					"id": 7,
+					"description": "Estacionamiento gratuito"
+				},
+				{
+					"id": 4,
+					"description": "Cocina"
+				},
+				{
+					"id": 1,
+					"description": "Apto para mascotas"
+				}
+			]
+		}
+	}
+]

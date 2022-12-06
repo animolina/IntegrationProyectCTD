@@ -10,6 +10,7 @@ import ProductDetails from './pages/ProductDetails';
 import Reservation from './pages/Reservation';
 import Test from './pages/Test';
 import Successful from './pages/Successful';
+import MyReservations from './pages/MyReservations';
 
 function AppRouter() {
 	const [user, setUser] = useState(null);
@@ -39,6 +40,11 @@ function AppRouter() {
 						exact
 						path='success-property'
 						element={<Successful type={'property'} />}
+					></Route>
+					<Route
+						exact
+						path='/:userId/reservations'
+						element={<MyReservations />}
 					></Route>
 					<Route exact path='test' element={<Test />}></Route>
 				</Routes>

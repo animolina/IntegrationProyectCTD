@@ -22,7 +22,7 @@ export default function ProductListCard() {
 		<>
 			{user ? (
 				<div className={styles.mainContainer}>
-					{products.slice(0, 8).map(product => (
+					{products?.slice(0, 8).map(product => (
 						<ProductCard
 							key={product?.id}
 							id={product?.id}
