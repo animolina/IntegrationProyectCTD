@@ -13,6 +13,7 @@ export const useUser = () => {
 				name: CacheService.getItem(CacheItems.UserName),
 				lastName: CacheService.getItem(CacheItems.UserLastName),
 				email: CacheService.getItem(CacheItems.UserEmail),
+				userRoles: CacheService.getItem(CacheItems.UserRole),
 		  }
 		: null;
 

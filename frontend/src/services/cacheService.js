@@ -45,4 +45,5 @@ export const CacheItems = {
 	UserName: 'user-name',
 	UserLastName: 'user-last-name',
 	UserEmail: 'user-email',
+	UserRole: 'user-role',
 };

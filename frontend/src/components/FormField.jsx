@@ -1,14 +1,15 @@
 import styles from '../styles/formField.module.css';
+import BasicSelect from './../components/BasicSelect';
 import Input from './Input';
 
 export default function FormField({ config, error }) {
 	// Add new Field Types here
 	return (
-		config.fieldType === 'input' && (
-			<div className={styles.formField}>
-				<label htmlFor={config.id} className={styles.label}>
-					{config.label}
-				</label>
+		<div className={styles.formField}>
+			<label htmlFor={config.id} className={config.labelStyles ?? styles.label}>
+				{config.label}
+			</label>
+			{config.fieldType === 'input' && (
 				<Input
 					className={error ? styles.errorInput : ''}
 					type={config.type}
@@ -16,8 +17,25 @@ export default function FormField({ config, error }) {
 					placeholder={config.placeholder}
 					disabled={config.disabled || false}
 				/>
-				{error && <span className={styles.errorMessage}>{error}</span>}
-			</div>
-		)
+			)}
+			{config.fieldType === 'select' && (
+				<BasicSelect
+					data={config.selectData}
+					handleSelect={config.selectHandler}
+					disabled={config.disabled}
+				/>
+			)}
+			{error && <span className={styles.errorMessage}>{error}</span>}
+			{config.fieldType === 'textarea' && (
+				<textarea
+					className={styles.textArea}
+					rows={config.textAreaRows}
+					cols={config.textAreaCols}
+					placeholder={config.textAreaPlaceholder}
+					disabled={config.disabled}
+				></textarea>
+			)}
+			{error && <span className={styles.errorMessage}>{error}</span>}
+		</div>
 	);
 }

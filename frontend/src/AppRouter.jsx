@@ -13,6 +13,7 @@ import Successful from './pages/Successful';
 import MyReservations from './pages/MyReservations';
 import ReservationDetails from './pages/ReservationDetails';
 import NotFound404 from './pages/NotFound404';
+import NewProduct from './pages/NewProduct';
 
 function AppRouter() {
 	const [user, setUser] = useState(null);
@@ -53,6 +54,7 @@ function AppRouter() {
 						path='/:userId/reservations'
 						element={<MyReservations />}
 					></Route>
+					<Route exact path='/admin/new-product' element={<NewProduct />}></Route>
 					<Route exact path='test' element={<Test />}></Route>
 					<Route path='*' element={<NotFound404 />}></Route>
 				</Routes>
