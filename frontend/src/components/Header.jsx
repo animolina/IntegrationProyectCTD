@@ -56,6 +56,11 @@ export default function Header() {
 
 			{user ? (
 				<div className={styles.logoutWelcome}>
+					{user.userRoles === 'ADMIN' && (
+						<Link to={`/admin/new-product`} className={styles.myReservations}>
+							Administración
+						</Link>
+					)}
 					<Link
 						to={`/${user.id}/reservations`}
 						className={styles.myReservations}

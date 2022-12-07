@@ -100,8 +100,8 @@
 }
 
 .myReservations {
-	padding: 1rem;
-	margin: 1rem;
+	padding: 1rem 1rem 1rem 0px;
+	margin: 1rem 1rem 1rem 0px;
 	border-right: 2px solid var(--main-color);
 	font: var(--font-botton2);
 	color: var(--details-color);

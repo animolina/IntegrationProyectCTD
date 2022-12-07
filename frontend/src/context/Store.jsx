@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createContext, useContext, useState, useEffect } from 'react';
+import { CharacteristicsService } from '../services/characteristicsService';
 import { getCategories } from '../services/getCategories';
 import { getCities } from '../services/getCities';
 import { getFeatures } from '../services/getFeatures';
@@ -16,6 +17,7 @@ const AppContext = createContext({
 	categories: [],
 	products: [],
 	cities: [],
+	characteristics: [],
 	product: {},
 	features: [],
 	policy: {},
@@ -42,6 +44,7 @@ export default function Store({ children }) {
 	const [policy, setPolicy] = useState(null);
 	const [idProduct, setIdProduct] = useState(1);
 	const [reservations, setReservations] = useState([]);
+	const [characteristics, setCharacteristics] = useState([]);
 
 	useEffect(() => {
 		const loadCategories = async () => {
@@ -53,8 +56,13 @@ export default function Store({ children }) {
 			const dataCities = await getCities();
 			setCities(dataCities);
 		};
+		const loadCharacteristics = async () => {
+			const data = await CharacteristicsService.getCharacteristics();
+			setCharacteristics(data);
+		};
 		loadCategories();
 		loadCities();
+		loadCharacteristics();
 	}, []);
 
 	useEffect(() => {
@@ -105,6 +113,7 @@ export default function Store({ children }) {
 				categories,
 				products,
 				cities,
+				characteristics,
 				product,
 				features,
 				policy,

@@ -81,6 +81,7 @@ export default function Login() {
 			CacheService.setItem(CacheItems.UserName, user.name);
 			CacheService.setItem(CacheItems.UserLastName, user.lastName);
 			CacheService.setItem(CacheItems.UserEmail, user.email);
+			CacheService.setItem(CacheItems.UserRole, user.userRoles);
 			navigate(nextRoute ?? '/');
 		} else if (result.status === 403) {
 			setAlert({ text: 'Credenciales erroneas', type: 'error' });
