@@ -22,7 +22,7 @@ function AppRouter() {
 	return (
 		<UserContext.Provider value={value}>
 			<BrowserRouter>
-				<Header />
+				{/* 	<Header /> */}
 				<Routes>
 					<Route exact path='/' element={<App />}></Route>
 					<Route exact path='login' element={<Login />}></Route>
