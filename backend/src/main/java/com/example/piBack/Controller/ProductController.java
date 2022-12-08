@@ -73,6 +73,7 @@ public class ProductController {
         }
     }
 
+
     //add a new product
     @PostMapping
     public ResponseEntity<Object> addProduct(@RequestBody Product product) {
@@ -88,8 +89,8 @@ public class ProductController {
     @PutMapping("/{id}")
     public ResponseEntity<Product> editProduct(@PathVariable("id") long id, @RequestBody Product product) {
         Optional<Product> product_ = productService.findProduct(id);
-
         if (product_.isPresent()) {
+            product.setId(product_.get().getId());
             return new ResponseEntity<>(productService.editProduct(product), HttpStatus.OK);
         } else {
             return new ResponseEntity("Product with id " + id + " not found", HttpStatus.NOT_FOUND);

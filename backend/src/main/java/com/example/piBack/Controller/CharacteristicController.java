@@ -21,8 +21,8 @@ public class CharacteristicController {
     public ResponseEntity<Object> addCharacteristic(@RequestBody Characteristic characteristic) {
         try {
             Characteristic newCharacteristic = characteristicService.addCharacteristic(characteristic);
-            return new ResponseEntity<>("Characteristic ID: "+newCharacteristic.getId()+" created", HttpStatus.OK);
-        }catch (Exception e) {
+            return new ResponseEntity<>("Characteristic ID: " + newCharacteristic.getId() + " created", HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>("Server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -33,11 +33,11 @@ public class CharacteristicController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Characteristic> findCharacteristic(@PathVariable Long id){
-        if(characteristicService.findCharacteristic(id).isPresent()) {
+    public ResponseEntity<Characteristic> findCharacteristic(@PathVariable Long id) {
+        if (characteristicService.findCharacteristic(id).isPresent()) {
             return ResponseEntity.ok(characteristicService.findCharacteristic(id).get());
-        }else{
-            return new ResponseEntity("Characteristic with id "+id+" not found", HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity("Characteristic with id " + id + " not found", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -46,14 +46,15 @@ public class CharacteristicController {
         Optional<Characteristic> characteristic_ = characteristicService.findCharacteristic(id);
 
         if (characteristic_.isPresent()) {
+            characteristic.setId(characteristic_.get().getId());
             return new ResponseEntity<>(characteristicService.editCharacteristic(characteristic), HttpStatus.OK);
         } else {
-            return new ResponseEntity("Characteristic with id "+id+" not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Characteristic with id " + id + " not found", HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteCharacteristic (@PathVariable Long id) {
+    public ResponseEntity deleteCharacteristic(@PathVariable Long id) {
         try {
             characteristicService.deleteCharacteristic(id);
             return new ResponseEntity("Characteristic deleted", HttpStatus.OK);

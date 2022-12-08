@@ -93,6 +93,7 @@ public class ReservationController {
         Optional<Reservation> reservation_ = reservationService.findReservation(id);
 
         if (reservation_.isPresent()) {
+            reservation.setId(reservation_.get().getId());
             return new ResponseEntity<>(reservationService.editReservation(reservation), HttpStatus.OK);
         } else {
             return new ResponseEntity("Reservation with id " + id + " not found", HttpStatus.NOT_FOUND);
