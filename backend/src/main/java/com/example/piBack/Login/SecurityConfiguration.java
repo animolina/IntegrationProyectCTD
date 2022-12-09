@@ -16,6 +16,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static com.example.piBack.Login.UserRoles.ADMIN;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -42,12 +44,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/category/**", "/characteristic/**", "/city/**", "/client/**", "/image/**", "/user/**", "/policy/**").permitAll()
                 .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**", "/swagger-resources/configuration/ui", "/swagger-ui.html").permitAll()
                 .antMatchers("/reservation/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/product").hasAuthority(ADMIN.name())
+                .antMatchers(HttpMethod.PUT, "/product/{id}").hasAuthority(ADMIN.name())
+                .antMatchers(HttpMethod.DELETE, "/product/{id}").hasAuthority(ADMIN.name())
                 .antMatchers(HttpMethod.GET, "/product/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/product/**").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/product/**").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/product/**").hasAuthority("ADMIN")
-                .antMatchers("/login")
-                .permitAll()
+                .antMatchers("/login").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

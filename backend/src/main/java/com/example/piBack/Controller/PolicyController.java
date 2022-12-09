@@ -21,8 +21,8 @@ public class PolicyController {
     public ResponseEntity<Object> addPolicy(@RequestBody Policy policy) {
         try {
             Policy newPolicy = policyService.addPolicy(policy);
-            return new ResponseEntity<>("Policy ID: "+newPolicy.getId()+" created", HttpStatus.OK);
-        }catch (Exception e) {
+            return new ResponseEntity<>("Policy ID: " + newPolicy.getId() + " created", HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>("Server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -33,26 +33,28 @@ public class PolicyController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Policy> findPolicy(@PathVariable Long id){
-        if(policyService.findPolicy(id).isPresent()) {
+    public ResponseEntity<Policy> findPolicy(@PathVariable Long id) {
+        if (policyService.findPolicy(id).isPresent()) {
             return ResponseEntity.ok(policyService.findPolicy(id).get());
-        }else{
-            return new ResponseEntity("Policy with id "+id+" not found", HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity("Policy with id " + id + " not found", HttpStatus.NOT_FOUND);
         }
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Policy> editPolicy(@PathVariable("id") long id, @RequestBody Policy policy) {
         Optional<Policy> policy_ = policyService.findPolicy(id);
 
         if (policy_.isPresent()) {
+            policy.setId(policy_.get().getId());
             return new ResponseEntity<>(policyService.editPolicy(policy), HttpStatus.OK);
         } else {
-            return new ResponseEntity("Policy with id "+id+" not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Policy with id " + id + " not found", HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deletePolicy (@PathVariable Long id) {
+    public ResponseEntity deletePolicy(@PathVariable Long id) {
         try {
             policyService.deletePolicy(id);
             return new ResponseEntity("Policy deleted", HttpStatus.OK);
