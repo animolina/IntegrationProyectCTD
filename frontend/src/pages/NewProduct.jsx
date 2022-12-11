@@ -4,7 +4,7 @@ import styles from '../styles/newProduct.module.css';
 import ProductPolicies from '../components/ProductPolicies';
 import NewCharacteristic from '../components/NewCharacteristic';
 import NewImage from '../components/NewImage';
-// import { useState } from 'react';
+import { useState } from 'react';
 
 const labelStyles = styles.label;
 
@@ -40,6 +40,7 @@ const categoriesFieldConfig = {
 	},
 	labelStyles,
 };
+
 const descriptionFieldConfig = {
 	fieldType: 'textarea',
 	label: 'Descripción',
@@ -58,6 +59,7 @@ export default function NewProduct() {
 		return { id: c.id, content: c.city };
 	});
 	cities.unshift({ id: null, content: '' });
+	
 	const categories = [...rawCategories].map(c => {
 		return { id: c.id, content: c.title };
 	});
@@ -65,6 +67,39 @@ export default function NewProduct() {
 
 	cityFieldFieldConfig.selectData = cities;
 	categoriesFieldConfig.selectData = categories;
+
+	// get selected city from select
+	const [, setSelectedCity] = useState();
+	const setCity = event => {
+		const value = +event.target?.value;
+		if (value) {
+			setSelectedCity(cities.find(at => at.id === value));
+		}
+	};
+
+	// get selected category from select
+	const [, setSelectedCategory] = useState();
+	const setCategory = event => {
+		const value = +event.target?.value;
+		if (value) {
+			setSelectedCategory(categories.find(at => at.id === value));
+		}
+	};
+
+	// get  title from text imput
+	const [, setSelectedTitle] = useState();
+	const handleTitleChange = e => {
+		const value = e.target.value;
+		setSelectedTitle(value);
+	};
+
+	// get description from text area
+
+	const [, setSelectedDescription] = useState();
+	const handleDescriptionChange = e => {
+		const value = e.target.value;
+		setSelectedDescription(value);
+	};
 
 	return (
 		<div className={styles.mainContainer}>
@@ -76,14 +111,23 @@ export default function NewProduct() {
 				<div className={styles.newProductCard}>
 					<div className={styles.formContainer}>
 						<div className={styles.formRow}>
-							<FormField config={nameFieldConfig} />
-							<FormField config={categoriesFieldConfig} />
+							<FormField
+								config={nameFieldConfig}
+								handleChange={handleTitleChange}
+							/>
+							<FormField
+								config={categoriesFieldConfig}
+								handleSelect={setCategory}
+							/>
 						</div>
 						<div className={styles.formRow}>
 							<FormField config={addressFieldConfig} />
-							<FormField config={cityFieldFieldConfig} />
+							<FormField config={cityFieldFieldConfig} handleSelect={setCity} />
 						</div>
-						<FormField config={descriptionFieldConfig} />
+						<FormField
+							config={descriptionFieldConfig}
+							handleChange={handleDescriptionChange}
+						/>
 					</div>
 
 					<NewCharacteristic />

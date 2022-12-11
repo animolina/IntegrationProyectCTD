@@ -18,3 +18,13 @@
 	color: var(--text-color);
 	margin: 0.5rem 0px;
 }
+
+/* ------------------------------- responsive ------------------------------- */
+
+@media screen and (max-width: 1000px) {
+	.formRow {
+		flex-direction: column;
+		justify-content: start;
+		padding: 0;
+	}
+}

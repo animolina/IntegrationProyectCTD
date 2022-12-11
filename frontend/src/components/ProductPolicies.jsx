@@ -1,4 +1,6 @@
-import PolicyItem from './PolicyItem';
+import PolicyItemProperty from './PolicyItemProperty';
+import PolicyItemSecurity from './PolicyItemSecurity';
+import PolicyItemCancellation from './PolicyItemCancellation';
 import styles from '../styles/productPolicies.module.css';
 
 export default function ProductPolicies() {
@@ -6,9 +8,9 @@ export default function ProductPolicies() {
 		<div className={styles.productPoliciesContainer}>
 			<h2 className={styles.productPolicies}>Políticas del producto</h2>
 			<div className={styles.policyContainer}>
-				<PolicyItem title={'Normas de la casa'} />
-				<PolicyItem title={'Salud y seguridad'} />
-				<PolicyItem title={'Política de cancelación'} />
+				<PolicyItemProperty />
+				<PolicyItemSecurity />
+				<PolicyItemCancellation />
 			</div>
 		</div>
 	);
