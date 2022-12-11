@@ -29,6 +29,7 @@ export default function FormField({
 					data={config.selectData}
 					handleSelect={handleSelect}
 					disabled={config.disabled}
+					placeholder={config.placeholder}
 				/>
 			)}
 			{error && <span className={styles.errorMessage}>{error}</span>}

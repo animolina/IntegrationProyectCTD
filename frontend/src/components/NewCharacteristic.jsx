@@ -1,22 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import plusIcon from '../assets/icons/plusIcon.svg';
 import removeIcon from '../assets/icons/removeIcon.svg';
 import styles from '../styles/newCharacteristic.module.css';
 import CharacteristicItem from './CharacteristicItem';
 
-export default function NewCharacteristic() {
+export default function NewCharacteristic({ setNewProductCharacteristics }) {
 	const [newCharacteristics, setNewCharacteristics] = useState([{ id: 0 }]);
 
-	const addNewRow = rowId => {
-		newCharacteristics.forEach((element, index) => {
-			if (element.id > rowId) {
-				newCharacteristics[index].id = element.id + 1;
-			}
-		});
-		const newArray = [...newCharacteristics, { id: rowId + 1 }];
-		newArray.sort((a, b) => {
-			return a.id - b.id;
-		});
+	useEffect(() => {
+		setNewProductCharacteristics(
+			newCharacteristics.filter(characteristic => characteristic.id !== 0)
+		);
+	}, [newCharacteristics]);
+
+	const addNewRow = () => {
+		const newArray = [...newCharacteristics, { id: 0 }];
 		setNewCharacteristics(newArray);
 	};
 
@@ -28,9 +26,12 @@ export default function NewCharacteristic() {
 		if (objWithIdIndex > -1) {
 			newCharacteristics.splice(objWithIdIndex, 1);
 		}
-		newCharacteristics.forEach((element, index) => {
-			newCharacteristics[index].id = element.id - 1;
-		});
+
+		setNewCharacteristics([...newCharacteristics]);
+	};
+
+	const setSelectedCharacteristic = (selectedId, rowId) => {
+		newCharacteristics[rowId].id = selectedId;
 		setNewCharacteristics([...newCharacteristics]);
 	};
 
@@ -40,13 +41,16 @@ export default function NewCharacteristic() {
 
 			<div className={styles.itemsColumn}>
 				{newCharacteristics &&
-					newCharacteristics.length &&
-					newCharacteristics.map(c => {
+					newCharacteristics.map((c, idx) => {
 						return (
-							<div key={c.id} className={styles.rowContainer}>
+							<div key={idx} className={styles.rowContainer}>
 								<div className={styles.row}>
-									<CharacteristicItem />
-									{c.id === 0 && newCharacteristics.length > 1 ? (
+									<CharacteristicItem
+										handleSelect={value =>
+											setSelectedCharacteristic(Number(value), idx)
+										}
+									/>
+									{idx !== newCharacteristics.length - 1 ? (
 										<button
 											onClick={() => {
 												removeRow(c.id);
@@ -59,19 +63,13 @@ export default function NewCharacteristic() {
 											/>
 										</button>
 									) : (
-										(newCharacteristics.length === 1 || c.id > 0) && (
-											<button
-												onClick={() => {
-													addNewRow(c.id);
-												}}
-											>
-												<img
-													className={styles.iconButton}
-													src={plusIcon}
-													alt='Adicionar atributo'
-												/>
-											</button>
-										)
+										<button onClick={addNewRow}>
+											<img
+												className={styles.iconButton}
+												src={plusIcon}
+												alt='Adicionar atributo'
+											/>
+										</button>
 									)}
 								</div>
 							</div>

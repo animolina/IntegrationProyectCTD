@@ -71,22 +71,22 @@ export default function NewProduct() {
 	/* ------------------------------- fetch data from user inputs ------------------------------- */
 
 	// get selected city from select
-	const [, setSelectedCity] = useState();
-	const setCity = event => {
-		const value = +event.target?.value;
+	const [selectedCity, setSelectedCity] = useState();
+	const setCity = value => {
 		if (value) {
-			setSelectedCity(cities.find(at => at.id === value));
+			setSelectedCity(cities.find(at => at.id === Number(value)));
 		}
 	};
 
 	// get selected category from select
-	const [, setSelectedCategory] = useState();
-	const setCategory = event => {
-		const value = +event.target?.value;
+	const [selectedCategory, setSelectedCategory] = useState();
+	const setCategory = value => {
 		if (value) {
-			setSelectedCategory(categories.find(at => at.id === value));
+			setSelectedCategory(categories.find(at => at.id === Number(value)));
 		}
 	};
+
+	console.log({ selectedCity, selectedCategory });
 
 	// get  title from text imput
 	const [, setSelectedTitle] = useState();
@@ -132,14 +132,20 @@ export default function NewProduct() {
 	};
 
 	// are parties allowed?
-	const [isPartyAllowed, setIsPartyAllowed] = useState(false);
+	const [, setIsPartyAllowed] = useState(false);
 
 	// is smoking allowed?
-	const [isSmokingAllowed, setIsSmokingAllowed] = useState(false);
+	const [, setIsSmokingAllowed] = useState(false);
 
 	// has smoking detector?
-	const [hasSmokingDetector, setHasSmokingDetector] = useState(false);
-	console.log({ isPartyAllowed, isSmokingAllowed, hasSmokingDetector });
+	const [, setHasSmokingDetector] = useState(false);
+
+	// get product characteristics
+	const [newProductCharacteristics, setNewProductCharacteristics] = useState(
+		[]
+	);
+	console.log(newProductCharacteristics);
+
 	return (
 		<div className={styles.mainContainer}>
 			<header className={styles.newProductHeader}>
@@ -169,7 +175,9 @@ export default function NewProduct() {
 						/>
 					</div>
 
-					<NewCharacteristic />
+					<NewCharacteristic
+						setNewProductCharacteristics={setNewProductCharacteristics}
+					/>
 					<ProductPolicies
 						handleCheckoutChange={handleCheckoutChange}
 						handleSocialDistanceChange={handleSocialDistanceChange}

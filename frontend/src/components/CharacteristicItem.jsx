@@ -12,32 +12,35 @@ const characteristicFieldConfig = {
 		console.log('Category selected');
 	},
 	labelStyles,
+	placeholder: 'Selecciona una característica',
 };
-const iconFieldConfig = {
-	fieldType: 'input',
-	id: 'icon',
-	label: 'Ícono',
-	type: 'text',
-	disabled: true,
-	labelStyles,
-};
+// const iconFieldConfig = {
+// 	fieldType: 'input',
+// 	id: 'icon',
+// 	label: 'Ícono',
+// 	type: 'text',
+// 	disabled: true,
+// 	labelStyles,
+// };
 
-export default function CharacteristicItem() {
+export default function CharacteristicItem({ handleSelect }) {
 	const store = useAppContext();
 	const rawCharacteristics = store.characteristics || [];
 
 	const characteristics = [...rawCharacteristics].map(c => {
 		return { id: c.id, content: c.description };
 	});
-	characteristics.unshift({ id: null, content: '' });
 
 	characteristicFieldConfig.selectData = characteristics;
 
 	return (
 		<div className={styles.mainContainer}>
 			<div className={styles.formRow}>
-				<FormField config={characteristicFieldConfig} />
-				<FormField config={iconFieldConfig} />
+				<FormField
+					config={characteristicFieldConfig}
+					handleSelect={handleSelect}
+				/>
+				{/* <FormField config={iconFieldConfig} /> */}
 			</div>
 		</div>
 	);
