@@ -59,7 +59,7 @@ export default function NewProduct() {
 		return { id: c.id, content: c.city };
 	});
 	cities.unshift({ id: null, content: '' });
-	
+
 	const categories = [...rawCategories].map(c => {
 		return { id: c.id, content: c.title };
 	});
@@ -67,6 +67,8 @@ export default function NewProduct() {
 
 	cityFieldFieldConfig.selectData = cities;
 	categoriesFieldConfig.selectData = categories;
+
+	/* ------------------------------- fetch data from user inputs ------------------------------- */
 
 	// get selected city from select
 	const [, setSelectedCity] = useState();
@@ -101,6 +103,43 @@ export default function NewProduct() {
 		setSelectedDescription(value);
 	};
 
+	// get policy attributes
+	// checkout policy
+	const [, setSelectedCheckoutPolicy] = useState();
+	const handleCheckoutChange = e => {
+		const value = e.target.value;
+		setSelectedCheckoutPolicy(value);
+	};
+	// social distance
+	const [, setSelectedSocialDistance] = useState();
+	const handleSocialDistanceChange = e => {
+		const value = e.target.value;
+		setSelectedSocialDistance(value);
+	};
+
+	// security deposit
+	const [, setSelectedSecurityDeposit] = useState();
+	const handleSecurityDepositChange = e => {
+		const value = e.target.value;
+		setSelectedSecurityDeposit(value);
+	};
+
+	// cancelation policy
+	const [, setSelectedCancelation] = useState();
+	const handleCancelationChange = e => {
+		const value = e.target.value;
+		setSelectedCancelation(value);
+	};
+
+	// are parties allowed?
+	const [isPartyAllowed, setIsPartyAllowed] = useState(false);
+
+	// is smoking allowed?
+	const [isSmokingAllowed, setIsSmokingAllowed] = useState(false);
+
+	// has smoking detector?
+	const [hasSmokingDetector, setHasSmokingDetector] = useState(false);
+	console.log({ isPartyAllowed, isSmokingAllowed, hasSmokingDetector });
 	return (
 		<div className={styles.mainContainer}>
 			<header className={styles.newProductHeader}>
@@ -131,7 +170,15 @@ export default function NewProduct() {
 					</div>
 
 					<NewCharacteristic />
-					<ProductPolicies />
+					<ProductPolicies
+						handleCheckoutChange={handleCheckoutChange}
+						handleSocialDistanceChange={handleSocialDistanceChange}
+						handleSecurityDepositChange={handleSecurityDepositChange}
+						handleCancelationChange={handleCancelationChange}
+						setIsPartyAllowed={setIsPartyAllowed}
+						setIsSmokingAllowed={setIsSmokingAllowed}
+						setHasSmokingDetector={setHasSmokingDetector}
+					/>
 					<NewImage />
 
 					<button className={styles.createButton}>Crear</button>

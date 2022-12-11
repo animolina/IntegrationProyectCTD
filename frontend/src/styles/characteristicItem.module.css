@@ -10,7 +10,9 @@
 	display: flex;
 	flex-direction: row;
 	gap: 2rem;
+	min-width: 20rem;
 	width: 100%;
+
 }
 
 .label {
