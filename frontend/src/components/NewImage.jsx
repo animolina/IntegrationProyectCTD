@@ -1,34 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import plusIcon from '../assets/icons/plusIcon.svg';
 import removeIcon from '../assets/icons/removeIcon.svg';
 import styles from '../styles/newImage.module.css';
 import ImageItem from './ImageItem';
 
-export default function NewImage() {
-	const [newImages, setNewImages] = useState([{ id: 0 }]);
+export default function NewImage({ setNewProductImages }) {
+	const [newImages, setNewImages] = useState([{ url: '' }]);
 
-	const addNewRow = rowId => {
-		newImages.forEach((element, index) => {
-			if (element.id > rowId) {
-				newImages[index].id = element.id + 1;
-			}
-		});
-		const newArray = [...newImages, { id: rowId + 1 }];
-		newArray.sort((a, b) => {
-			return a.id - b.id;
-		});
+	useEffect(() => {
+		setNewProductImages(newImages.filter(image => image.url !== ''));
+	}, [newImages]);
+
+	const addNewRow = () => {
+		const newArray = [...newImages, { url: '' }];
 		setNewImages(newArray);
 	};
 
 	const removeRow = rowId => {
-		const objWithIdIndex = newImages.findIndex(obj => obj.id === rowId);
+		newImages.splice(rowId, 1);
 
-		if (objWithIdIndex > -1) {
-			newImages.splice(objWithIdIndex, 1);
-		}
-		newImages.forEach((element, index) => {
-			newImages[index].id = element.id - 1;
-		});
+		setNewImages([...newImages]);
+	};
+
+	const setSelectedImage = (url, rowId) => {
+		newImages[rowId].url = url;
 		setNewImages([...newImages]);
 	};
 
@@ -39,15 +34,17 @@ export default function NewImage() {
 			<div className={styles.itemsColumn}>
 				{newImages &&
 					newImages.length &&
-					newImages.map(c => {
+					newImages.map((c, idx) => {
 						return (
-							<div key={c.id} className={styles.rowContainer}>
+							<div key={idx} className={styles.rowContainer}>
 								<div className={styles.row}>
-									<ImageItem />
-									{c.id === 0 && newImages.length > 1 ? (
+									<ImageItem
+										onChange={e => setSelectedImage(e.target.value, idx)}
+									/>
+									{idx !== newImages.length - 1 ? (
 										<button
 											onClick={() => {
-												removeRow(c.id);
+												removeRow(idx);
 											}}
 										>
 											<img
@@ -57,19 +54,13 @@ export default function NewImage() {
 											/>
 										</button>
 									) : (
-										(newImages.length === 1 || c.id > 0) && (
-											<button
-												onClick={() => {
-													addNewRow(c.id);
-												}}
-											>
-												<img
-													className={styles.iconButton}
-													src={plusIcon}
-													alt='Adicionar imagen'
-												/>
-											</button>
-										)
+										<button onClick={addNewRow}>
+											<img
+												className={styles.iconButton}
+												src={plusIcon}
+												alt='Adicionar imagen'
+											/>
+										</button>
 									)}
 								</div>
 							</div>

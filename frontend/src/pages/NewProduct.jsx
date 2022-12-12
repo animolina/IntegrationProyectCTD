@@ -4,10 +4,13 @@ import styles from '../styles/newProduct.module.css';
 import ProductPolicies from '../components/ProductPolicies';
 import NewCharacteristic from '../components/NewCharacteristic';
 import NewImage from '../components/NewImage';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { ProductsService } from '../services/productsService';
+import { useParams, useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
+import Alert from '../components/Alert';
 
 const labelStyles = styles.label;
-
 const nameFieldConfig = {
 	fieldType: 'input',
 	id: 'name',
@@ -51,6 +54,18 @@ const descriptionFieldConfig = {
 };
 
 export default function NewProduct() {
+	const [alert, setAlert] = useState();
+
+	const navigate = useNavigate();
+	const { id } = useParams();
+	const [submitAlert, setSubmitAlert] = useState();
+
+	useEffect(() => {
+		if (alert) {
+			setSubmitAlert(alert);
+		}
+	}, [alert]);
+
 	const store = useAppContext();
 	const rawCities = store.cities || [];
 	const rawCategories = store.categories || [];
@@ -86,10 +101,8 @@ export default function NewProduct() {
 		}
 	};
 
-	console.log({ selectedCity, selectedCategory });
-
 	// get  title from text imput
-	const [, setSelectedTitle] = useState();
+	const [selectedTitle, setSelectedTitle] = useState();
 	const handleTitleChange = e => {
 		const value = e.target.value;
 		setSelectedTitle(value);
@@ -97,7 +110,7 @@ export default function NewProduct() {
 
 	// get description from text area
 
-	const [, setSelectedDescription] = useState();
+	const [selectedDescription, setSelectedDescription] = useState();
 	const handleDescriptionChange = e => {
 		const value = e.target.value;
 		setSelectedDescription(value);
@@ -105,46 +118,122 @@ export default function NewProduct() {
 
 	// get policy attributes
 	// checkout policy
-	const [, setSelectedCheckoutPolicy] = useState();
+	const [selectedCheckoutPolicy, setSelectedCheckoutPolicy] = useState();
 	const handleCheckoutChange = e => {
 		const value = e.target.value;
 		setSelectedCheckoutPolicy(value);
 	};
 	// social distance
-	const [, setSelectedSocialDistance] = useState();
+	const [selectedSocialDistance, setSelectedSocialDistance] = useState();
 	const handleSocialDistanceChange = e => {
 		const value = e.target.value;
 		setSelectedSocialDistance(value);
 	};
 
 	// security deposit
-	const [, setSelectedSecurityDeposit] = useState();
+	const [selectedSecurityDeposit, setSelectedSecurityDeposit] = useState();
 	const handleSecurityDepositChange = e => {
 		const value = e.target.value;
 		setSelectedSecurityDeposit(value);
 	};
 
 	// cancelation policy
-	const [, setSelectedCancelation] = useState();
+	const [selectedCancelation, setSelectedCancelation] = useState();
 	const handleCancelationChange = e => {
 		const value = e.target.value;
 		setSelectedCancelation(value);
 	};
 
 	// are parties allowed?
-	const [, setIsPartyAllowed] = useState(false);
+	const [isPartyAllowed, setIsPartyAllowed] = useState(false);
 
 	// is smoking allowed?
-	const [, setIsSmokingAllowed] = useState(false);
+	const [isSmokingAllowed, setIsSmokingAllowed] = useState(false);
 
 	// has smoking detector?
-	const [, setHasSmokingDetector] = useState(false);
+	const [hasSmokingDetector, setHasSmokingDetector] = useState(false);
 
 	// get product characteristics
 	const [newProductCharacteristics, setNewProductCharacteristics] = useState(
 		[]
 	);
-	console.log(newProductCharacteristics);
+
+	// availability
+	const availability = 'yes';
+
+	// get image url from input
+	const [newProductImages, setNewProductImages] = useState([]);
+
+	const setErrorAlert = text => {
+		setAlert({ type: 'error', text });
+	};
+
+	const createProduct = async () => {
+		if (!selectedCity || !selectedCity.id) {
+			setErrorAlert('Seleccioná una ciudad');
+			return;
+		}
+
+		if (!selectedCategory || !selectedCategory.id) {
+			setErrorAlert('Seleccioná una categoría para tu propiedad');
+			return;
+		}
+
+		if (!selectedTitle) {
+			setErrorAlert('Ingresá una título');
+			return;
+		}
+		if (!selectedDescription) {
+			setErrorAlert('Ingresá una descripción');
+			return;
+		}
+		if (!setNewProductCharacteristics) {
+			setErrorAlert('Ingresá atributos');
+			return;
+		}
+
+		if (
+			!selectedCheckoutPolicy ||
+			!selectedSocialDistance ||
+			!selectedSecurityDeposit ||
+			!selectedCancelation
+		) {
+			setErrorAlert('Debes completar todos los datos de las políticas');
+			return;
+		}
+
+		const result = await ProductsService.createProduct({
+			title: selectedTitle,
+			description: selectedDescription,
+			availability,
+			category: { id: selectedCategory.id },
+			city: { id: selectedCity.id },
+			characteristics: newProductCharacteristics,
+			images: newProductImages.map(img => ({
+				title: '',
+				url: img.url,
+			})),
+			policy: {
+				checkout: selectedCheckoutPolicy,
+				partyAllowed: isPartyAllowed,
+				smokeAllowed: isSmokingAllowed,
+				socialDistance: selectedSocialDistance,
+				smokeDetector: hasSmokingDetector,
+				securityDeposit: selectedSecurityDeposit,
+				cancellation: selectedCancelation,
+			},
+		});
+		if (result && result.includes('created')) {
+			navigate('/success');
+		} else if (result.status === 403) {
+			navigate('/login', {
+				state: {
+					alert: { type: 'warning', text: 'Inicia sesión para continuar' },
+					forwardingRoute: `/product-details/${id}/reservation`,
+				},
+			});
+		}
+	};
 
 	return (
 		<div className={styles.mainContainer}>
@@ -187,9 +276,14 @@ export default function NewProduct() {
 						setIsSmokingAllowed={setIsSmokingAllowed}
 						setHasSmokingDetector={setHasSmokingDetector}
 					/>
-					<NewImage />
+					<NewImage setNewProductImages={setNewProductImages} />
 
-					<button className={styles.createButton}>Crear</button>
+					<Button Button innerText={'Crear'} handleClick={createProduct} />
+					{submitAlert && (
+						<div className={styles.reservationAlert}>
+							<Alert type={alert.type} text={alert.text} />
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

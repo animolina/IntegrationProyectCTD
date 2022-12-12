@@ -14,14 +14,8 @@ export class ProductsService {
 		return await ApiService.get(`/product/${productId}`);
 	}
 
-	static async createProduct(newProduct) {
-		return await ApiService.post(
-			'/product',
-			{
-				newProduct,
-			},
-			true
-		);
+	static async createProduct(product) {
+		return await ApiService.post('/product', product, true);
 	}
 
 	// product  required body for post method example:

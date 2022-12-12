@@ -22,7 +22,7 @@ export default function ProductListCard() {
 		<>
 			{user ? (
 				<div className={styles.mainContainer}>
-					{products?.slice(0, 8).map(product => (
+					{products?.slice(0, 12).map(product => (
 						<ProductCard
 							key={product?.id}
 							id={product?.id}
@@ -37,7 +37,7 @@ export default function ProductListCard() {
 			) : (
 				<div className={styles.mainContainer}>
 					{shuffleArray(products)
-						.slice(0, 8)
+						.slice(0, 12)
 						.map(product => (
 							<ProductCard
 								key={product?.id}
