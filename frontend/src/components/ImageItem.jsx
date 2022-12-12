@@ -8,11 +8,11 @@ const urlFieldConfig = {
 	placeholder: 'Insertar https://',
 };
 
-export default function ImageItem() {
+export default function ImageItem({ onChange }) {
 	return (
 		<div className={styles.mainContainer}>
 			<div className={styles.formRow}>
-				<FormField config={urlFieldConfig} />
+				<FormField config={urlFieldConfig} handleChange={onChange} />
 			</div>
 		</div>
 	);

@@ -104,21 +104,15 @@ export default function Reservation() {
 		}
 	}, [startDate, endDate]);
 
-	const setReservationStartTime = event => {
-		const value = +event.target?.value;
+	const setReservationStartTime = value => {
 		if (value) {
-			setStartTime(availableTimes.find(at => at.id === value));
+			setStartTime(availableTimes.find(at => at.id === Number(value)));
 		}
 	};
 
-	const setUserCity = event => {
-		const value = +event.target?.value;
+	const setUserCity = value => {
 		if (value) {
-			setCity(cities.find(at => at.id === value));
-		}
-
-		if (isNaN(value)) {
-			setCity(null);
+			setCity(cities.find(at => at.id === Number(value)));
 		}
 	};
 

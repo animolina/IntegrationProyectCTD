@@ -10,11 +10,23 @@
 	display: flex;
 	flex-direction: row;
 	gap: 2rem;
+	min-width: 20rem;
 	width: 100%;
+
 }
 
 .label {
 	font-weight: 700;
 	color: var(--text-color);
 	margin: 0.5rem 0px;
+}
+
+/* ------------------------------- responsive ------------------------------- */
+
+@media screen and (max-width: 1000px) {
+	.formRow {
+		flex-direction: column;
+		justify-content: start;
+		padding: 0;
+	}
 }

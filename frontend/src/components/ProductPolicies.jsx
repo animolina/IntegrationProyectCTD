@@ -1,14 +1,34 @@
-import PolicyItem from './PolicyItem';
+import PolicyItemProperty from './PolicyItemProperty';
+import PolicyItemSecurity from './PolicyItemSecurity';
+import PolicyItemCancellation from './PolicyItemCancellation';
 import styles from '../styles/productPolicies.module.css';
 
-export default function ProductPolicies() {
+export default function ProductPolicies({
+	handleCheckoutChange,
+	handleSocialDistanceChange,
+	handleSecurityDepositChange,
+	handleCancelationChange,
+	setIsPartyAllowed,
+	setIsSmokingAllowed,
+	setHasSmokingDetector,
+}) {
 	return (
 		<div className={styles.productPoliciesContainer}>
 			<h2 className={styles.productPolicies}>Políticas del producto</h2>
 			<div className={styles.policyContainer}>
-				<PolicyItem title={'Normas de la casa'} />
-				<PolicyItem title={'Salud y seguridad'} />
-				<PolicyItem title={'Política de cancelación'} />
+				<PolicyItemProperty
+					handleCheckoutChange={handleCheckoutChange}
+					setIsPartyAllowed={setIsPartyAllowed}
+				/>
+				<PolicyItemSecurity
+					handleSocialDistanceChange={handleSocialDistanceChange}
+					setIsSmokingAllowed={setIsSmokingAllowed}
+					setHasSmokingDetector={setHasSmokingDetector}
+				/>
+				<PolicyItemCancellation
+					handleSecurityDepositChange={handleSecurityDepositChange}
+					handleCancelationChange={handleCancelationChange}
+				/>
 			</div>
 		</div>
 	);
