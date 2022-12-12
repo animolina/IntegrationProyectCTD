@@ -13,7 +13,7 @@ export default function BasicSelect({
 		setValue(e.target.value);
 		if (handleSelect) {
 			handleSelect(e.target.value);
-		}
+	}
 	};
 	return (
 		<div>

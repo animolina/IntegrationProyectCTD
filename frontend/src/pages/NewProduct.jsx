@@ -9,6 +9,7 @@ import { ProductsService } from '../services/productsService';
 import { useParams, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import Alert from '../components/Alert';
+import Successful from './Successful';
 
 const labelStyles = styles.label;
 const nameFieldConfig = {
@@ -224,7 +225,7 @@ export default function NewProduct() {
 			},
 		});
 		if (result && result.includes('created')) {
-			navigate('/success');
+			navigate('/success-property');
 		} else if (result.status === 403) {
 			navigate('/login', {
 				state: {
