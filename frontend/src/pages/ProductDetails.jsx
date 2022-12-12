@@ -45,7 +45,7 @@ export default function ProductDetails() {
 				},
 			});
 		}
-	}, [product.reservations]);
+	}, [reservations]);
 
 	return (
 		<div className={styles.productDetailsContainer}>
