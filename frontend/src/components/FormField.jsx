@@ -32,7 +32,6 @@ export default function FormField({
 					placeholder={config.placeholder}
 				/>
 			)}
-			{error && <span className={styles.errorMessage}>{error}</span>}
 			{config.fieldType === 'textarea' && (
 				<textarea
 					className={styles.textArea}
