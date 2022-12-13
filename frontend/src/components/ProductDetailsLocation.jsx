@@ -22,7 +22,8 @@ export default function ProductDetailsLocation() {
 				/>
 				<div className={styles.locationText}>
 					<p>
-						{product.city.city}, {product.city.state}, {product.city.country}
+						{product?.city?.city}, {product?.city?.state},{' '}
+						{product?.city?.country}
 					</p>
 					{/* 	<span>A 940 m del centro</span> */}
 				</div>
@@ -31,7 +32,7 @@ export default function ProductDetailsLocation() {
 				<div>
 					<p className={styles.scoreOpinion}>Muy bueno</p>
 					{/* <span className={styles.scoreStars}>★ ★ ★ ★ ★ </span> */}
-					<StarRating starScore={5} />
+					<StarRating starScore={4} />
 				</div>
 
 				<div className={styles.scoreNumber}>5</div>

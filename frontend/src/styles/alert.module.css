@@ -1,20 +1,34 @@
-.cartelWarning {
+.alertContainer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 28rem;
 	height: 3.875rem;
-	background-color: #ffe6e6;
-	color: #b00020;
 	border-radius: 8px;
 	padding: 1rem;
 }
-.textWarning {
+
+.error {
+	background-color: #ffe6e6;
+	color: #b00020;
+}
+
+.warning {
+	background-color: #fffbeb;
+	color: #d97706;
+}
+
+.success {
+	background-color: #f0fdf4;
+	color: #16a34a;
+}
+
+.text {
 	padding-left: 1rem;
 }
 
 @media screen and (max-width: 768px) {
-	.cartelWarning {
+	.alertContainer {
 		width: 18.75rem;
 	}
 }

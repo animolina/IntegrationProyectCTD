@@ -1,14 +1,16 @@
 package com.example.piBack.Model;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name="product")
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -30,16 +32,16 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Reservation> reservations;
 
-    @ManyToOne()
-    @JoinColumn(name="ID_policy")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_policy")
     private Policy policy;
 
     @ManyToOne()
-    @JoinColumn(name="ID_category")
+    @JoinColumn(name = "ID_category")
     private Category category;
 
     @ManyToOne()
-    @JoinColumn(name="ID_city")
+    @JoinColumn(name = "ID_city")
     private City city;
 
     @ManyToMany(cascade = {CascadeType.MERGE})

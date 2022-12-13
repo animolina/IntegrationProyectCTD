@@ -1,0 +1,46 @@
+.mainContainer {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.itemsColumn {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	width: 100%;
+}
+
+.rowContainer {
+	background-color: var(--bg-color);
+	border-radius: 5px;
+}
+
+.row {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+}
+
+.title {
+	font: var(--font-heading3);
+	color: var(--text-color);
+}
+
+.iconButton {
+	padding: 0px;
+	margin-top: 2.25rem;
+	cursor: pointer;
+	margin-right: 1rem;
+}
+
+/* ------------------------------- responsive ------------------------------- */
+
+@media screen and (max-width: 1000px) {
+	.row {
+		justify-content: start;
+		padding: 0;
+	}
+}

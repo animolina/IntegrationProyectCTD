@@ -20,9 +20,8 @@ public class CategoryService {
     CategoryRepository categoryRepository;
 
 
-
     public Category addCategory(Category category) throws BadRequestException {
-        if(category == null || category.getDescription() == null || category.getTitle() == null) {
+        if (category == null || category.getDescription() == null || category.getTitle() == null) {
             throw new BadRequestException("Los datos ingresados para registrar la categoria no son correctos o están incompletos. Debe incluir obligatoriamente: descripcion y titulo.");
         } else {
             categoryRepository.save(category);
@@ -32,7 +31,7 @@ public class CategoryService {
         }
     }
 
-    public Collection<Category> listCategory(){
+    public Collection<Category> listCategory() {
         List<Category> categories = categoryRepository.findAll();
         logger.info("All categories will be listed.");
         return categories;
@@ -43,7 +42,7 @@ public class CategoryService {
         return category;
     }
 
-    public void deleteCategory(Long id)throws EntityNotFoundException {
+    public void deleteCategory(Long id) throws EntityNotFoundException {
         logger.info("Category with id: " + id + " will be deleted.");
         Optional<Category> category = findCategory(id);
         if (category.isPresent())
@@ -53,18 +52,10 @@ public class CategoryService {
         logger.error("Category with id: " + id + "was not found in our DB.");
     }
 
-    public Optional<Category> findCategory(Long id) throws EntityNotFoundException{
+    public Optional<Category> findCategory(Long id) throws EntityNotFoundException {
         Optional<Category> category = categoryRepository.findById(id);
-        if (category.isPresent())
-            categoryRepository.deleteById(id);
-        else
-            throw new EntityNotFoundException("Category with " + id + " was not found");
         return category;
     }
 
 
-
-
 }
-
-

@@ -1,0 +1,29 @@
+.productPoliciesContainer {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	width: 100%;
+}
+
+.productPolicies {
+	font: var(--font-heading2);
+	color: var(--text-color);
+}
+
+.policyContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 1rem;
+
+}
+
+/* ------------------------------- responsive ------------------------------- */
+
+@media screen and (max-width: 1000px) {
+	.policyContainer {
+		flex-direction: column;
+		justify-content: start;
+		padding: 0;
+	}
+}

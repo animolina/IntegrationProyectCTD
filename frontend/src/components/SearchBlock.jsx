@@ -69,8 +69,8 @@ export default function SearchBlock() {
 						innerText='Buscar'
 						handleClick={() => {
 							store.setSelectedCity(selectedCity);
-							store.setSelectedStartDate(startDate);
-							store.setSelectedEndDate(endDate);
+							store.setSelectedStartDate(startDate.toISOString().split('T')[0]); // to get the right format for api calls.
+							store.setSelectedEndDate(endDate.toISOString().split('T')[0]);
 						}}
 					></Button>
 				</form>

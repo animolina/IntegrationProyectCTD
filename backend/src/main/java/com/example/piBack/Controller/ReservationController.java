@@ -1,4 +1,6 @@
 package com.example.piBack.Controller;
+
+import com.example.piBack.DTO.ReservationDTO;
 import com.example.piBack.Model.Client;
 import com.example.piBack.Model.Reservation;
 import com.example.piBack.Model.User;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Collection;
 import java.util.Optional;
 
@@ -27,6 +30,7 @@ public class ReservationController {
         this.clientService = clientService;
 
     }
+
     //add reservation
     @PostMapping
     public ResponseEntity<Object> addReservation(@RequestBody Reservation reservation) {
@@ -40,11 +44,13 @@ public class ReservationController {
             return new ResponseEntity<>("Server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     //get all reservations
     @GetMapping
     public ResponseEntity<Collection<Reservation>> listReservation() {
         return ResponseEntity.ok(reservationService.listReservation());
     }
+
     //get reservation by id
     @GetMapping("/{id}")
     public ResponseEntity<Reservation> findReservation(@PathVariable Long id) {
@@ -54,19 +60,32 @@ public class ReservationController {
             return new ResponseEntity("Reservation with id " + id + " not found", HttpStatus.NOT_FOUND);
         }
     }
+
     //get reservations by product id
     @GetMapping("/productId")
     public ResponseEntity<Collection<Reservation>> listReservationByProductId(@RequestParam(required = false) Long productId) {
         Collection<Reservation> reservations = reservationService.findReservationByProductId(productId);
         return ResponseEntity.ok(reservations);
-    };
+    }
+
+    ;
 
     //get reservations by client id
     @GetMapping("/clientId")
     public ResponseEntity<Collection<Reservation>> listReservationByClientId(@RequestParam(required = false) Long clientId) {
         Collection<Reservation> reservations = reservationService.findReservationByClientId(clientId);
         return ResponseEntity.ok(reservations);
-    };
+    }
+
+    ;
+
+    //get booked reservations by user id
+    @GetMapping("/booked")
+    public ResponseEntity<Collection<ReservationDTO>> listBookedReservationsByUser() {
+        User user = userService.getUserFromSecurityContextHolder();
+        Collection<ReservationDTO> reservations = reservationService.getBookedReservationsByUser(user.getId());
+        return ResponseEntity.ok(reservations);
+    }
 
     //update reservation by id
     @PutMapping("/{id}")
@@ -74,14 +93,16 @@ public class ReservationController {
         Optional<Reservation> reservation_ = reservationService.findReservation(id);
 
         if (reservation_.isPresent()) {
+            reservation.setId(reservation_.get().getId());
             return new ResponseEntity<>(reservationService.editReservation(reservation), HttpStatus.OK);
         } else {
-            return new ResponseEntity("Reservation with id "+id+" not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Reservation with id " + id + " not found", HttpStatus.NOT_FOUND);
         }
     }
+
     //delete reservation by id
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteReservation (@PathVariable Long id) {
+    public ResponseEntity deleteReservation(@PathVariable Long id) {
         try {
             reservationService.deleteReservation(id);
             return new ResponseEntity("Reservation deleted", HttpStatus.OK);

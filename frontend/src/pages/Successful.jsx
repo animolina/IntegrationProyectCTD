@@ -2,9 +2,18 @@ import styles from '../styles/successfulReservation.module.css';
 import iconSuccess from '../assets/icons/iconSuccess.svg';
 import Button from '../components/Button';
 import { useNavigate } from 'react-router-dom';
+import canvasConfetti from 'canvas-confetti';
+import { useEffect } from 'react';
 
 export default function Successful({ type }) {
 	const navigate = useNavigate();
+	useEffect(() => {
+		canvasConfetti({
+			particleCount: 100,
+			spread: 70,
+			origin: { y: 0.6 },
+		});
+	}, []);
 
 	return (
 		<div className={styles.successfulReservation}>

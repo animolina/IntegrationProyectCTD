@@ -13,9 +13,12 @@ export default function GoogleMap() {
 		{ lat: -34.666592338620475, lon: -58.46546384614958 }, // Aguila Mora
 		{ lat: -33.534863775118204, lon: -61.12117532518601 }, // Huinid Obelisco
 	];
-
-	const locationLat = location[id - 1].lat;
-	const locationLon = location[id - 1].lon;
+	let locationFound = location[id - 1];
+	if (!locationFound) {
+		locationFound = location[0];
+	}
+	const locationLat = locationFound.lat;
+	const locationLon = locationFound.lon;
 
 	return (
 		<iframe

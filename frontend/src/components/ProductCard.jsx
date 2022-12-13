@@ -1,6 +1,5 @@
 import styles from '../styles/productCard.module.css';
 import locationIcon from '../../src/assets/icons/location-dot-solid.svg';
-
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,10 +10,25 @@ export default function ProductCard({
 	location,
 	category,
 	id,
+	startDate,
+	endDate,
+	noRating,
+	type,
 }) {
 	const navigate = useNavigate();
 	const handleClick = () => {
-		navigate(`/product-details/${id}`);
+		type === 'reservation'
+			? navigate(`/reservation-details/${id}`)
+			: navigate(`/product-details/${id}`);
+	};
+
+	const formatDate = input => {
+		const datePart = input.match(/\d+/g);
+		const year = datePart[0].substring(2); // get only two digits
+		const month = datePart[1];
+		const day = datePart[2];
+
+		return day + '/' + month + '/' + year;
 	};
 
 	return (
@@ -23,7 +37,9 @@ export default function ProductCard({
 			<div className={styles.productCardBody}>
 				<span className={styles.productCardCategory}>
 					{category?.toUpperCase()}{' '}
-					<span className={styles.productCardCategoryStars}>★ ★ ★ ★ ★ </span>
+					{noRating || (
+						<span className={styles.productCardCategoryStars}>★ ★ ★ ★ ★ </span>
+					)}
 				</span>
 				<h5 className={styles.productCardTitle}>{title}</h5>
 				<div className={styles.productCardLocation}>
@@ -40,6 +56,16 @@ export default function ProductCard({
 					type='basic'
 					innerText='Ver más'
 				></Button>
+				{startDate && (
+					<span className={styles.dateContainer}>
+						<span>
+							<span className={styles.spanDate}>Desde: </span>
+							{formatDate(startDate)}{' '}
+							<span className={styles.spanDate}>Hasta: </span>
+							{formatDate(endDate)}{' '}
+						</span>
+					</span>
+				)}
 			</div>
 		</div>
 	);

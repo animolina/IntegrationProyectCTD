@@ -12,11 +12,11 @@ export default function ProductDetailsDescription() {
 	return (
 		<div className={styles.productDetailsDescription}>
 			<h2 className={styles.descriptionTitle}>
-				Alójate en el corazón de {product.city.state}
+				Alójate en el corazón de {product?.city?.state}
 			</h2>
 
 			<p className={styles.descriptionText}>
-				{product.description}
+				{product?.description}
 				{/* Está situado a solo unas calles de la avenida Alvear, de la avenida
 				Quintana, del parque San Martín y del distrito de Recoleta. En las
 				inmediaciones también hay varios lugares de interés, como la calle

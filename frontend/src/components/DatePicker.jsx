@@ -12,6 +12,7 @@ export default function DatePicker({
 	calendarType,
 	defineEnd,
 	defineStart,
+	disabledDates,
 }) {
 	const [startDate, setStartDate] = useState();
 	const [endDate, setEndDate] = useState();
@@ -20,9 +21,14 @@ export default function DatePicker({
 		const [start, end] = dates;
 		setStartDate(start);
 		setEndDate(end);
-		defineStart(start);
-		defineEnd(end);
+		if (defineStart) {
+			defineStart(start);
+		}
+		if (defineEnd) {
+			defineEnd(end);
+		}
 	};
+	/* ------------------------------- Configurations to display blocked reservation dates ------------------------------- */
 
 	return (
 		<div className={calendarType === 'booking' ? 'booking' : ' '}>
@@ -44,6 +50,7 @@ export default function DatePicker({
 				calendarType={calendarType}
 				previousMonthButtonLabel=''
 				nextMonthButtonLabel=''
+				excludeDateIntervals={calendarType === 'booking' ? disabledDates : []}
 			/>
 		</div>
 	);

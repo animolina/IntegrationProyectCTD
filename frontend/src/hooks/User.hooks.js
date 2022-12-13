@@ -4,11 +4,16 @@ import { CacheItems, CacheService } from '../services/cacheService';
 
 export const useUser = () => {
 	const { user, setUser } = useContext(UserContext);
-	const storedUserName = CacheService.getItem(CacheItems.UserName);
+	const storedUserName = getUserFullName(
+		CacheService.getItem(CacheItems.UserName),
+		CacheService.getItem(CacheItems.UserLastName)
+	);
 	const storedUser = storedUserName
 		? {
-				name: storedUserName,
+				name: CacheService.getItem(CacheItems.UserName),
+				lastName: CacheService.getItem(CacheItems.UserLastName),
 				email: CacheService.getItem(CacheItems.UserEmail),
+				userRoles: CacheService.getItem(CacheItems.UserRole),
 		  }
 		: null;
 
@@ -18,4 +23,11 @@ export const useUser = () => {
 		user: loggedUser,
 		setUser,
 	};
+};
+
+export const getUserFullName = (name, lastName) => {
+	const formatedName = name ? name.trim() : '';
+	const formatedLastName = lastName ? lastName.trim() : '';
+	const fullName = `${formatedName} ${formatedLastName}`;
+	return fullName.trim();
 };

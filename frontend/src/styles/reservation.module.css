@@ -95,6 +95,18 @@
 	width: 100%;
 }
 
+.citySelect {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	margin-top: 2.75rem;
+}
+
+.hint {
+	font-size: small;
+	color: gainsboro;
+}
+
 /* ------------------------------- responsive ------------------------------- */
 
 @media screen and (max-width: 1000px) {

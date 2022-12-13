@@ -16,7 +16,13 @@
 	border-radius: 8px;
 }
 
+.productCard button {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
 .productCardBody {
+	position: relative;
 	max-width: 30rem;
 	display: flex;
 	flex-direction: column;
@@ -61,6 +67,22 @@
 	color: var(--main-color);
 }
 
+.dateContainer {
+	font-size: 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 0.5rem;
+	color: var(--text-color);
+	opacity: 0.7;
+	/* background-color: cornflowerblue; */
+}
+
+.dateContainer .spanDate {
+	font-weight: bold;
+}
+
 .productCardLocation {
 	display: flex;
 	flex-direction: row;
@@ -86,12 +108,15 @@
 	color: var(--text-color);
 }
 
+
+
 /* ------------------------------- responsive ------------------------------- */
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 1060px) {
 	.productCardLocation a {
 		display: none;
 	}
+
 	.productCard {
 		width: 43rem;
 	}

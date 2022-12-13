@@ -1,11 +1,11 @@
 import { describe, it, afterEach } from "vitest";
 import { render, cleanup } from "@testing-library/react";
-import CartelWarning from "../src/components/CartelWarning";
+import Alert from "../src/components/Alert";
 
-describe("CartelWarning", () => {
+describe("Alert", () => {
   afterEach(cleanup);
   const requiredText = "Para realizar una reserva necesitas estar logueado";
-  const component = render(<CartelWarning text={requiredText} />);
+  const component = render(<Alert text={requiredText} type={'warning'} />);
 
   it("should render required text in CartelWarning", () => {
     component.getByText(requiredText);

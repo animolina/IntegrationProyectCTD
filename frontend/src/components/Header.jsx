@@ -56,6 +56,17 @@ export default function Header() {
 
 			{user ? (
 				<div className={styles.logoutWelcome}>
+					{user.userRoles === 'ADMIN' && (
+						<Link to={`/admin/new-product`} className={styles.myReservations}>
+							Administración
+						</Link>
+					)}
+					<Link
+						to={`/${user.id}/reservations`}
+						className={styles.myReservations}
+					>
+						Mis reservas
+					</Link>
 					<label className={styles.logoutWelcomeInitials}>
 						{getUserInitials(`${user.name} ${user.lastName}`)}
 					</label>
